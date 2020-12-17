@@ -14,7 +14,7 @@ export default {
   footerEditOnGitHubLink: true, // will link to the docs repo
   logo: (
     <>
-      <img src="/public/reactbricks-logo.svg" className="w-48" />
+      <img src="/reactbricks-logo.svg" className="w-48" />
       {/* <span>Next.js Static Site Generator</span> */}
     </>
   ),
