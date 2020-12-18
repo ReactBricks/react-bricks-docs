@@ -31,6 +31,7 @@ export default {
       <meta name="twitter:site" content="@ReactBricks" />
       <meta name="og:title" content="ReactBricks - React Blocks-based CMS" />
       <meta name="apple-mobile-web-app-title" content="ReactBricks" />
+      <link rel="icon" href="/favicon-32x32.png"></link>
     </>
   ),
 }
