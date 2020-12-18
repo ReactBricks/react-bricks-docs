@@ -1,3 +1,9 @@
 {
-  "getting-started": "Getting started"
+  "introduction": "Introduction",
+  "release-notes": "Release notes",
+  "upgrade-guide": "Upgrade guide",
+  "starter-projects": "Starter projects",
+  "configuration": "Configuration",
+  "user-roles": "User roles",
+  "admin-dashboard": "Admin dashboard"
 }

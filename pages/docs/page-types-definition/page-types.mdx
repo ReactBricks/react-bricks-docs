@@ -1,0 +1,62 @@
+---
+title: Page Types
+description: A way to group similar pages together
+---
+
+# Page Types
+
+Page types are a way to group similar pages together.
+
+Page of the same type share:
+
+- **Allowed / excluded block types**
+- **Default status for new pages**: locked or unlocked, draft or published
+- **Default content and language**
+
+The `pageTypeSchema` is an array of pageType objects which is part of the configuration object passed to the `ReactBricks` component.
+
+If you are using a starter project, you may just edit the `pageSchema.js` file in the `/react-bricks` directory.
+
+## API
+
+Each pageType object has the following shape:
+
+```ts
+interface IPageType {
+  name: string
+  pluralName: string
+  allowedBlockTypes?: string[]
+  excludedBlockTypes?: string[]
+  defaultLocked?: boolean
+  defaultStatus?: PageStatus
+  defaultLanguage?: string
+  getDefaultContent?: () => IContentBlock[]
+}
+```
+
+## Properties definition
+
+| Property | Definition |
+| --- | --- |
+| `name` | The unique name for this page type (for example _"product"_). |
+| `pluralName` | The plural name is used in the editing interface (for example _"Products"_). |
+| `allowedBlockTypes` | Array with the names of the block types allowed for this page type. All the other blocks will not be allowed.<br /><br />By default all block types are allowed. |
+| `excludedBlockTypes` | Array with the names of the block types not allowed for this page type. It is convenient if almost all block types are allowed.<br /><br />React Bricks will exclude all blocks:<br />- Found in the `excludedBlockTypes` list<br />- Not found in the `allowedBlockTypes` list, if this is provided. |
+| `defaultLocked` | The default lock status for new pages. For example, if you want the products to have a fixed structure, you may provide the default content and set the `defaultLocked` flag to true. |
+| `defaultStatus` | The default visibility status (draft / published) for new pages of this type. |
+| `defaultLanguage` | The default [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language for this pageType. It is used in the `<html>` tag to identify the document language. Defaults to "en". |
+| `getDefaultContent` | Function that returns the default content for a new page. The content is an array of contentBlocks, where each contentBlock is an object with this shape `{ id, type, props }`<br /><br />- The `id` must be unique (we suggest that you use the `uuid()` function exported by react-bricks.<br />- The `type` is the type of block.<br />- `props` is an object with the props for the block component.<br /><br />For your convenience, the Admin user can copy the content of a page to clipboard (Document tab in right pane), to use it as a starting point for default content. |
+
+## Usage example
+
+```jsx
+const pageSchema = [
+  {
+    name: 'page',
+    pluralName: 'pages',
+    defaultLocked: false,
+    defaultStatus: types.PageStatus.Published,
+    getDefaultContent: () => [],
+  },
+]
+```

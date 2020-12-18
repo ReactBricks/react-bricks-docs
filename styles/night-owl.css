@@ -1,0 +1,149 @@
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #d6deeb !important;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+  text-align: left !important;
+  white-space: pre !important;
+  word-spacing: normal !important;
+  word-break: normal !important;
+  word-wrap: normal !important;
+  line-height: 1.5 !important;
+
+  -moz-tab-size: 4 !important;
+  -o-tab-size: 4 !important;
+  tab-size: 4 !important;
+
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  text-shadow: none !important;
+  background: rgba(29, 59, 83, 0.99) !important;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  text-shadow: none !important;
+  background: rgba(29, 59, 83, 0.99) !important;
+}
+
+@media print {
+  code[class*='language-'],
+  pre[class*='language-'] {
+    text-shadow: none !important;
+  }
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em !important;
+  margin: 0.5em 0 !important;
+  overflow: auto !important;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  color: white !important;
+  background: #011627 !important;
+}
+
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em !important;
+  border-radius: 0.3em !important;
+  white-space: normal !important;
+}
+
+.token.comment,
+.token.prolog,
+.token.cdata {
+  color: rgb(99, 119, 119) !important;
+  font-style: italic !important;
+}
+
+.token.punctuation {
+  color: rgb(199, 146, 234) !important;
+}
+
+.namespace {
+  color: rgb(178, 204, 214) !important;
+}
+
+.token.deleted {
+  color: rgba(239, 83, 80, 0.56) !important;
+  font-style: italic !important;
+}
+
+.token.symbol,
+.token.property {
+  color: rgb(128, 203, 196) !important;
+}
+
+.token.tag,
+.token.operator,
+.token.keyword {
+  color: rgb(127, 219, 202) !important;
+}
+
+.token.boolean {
+  color: rgb(255, 88, 116) !important;
+}
+
+.token.number {
+  color: rgb(247, 140, 108) !important;
+}
+
+.token.constant,
+.token.function,
+.token.builtin,
+.token.char {
+  color: rgb(130, 170, 255) !important;
+}
+
+.token.selector,
+.token.doctype {
+  color: rgb(199, 146, 234) !important;
+  font-style: italic !important;
+}
+
+.token.attr-name,
+.token.inserted {
+  color: rgb(173, 219, 103) !important;
+  font-style: italic !important;
+}
+
+.token.string,
+.token.url,
+.token.entity,
+.language-css .token.string,
+.style .token.string {
+  color: rgb(173, 219, 103) !important;
+}
+
+.token.class-name,
+.token.atrule,
+.token.attr-value {
+  color: rgb(255, 203, 139) !important;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: rgb(214, 222, 235) !important;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold !important;
+}
+
+.token.italic {
+  font-style: italic !important;
+}

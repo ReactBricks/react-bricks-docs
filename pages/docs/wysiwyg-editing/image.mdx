@@ -1,0 +1,59 @@
+---
+title: Image
+description: To upload an image with progressive loading
+---
+
+# Image
+
+The `Image` component shows an image with progressive loading and allows to **upload a new image**.
+
+Upon upload, React Bricks will:
+
+- **Create responsive optimized images**
+- Save them on a **global CDN**
+- Create a **light blurred placeholder** for the progressive loading
+
+## Purpose
+
+- **Avoid serving big images where they are not necessary**, in order to diminish the load time.
+- **Serve images only when they are needed**, loading the images below the fold only when they enter the viewport.
+
+## API
+
+Here's the Typescript interface for the props of the `Image` component:
+
+```ts
+source: types.IImageSource
+  alt: string
+  maxWidth?: number
+  propName: string
+  onChange: (field: string, source: types.IImageSource) => void
+  containerClassName?: string
+  imageClassName?: string
+}
+```
+
+## Properties definition
+
+| Property | Definition |
+| --- | --- |
+| `source` | An object as returned by the upload process. It contains all the properties that are needed to show the placeholder and the responsive images. |
+| `alt` | The required alternate text for the image. We suggest that you create a `sideEditProp` to let the content editor specify the alt tag for the image. |
+| `maxWidth` | This is the maximum width in pixel at which your image will be displayed. It is used to calculate the responsive images for normal and retina displays.<br /><br />The default value is 800. |
+| `propName` | The name of the prop of the parent component in which this text should go. |
+| `onChange` | You should pass to this callback function the `onChange` function received in your component's props. |
+| `containerClassName` | Optional className to apply to the image container (wrapper created by React Bricks). |
+| `imageClassName` | Optional className to apply to the `<img>` tag. |
+
+## Usage example
+
+```jsx
+<Image
+  source={imageSource}
+  alt=""
+  maxWidth={720}
+  propName="imageSource"
+  onChange={onChange}
+  imageClassName="w-24 h-24 mx-auto mb-6"
+/>
+```

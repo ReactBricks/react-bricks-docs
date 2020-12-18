@@ -1,0 +1,62 @@
+---
+title: Nested blocks
+description: Learn how to create blocks which have an array of items inside
+---
+
+# Nested blocks
+
+React Bricks allows you to have **blocks which have an array of items inside**.  
+For example a Gallery of images or a Features section of a website.
+
+## Repeater block (the container)
+
+The repeater block must be of type `REPEATER`.
+
+It is like a normal block, but it receives a `renderItems` prop, which is a render function that must be called to render the children items in the right position within the returned JSX.
+
+## API
+
+A block of type `REPEATER` has the following specific properties:
+
+| Property | Definition |
+| --- | --- |
+| `itemsType` | It corresponds to the unique `name` of the repeated items Block Type (for example _"feature-item"_) |
+| `addItemText` | The text for the button to add a new item (for example _"Add feature"_) |
+| `removeItemText` | The text for the button to remove an item (for example _"Remove feature"_) |
+| `getDefaultProps` | For a repeater block, you may specify also the special `items` prop to populate the children items whenever a new block of this type is added to the page. |
+
+## Usage example
+
+```ts
+...
+
+itemsType: BlockNames.LogoGridItem,
+addItemText: 'Add logo',
+removeItemText: 'Remove logo',
+getDefaultProps: () => ({
+  items: [
+    {
+      id: uuid(),
+      type: BlockNames.LogoGridItem,
+      props: {
+        imageSource: { ... },
+        name: Plain.deserialize('React'),
+      },
+    },
+  ],
+}),
+```
+
+## Repeated Item Block
+
+A repeated block is a normal block, but it must spread `...rest` props on its root element in order to correctly focus the element and display it as focused, as you can see below:
+
+```jsx
+const LogoGridItem: React.FC<IProps> = ({ imageSource, name, onChange, ...rest }) => {
+  return (
+    <div className="w-64 px-6 pb-16 flex flex-col" {...rest}>
+      ...
+    </div>
+  )
+}
+```

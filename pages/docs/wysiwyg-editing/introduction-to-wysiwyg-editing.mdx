@@ -1,0 +1,58 @@
+---
+title: Intro to WYSIWYG editing
+description: Visual editing has never been so easy
+---
+
+import Callout from '../../../components/Callout'
+
+# Intro to WYSIWYG editing
+
+React Bricks provides three components you may use in the JSX returned by your blockType's `render` function:
+
+- `Text` **for one-line plain texts.**
+- `RichText` **for multiline rich text editing.**  
+  You may choose the available rich text features (bold, italic, link, code, highlight) and provide custom components for these markers.
+- `Image` **to allow inline uploading of images.**  
+  React Bricks will create a small size placeholder for lazy loading and responsive versions to optimize data transfer.
+
+I think that an example is the best way to explain how WYSIWYG editing works:
+
+```jsx
+import React from 'react'
+import { Text, Plain, types } from 'react-bricks'
+
+const SimpleText = ({ text, onChange }) => (
+  <div>
+    <Text
+      renderBlock={(props) => <h1>{props.children}</h1>}
+      placeholder="Type your text..."
+      value={text}
+      propName="text"
+      onChange={onChange}
+    />
+  </div>
+)
+
+const schema = {
+  name: 'simple-text',
+  label: 'Simple text',
+  superType: types.BlockSuperType.Single,
+  render: (props) => <SimpleText {...props} />,
+  getDefaultProps: () => ({
+    text: Plain.deserialize('This is a simple text'),
+  }),
+}
+
+export default schema
+```
+
+As you can see, this module declares the "SimpleText" functional component which is passed to the `render` prop of the exported `schema` object.
+
+The "SimpleText" component renders React Bricks' `Text` component, because we want just a single line of plain text.
+
+> It's important to note that the component takes the `onChange` callback function from the props and passes it through to the `Text` component. This is a thing that you have to do for all the three WYSIWYG components.
+
+<Callout>
+  In the next chapters, we'll see the API details for the `Text`, `RichText` and `Image` WYSIWYG
+  components.
+</Callout>

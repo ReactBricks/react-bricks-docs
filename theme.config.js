@@ -1,3 +1,5 @@
+import Logo from './components/Logo'
+
 export default {
   repository: 'https://github.com/shuding/nextra', // project repo
   docsRepository: 'https://github.com/shuding/nextra', // docs repo
@@ -13,10 +15,9 @@ export default {
   footerText: <>© {new Date().getFullYear()} F2 .net engineering s.r.l.</>,
   footerEditOnGitHubLink: true, // will link to the docs repo
   logo: (
-    <>
-      <img src="/reactbricks-logo.svg" className="w-48" />
-      {/* <span>Next.js Static Site Generator</span> */}
-    </>
+    <div className="w-48">
+      <Logo />
+    </div>
   ),
   head: (
     <>

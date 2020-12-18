@@ -1,0 +1,44 @@
+---
+title: Text
+description: To edit a single line of plain text
+---
+
+# Text
+
+The `Text` component allows the user to edit a single line of plain text.
+
+## API
+
+Here's the Typescript interface for the props of the `Text` component:
+
+```ts
+interface IProps {
+  renderBlock: React.FC
+  value: types.TextValue
+  placeholder: string
+  propName: string
+  onChange(field: string, value: Value): void
+}
+```
+
+## Properties definition
+
+| Property | Definition |
+| --- | --- |
+| `renderBlock` | A React functional component used to render the text. |
+| `value` | The value for the text being edited.<br /><br />If you use TypeScript, the `TextValue` type is exported by library. |
+| `placeholder` | The placeholder to show when the text is empty. |
+| `propName` | The name of the prop of the parent component in which this text should go. |
+| `onChange` | You should pass to this callback function the `onChange` function received in your component's props. |
+
+## Usage example
+
+```jsx
+<Text
+  renderBlock={(props) => <h2>{props.children}</h2>}
+  placeholder="Type your text..."
+  value={title}
+  propName="title"
+  onChange={onChange}
+/>
+```

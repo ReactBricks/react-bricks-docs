@@ -1,4 +1,7 @@
 {
-  "introduction": "Introduction",
-  "release-notes": "Release notes"
+  "getting-started": "Getting started",
+  "blocks-definition": "Blocks definition",
+  "wysiwyg-editing": "Wysiwyg editing",
+  "page-types-definition": "Page types definition",
+  "deploy": "Deploy"
 }

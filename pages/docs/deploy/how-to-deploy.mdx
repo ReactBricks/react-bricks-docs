@@ -1,0 +1,31 @@
+---
+title: How to deploy
+description: Learn how to deploy your site
+---
+
+# How to deploy
+
+## Static website
+
+If you chose to build a Static website (for example using [Gatsby](https://www.gatsbyjs.org/) or [Next.js](https://www.nextjs.org/)), you can **deploy on any static hosting service**.
+
+## The need for rebuild
+
+A static website is [great for many reasons](https://dev.to/matfrana/server-side-rendering-vs-static-site-generation-17nf), but it has the problem that, **when content changes, the pages are not updated**, as they are created at build time.
+
+## Rebuild as code changes
+
+Providers like [Netlify](https://www.netlify.com/) or [Zeit Now](https://zeit.co/), which connect to your Github or Bitbucket repo, are able to trigger a rebuild every time you push a change to the repo. But this still doesn't help when it's the CMS content that changes.
+
+## Hooks: Rebuild as content changes
+
+Luckily with many providers you can create a **Build hook, which is a URL** that, when called (usually in HTTP POST), **triggers a site rebuild**.
+
+ReactBricks let the Admin set the deploy hook URL, so that the Editor may just **click a "Deploy" button** to trigger a site rebuild and have the content updated.
+
+## Gatsby plugins
+
+If you are using Gatsby and hosting on Netlify or Zeit Now, we suggest that you install a Gatsby plugin to handle security headers, caching headers and redirects.
+
+- [gatsby-plugin-nelify](https://www.gatsbyjs.org/packages/gatsby-plugin-netlify/)
+- [gatsby-plugin-zeit-now](https://www.gatsbyjs.org/packages/gatsby-plugin-zeit-now/)
