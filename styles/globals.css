@@ -190,15 +190,28 @@ figure figcaption {
 content ul {
   @apply list-none ml-6 mt-6;
 }
+content li {
+  @apply mt-2 leading-relaxed;
+}
 content ul li::before {
   @apply inline-block w-4 -ml-4 text-pink-500 dark:text-pink-400;
   content: '\2022';
 }
 content ol {
-  @apply list-decimal ml-6 mt-6;
+  counter-reset: item;
+  @apply list-none ml-8 mt-6;
 }
-content li {
-  @apply mt-2 leading-relaxed;
+content ol li {
+  @apply relative;
+}
+content ol li::before {
+  content: counter(item);
+  counter-increment: item;
+  @apply absolute top-0 left-0 mt-1 flex items-center justify-center -ml-8 text-xs font-bold w-6 h-6 bg-pink-50 text-pink-600 rounded-full;
+  @apply dark:bg-pink-500 dark:text-pink-200;
+}
+.dark content ol li::before {
+  @apply bg-opacity-50;
 }
 content blockquote {
   @apply mt-6 py-0 px-6 border-l-4 border-pink-400;
