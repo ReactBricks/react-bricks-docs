@@ -5,7 +5,6 @@ module.exports = {
     './pages/**/*.js',
     './components/**/*.js',
     './node_modules/nextra-theme-docs/dist/*.js',
-    './theme.config.js',
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {

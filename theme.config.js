@@ -2,7 +2,7 @@ import Logo from './components/Logo'
 
 export default {
   repository: 'https://github.com/shuding/nextra', // project repo
-  docsRepository: 'https://github.com/shuding/nextra', // docs repo
+  docsRepository: 'https://github.com/ReactBricks/react-bricks-docs', // docs repo
   branch: 'master', // branch of docs
   path: '/', // path of docs
   titleSuffix: ' – ReactBricks',
@@ -14,11 +14,7 @@ export default {
   footer: true,
   footerText: <>© {new Date().getFullYear()} F2 .net engineering s.r.l.</>,
   footerEditOnGitHubLink: true, // will link to the docs repo
-  logo: (
-    <div className="w-48">
-      <Logo />
-    </div>
-  ),
+  logo: <Logo />,
   head: (
     <>
       <meta name="msapplication-TileColor" content="#f65b8e" />
