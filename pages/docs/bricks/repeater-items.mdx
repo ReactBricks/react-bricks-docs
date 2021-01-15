@@ -1,0 +1,66 @@
+# repeaterItems in schema
+
+`repeaterItems` should be an array with one configuration object for each repeated block.  
+The configuration object has the following shape:
+
+## Properties
+
+```ts
+interface IRepeaterItem {
+  name: string
+  itemType: string
+  itemLabel?: string
+  min?: number
+  max?: number
+}
+```
+
+## Properties definition
+
+| Property     | Definition                                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------------------- |
+| `name`       | Name of the prop passed to the component with these repeated items                                                    |
+| `itemType`   | It corresponds to the unique `name` of the repeated Brick type (for example _"feature-item"_)                         |
+| `itemLabel?` | Optional label used for the Add / Remove buttons. If none is provided, the repeated brick's label is used as fallback |
+| `min`        | Minimum number of repeated items allowed                                                                              |
+| `max`        | Maximum number of repeated items allowed                                                                              |
+
+## Usage example
+
+```ts
+YourBrick.schema {
+  ...
+  repeaterItems: [
+    {
+      name: 'buttons',
+      itemType: 'button',
+      itemLabel: 'Button',
+      min: 0,
+      max: 2,
+    },
+  ],
+  ...
+}
+```
+
+## Repeated Brick
+
+A brick used as repeater item is just a normal brick, but it must spread `...rest` props on its root element in order to be correctly focusable in the Admin interface, as you can see below:
+
+```tsx highlight=5
+const Badge: types.Brick<BadgeProps> = ({
+  ...rest
+}) => {
+  return (
+    <div {...rest}>
+      ...
+    </div>
+  )
+}
+
+Badge.schema = {
+  ...
+}
+
+export default Badge
+```

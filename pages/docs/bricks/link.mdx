@@ -1,0 +1,39 @@
+---
+title: The Link component
+description: To render links
+---
+
+# The Link component
+
+Behind the scenes, the WYSIWYG text editor uses a `Link` component to render links.
+
+This component renders a normal `<a>` tag for external links and uses the `renderLocalLink` function from the configuration to render internal links, so that they leverage your React framework's router.
+
+As we saw in [RichText](rich-text), for each `RichText` component, you may replace the Link component with any component you want, by setting the `renderLink` prop.
+
+> Sometimes you may want to use the `<Link>` component directly, for example if your block renders a link where the path or external URL must be provided from a sidebar prop.
+
+```ts
+## Properties
+interface LinkProps {
+  href: string
+  target?: string
+  className?: string
+}
+```
+
+## Properties definition
+
+| Property    | Definition                                                       |
+| ----------- | ---------------------------------------------------------------- |
+| `href`      | The URL for an external link or the local path for a local link. |
+| `target`    | The target for the external link (for example _"\_blank"_).      |
+| `className` | CSS class to be applied to the link tag.                         |
+
+It also spread `{...rest}` properties on the link tag
+
+## Usage example
+
+```jsx
+<Link href={href}>{children}</Link>
+```

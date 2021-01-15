@@ -1,0 +1,76 @@
+# Bricks overview
+
+## What is a Brick?
+
+A Brick is a content "Lego brick" for React Bricks.  
+It is a type of content block that you can create and content creator may use to create content on a page.
+
+## How is it made?
+
+A Brick is just a **React component** with two peculiarities:
+1. It should have a [**`schema` static property**](schema) to define it and **specify the props edited via the sidebar** controls
+2. It may use React Bricks [**visual edit components**](visual-edit) (Text, RichText, Image, Repeater) to enable visual editing
+
+## Show me the code!
+
+Here's an example "Hero unit" brick: nice to meet you! 😊
+```tsx
+// Import React Bricks TypeScript types 
+// and RichText visual edit component
+// (other visual edit components are Image and Repeater)
+import { types, RichText } from 'react-bricks'
+interface HeroUnitProps {
+  background: { color: string; className: string }
+}
+// This is the React component
+const HeroUnit: types.Brick<HeroUnitProps> = ({
+  background = { color: '#fff', className: 'bg-white' },
+}) => {
+  return (
+    <div className={\`py-12 \${background.className}\`}>
+      {/* RichText component from React Bricks */}
+      <RichText
+        renderBlock={(props: any) => (
+          <h1 className="text-3xl text-center" {...props.attributes}>
+            {props.children}
+          </h1>
+        )}
+        placeholder="Type a title..."
+        propName="title"
+        allowedFeatures={[types.RichTextFeatures.Bold]}
+      />
+    </div>
+  )
+}
+// Brick Schema
+HeroUnit.schema = {
+  name: 'hero-unit',
+  label: 'Hero Unit',
+  // Defaults when a new brick is added
+  getDefaultProps: () => ({
+    background: { color: '#fff', className: 'bg-white' },
+    title: 'Thick as a React Brick',
+  }),
+  // Sidebar Edit props (just 1 in this minimal example)
+  // It is possible to group them in collapsible sections
+  sideEditProps: [
+    {
+      name: 'background',
+      label: 'Background',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Color,
+        options: [
+          // The color is the unique mandatory property for a "color" select
+          { value: { color: '#fff', className: 'bg-white' }, label: 'White' },
+          {
+            value: { color: '#f3f4f6', className: 'bg-gray-100' },
+            label: 'Gray',
+          },
+        ],
+      },
+    },
+  ],
+}
+export default HeroUnit
+```

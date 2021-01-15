@@ -1,0 +1,45 @@
+---
+title: Text
+description: To edit a single line of plain text
+---
+
+# Text
+
+The `Text` component allows the user to edit a single line of plain text.
+
+## Properties
+
+Here's the Typescript interface for the props of the `Text` component:
+
+```ts
+interface TextProps {
+  propName: string
+  renderBlock: React.FC
+  placeholder: string
+}
+```
+
+## Properties definition
+
+| Property | Definition |
+| --- | --- |
+| `propName` | The prop of the Brick component corresponding to this text. |
+| `renderBlock` | A React functional component used to render the text.<br />Typically it wraps the children. |
+| `placeholder` | The placeholder to show when the text is empty. |
+
+## Usage example
+
+```tsx
+<Text
+  propName="claim"
+  renderBlock={(props: any) => (
+    <p
+      className="text-xl font-extrabold"
+      {...props.attributes}
+    >
+      {props.children}
+    </p>
+  )}
+  placeholder="Claim..."
+/>
+```

@@ -1,7 +1,8 @@
 {
   "getting-started": "Getting started",
-  "blocks-definition": "Blocks definition",
-  "wysiwyg-editing": "Wysiwyg editing",
-  "page-types-definition": "Page types definition",
+  "release-notes": "Release notes",
+  "admin-dashboard": "Admin Dashboard",
+  "configuration": "Configuration",
+  "bricks": "Bricks (content blocks)",
   "deploy": "Deploy"
 }

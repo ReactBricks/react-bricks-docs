@@ -1,0 +1,20 @@
+---
+title: Intro to WYSIWYG editing
+description: Visual editing has never been so easy
+---
+
+import Callout from '../../../components/Callout'
+
+# Intro to WYSIWYG editing
+
+In your Brick components you may use React Bricks exported components.  
+Three of them are needed for Visual (WYSIWYG) editing.
+
+They are:
+- [`Text`](text) **for one-line plain texts.**
+- [`RichText`](rich-text) **for multiline rich text editing.**  
+  You may choose the available rich text features (bold, italic, link, code, highlight) and provide custom components for these markers.
+- [`Image`](image) **to allow inline uploading of images.**  
+  On the Admin this component allow the upload, then our APIs will create a small size placeholder for lazy loading and responsive versions to optimize data transfer.  
+  On the frontend, this component lazyload the images and uses the sourceSet created on the server to load the optimal image size.
+

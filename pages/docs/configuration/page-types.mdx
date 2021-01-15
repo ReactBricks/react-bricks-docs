@@ -13,11 +13,11 @@ Page of the same type share:
 - **Default status for new pages**: locked or unlocked, draft or published
 - **Default content and language**
 
-The `pageTypeSchema` is an array of pageType objects which is part of the configuration object passed to the `ReactBricks` component.
+The `pageTypes` in [React Bricks configuration](/docs/configuration/configuration) is an array of `pageType` objects.
 
-If you are using a starter project, you may just edit the `pageSchema.js` file in the `/react-bricks` directory.
+If you are using a starter project, you should find a `pageTypes.ts` file in the `/react-bricks` directory.
 
-## API
+## Properties
 
 Each pageType object has the following shape:
 
@@ -30,7 +30,8 @@ interface IPageType {
   defaultLocked?: boolean
   defaultStatus?: PageStatus
   defaultLanguage?: string
-  getDefaultContent?: () => IContentBlock[]
+  defaultFeaturedImage?: string
+  getDefaultContent?: () => string[]
 }
 ```
 
@@ -45,18 +46,19 @@ interface IPageType {
 | `defaultLocked` | The default lock status for new pages. For example, if you want the products to have a fixed structure, you may provide the default content and set the `defaultLocked` flag to true. |
 | `defaultStatus` | The default visibility status (draft / published) for new pages of this type. |
 | `defaultLanguage` | The default [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language for this pageType. It is used in the `<html>` tag to identify the document language. Defaults to "en". |
-| `getDefaultContent` | Function that returns the default content for a new page. The content is an array of contentBlocks, where each contentBlock is an object with this shape `{ id, type, props }`<br /><br />- The `id` must be unique (we suggest that you use the `uuid()` function exported by react-bricks.<br />- The `type` is the type of block.<br />- `props` is an object with the props for the block component.<br /><br />For your convenience, the Admin user can copy the content of a page to clipboard (Document tab in right pane), to use it as a starting point for default content. |
+| `defaultFeaturedImage` | The default URL for the featured image of this pageType, if no featured image is provided for a Page via the Document sidebar. |
+| `getDefaultContent` | Function that returns an array of brick names. The default content for the page will consist in the concatenation of the default content for each brick. |
 
 ## Usage example
 
 ```jsx
 const pageSchema = [
   {
-    name: 'page',
-    pluralName: 'pages',
+    name: 'product',
+    pluralName: 'products',
     defaultLocked: false,
     defaultStatus: types.PageStatus.Published,
-    getDefaultContent: () => [],
+    getDefaultContent: () => ['hero-unit', 'features', 'call-to-action'],
   },
 ]
 ```

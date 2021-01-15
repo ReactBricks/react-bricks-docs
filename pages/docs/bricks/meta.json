@@ -1,0 +1,14 @@
+{
+  "what-is-a-brick": "What is a Brick",
+  "schema": "Schema",
+  "side-edit-props": "Side edit props",
+  "visual-edit": "Visual Editing",
+  "text": "• Text",
+  "rich-text": "• RichText",
+  "image": "• Image",
+  "nested-blocks": "Nested Blocks",
+  "repeater": "• Repeater",
+  "repeater-items": "• repeaterItems",
+  "link": "Link",
+  "styling": "Styling"
+}

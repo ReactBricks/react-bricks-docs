@@ -1,0 +1,103 @@
+---
+title: Configuration
+description: Configure your website
+---
+
+# Configuration
+
+**React Bricks main configuration file** is located in `/react-bricks/config.ts`.
+
+Here you can configure the **Logo** for the Admin header **and other parameters** (many of them will be already configured for you by the starter, based on the React framework you are using).
+
+## Configuration object
+
+```ts
+{
+  // Credentials
+  appId: string
+  apiKey: string
+
+  // CMS Content Blocks and Page Types
+  bricks?: types.Brick<any>[]
+  pageTypes?: types.IPageType[]
+
+  // Environment Settings
+  logo?: string
+  contentClassName?: string
+  renderLocalLink: types.RenderLocalLink
+  navigate: (path: string) => void
+  loginPath?: string
+  editorPath?: string
+  playgroundPath?: string
+  appSettingsPath?: string
+  isDarkColorMode?: boolean
+  toggleColorMode?: () => void
+  useCssInJs?: boolean
+  appRootElement: string | HTMLElement
+}
+```
+
+We can group configuration settings into three parts: credentials, schemas and environment settings.
+
+## Credentials
+
+| Property | Definition |
+| --- | --- |
+| `appId` | Identifies this React Bricks app. Imported from `.env`.<br />It may be public as it is just an identifier, not used to authenticate API calls. |
+| `apiKey` | API Key for React Bricks APIs. Imported from `.env`.<br />Used to authenticate Read API calls from the frontend. |
+
+## Bricks and Page Types
+
+| Property | Definition |
+| --- | --- |
+| `bricks` | This is the bricks (content blocks) definition. It is an array of [Bricks](/docs/bricks/what-is-a-brick) |
+| `pageTypes` | This is the page types definition. It is an array of [Page types](/docs/configuration/page-types) |
+
+## Environment settings
+
+Let alone logo and contentClassName, all of these environment settings are **already set by the starter** you choose.
+
+| Property | Definition |
+| --- | --- |
+| `logo` | The URL for the logo you want to appear in the Header of the Admin dashboard |
+| `contentClassName` | Class applied to the content in the Admin dashboard, so that the editing environment will look just the same as the front-end. |
+| `renderLocalLink` | A functional component that typically wraps your router Link component (for example the Gatsby or Next `<Link>` component), useful to render local links inside the content text and avoiding full page reloads. It is used also to render the header links in the Admin.<br /><br />React Bricks by default renders a `<a>` tag for external links and the `renderLocalLink` component for local links.<br /><br />The renderLocalLink component may use the following props:<br />- `href` (required): destination path<br />- `children` (required): link children elements (for example the link text)<br />- `className`: class to be applied to links<br />- `activeClassName`: class to be applied to active links<br />- `isAdmin`: useful if you need to do different things for the admin interface header links |
+| `navigate` | A function to navigate to a page. Typically it uses the Gatsby's router `navigate` or Next.js router's `Router.push` functions.<br /><br />React Bricks needs it to manage authentication redirects. |
+| `loginPath` | Path to the Admin "Login" page. Defaults to `/admin`. |
+| `editorPath` | Path to the Admin "Editor" page. Defaults to `/admin/editor`. |
+| `playgroundPath` | Path to the Admin "Playground" page. Defaults to `/admin/playground`. |
+| `appSettingsPath` | Path to the Admin "App Settings" page. Defaults to `/admin/app-settings`. |
+| `isDarkMode` | A boolean indicating if dark mode is active. Useful to test dark mode in editing, if your Bricks support dark mode. |
+| `toggleDarkMode` | Function that toggles dark mode. Used by the Admin to test dark mode. |
+| `useCssInJs` | Boolean that should be set to `true` if you use a CSS-in-JS library like Styled Components or Emotion. |
+| `appRootElement` | A string selector like `#root` or an HTML Element like `document.getElementById('root')`. This is for accessibility of modals in Admin, to be compliant to WAI-ARIA guidelines. |
+
+## Usage example
+
+Here you can see an example of a `config.ts` file, for a Gatsby-based project: [TO BE UPDATED]
+
+```jsx
+import React from 'react'
+import { Link, navigate } from 'gatsby'
+import pageTypeSchema from './pageSchema'
+import blockTypeSchema from './bricks'
+import { appId, apiKey } from '../../credentials.config'
+import logo from '../images/logo.svg'
+
+const config = {
+  appId,
+  apiKey,
+  pageTypeSchema,
+  blockTypeSchema,
+  logo,
+  contentClassName: 'content',
+  renderLocalLink: ({ href, children, className, activeClassName }) => (
+    <Link to={href} className={className} activeClassName={activeClassName}>
+      {children}
+    </Link>
+  ),
+  navigate,
+}
+
+export default config
+```

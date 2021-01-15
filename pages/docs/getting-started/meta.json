@@ -1,9 +1,6 @@
 {
-  "introduction": "Introduction",
-  "release-notes": "Release notes",
-  "upgrade-guide": "Upgrade guide",
+  "learning-resources": "Learning resources",
+  "cli": "The CLI",
   "starter-projects": "Starter projects",
-  "configuration": "Configuration",
-  "user-roles": "User roles",
-  "admin-dashboard": "Admin dashboard"
+  "react-bricks-dashboard": "React Bricks Dashboard"
 }

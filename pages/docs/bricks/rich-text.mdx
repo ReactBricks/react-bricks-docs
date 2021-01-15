@@ -9,20 +9,18 @@ The `RichText` component allows the user to edit a multiline rich text.
 
 It is very flexible, as it allows you to:
 
-- **Choose the allowed rich text features** (between Bold, Italic, Code, Highlight, Link).
-- **Provide your own components** to render for each marker.
+- **Choose the allowed rich text features** (Bold, Italic, Code, Highlight, Link).
+- **Provide your own components** to render each marker.
 
-## API
+## Properties
 
 Here's the Typescript interface for the props of the `RichText` component:
 
 ```ts
-interface IProps {
-  renderBlock: React.FC
-  value: Value
-  placeholder: string
+interface RichTextProps {
   propName: string
-  onChange(field: string, value: Value): void
+  renderBlock: React.FC
+  placeholder: string
   allowedFeatures?: types.RichTextFeatures[]
   renderBold?: React.FC
   renderItalic?: React.FC
@@ -39,37 +37,41 @@ interface IProps {
 
 | Property | Definition |
 | --- | --- |
+| `propName` | The prop of the Brick component corresponding to this text. |
 | `renderBlock` | A React functional component used to render each paragraph of text. |
-| `value` | The value for the text being edited.<br /><br />If you use TypeScript, the `TextValue` type is exported by library. |
 | `placeholder` | The placeholder to show when the text is empty. |
-| `propName` | The name of the prop of the parent component in which this text should go. |
-| `onChange` | You should pass to this callback function the `onChange` function received in your component's props. |
-| `allowedFeatures` | An array of allowed rich text features: the available features are `BOLD`, `ITALIC`, `CODE`, `HIGHLIGHT`, `LINK`, `UL`, `OL`.<br /><br />You find them on the exported object (or TypesScript enum) `types.RichTextFeatures` |
+| `allowedFeatures` | An array of allowed rich text features: the available features are `BOLD`, `ITALIC`, `CODE`, `HIGHLIGHT`, `LINK`, `UL`, `OL`.<br /><br />You find them on the exported `types.RichTextFeatures` |
 | `renderBold` | The optional render function for the `BOLD` marker. |
 | `renderItalic` | The optional render function for the `ITALIC` marker. |
 | `renderCode` | The optional render function for the `CODE` marker. |
 | `renderHighlight` | The optional render function for the `HIGHLIGHT` marker. |
-| `renderLink` | The optional render function for the `LINK` marker.<br /><br />**Warning**: this render function will overwrite the default React Bricks Link component, which uses the configured `renderLocalLink` for local links and a `<a>` tag for external links. |
+| `renderLink` | The optional render function for the `LINK` marker.<br /><br />**Warning**: this render function will override the default React Bricks `Link` component (which uses the configured `renderLocalLink` for local links and a `<a>` tag for external links). |
 | `renderUL` | The optional render function for Unordered Lists. |
 | `renderOL` | The optional render function for Ordered Lists. |
 | `renderLI` | The optional render function for List Items. |
 
 ## Usage example
 
-```jsx
+```tsx
 <RichText
-  renderBlock={(props) => <p>{props.children}</p>}
-  value={text}
+  renderBlock={(props: any) => (
+    <p
+      className="text-lg sm:text-xl text-center"
+      {...props.attributes}
+    >
+      {props.children}
+    </p>
+  )}
   placeholder="Type a text..."
   propName="text"
-  onChange={onChange}
   allowedFeatures={[
     types.RichTextFeatures.Bold,
     types.RichTextFeatures.Italic,
-    types.RichTextFeatures.Highlight,
     types.RichTextFeatures.Code,
+    types.RichTextFeatures.Highlight,
     types.RichTextFeatures.Link,
+    types.RichTextFeatures.UnorderedList,
+    types.RichTextFeatures.OrderedList,
   ]}
-  renderBold={(props) => <b className="text-red-500">{props.children}</b>}
 />
 ```

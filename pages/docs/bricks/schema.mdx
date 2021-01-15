@@ -1,0 +1,71 @@
+---
+title: The blocks schema
+description: Define the set of "bricks" that can be used in pages
+---
+
+# The schema property
+Each brick should have a `schema` static property, which has the followinf TypeScript interface:
+
+## Properties
+
+```ts
+interface ISchema {
+  name: string
+  label: string // for the Add menu
+  getDefaultProps: () => object
+  hideFromAddMenu?: boolean
+  sideEditProps?: Array<ISideEditProp | ISideGroup>
+  repeaterItems?: IRepeaterItem[]
+}
+```
+
+The `ISideEditProp` / `ISideGroup` interface is explained in the [Side edit props](side-edit-props) page.  
+The `Repeater` interface is explained in the [Repeater](repeater) page.
+
+## Properties definition
+
+| Property | Definition |
+| --- | --- |
+| `name` | The unique name for this block type (for example _"hero-unit"_) |
+| `label` | The name displayed in the Sidebar when you want to add a new block (for example _"Hero Unit"_) |
+| `getDefaultProps` | A function returning the default props for new added blocks. |
+| `hideFromAddMenu` | If true, the component isn't shown in the list of components available in the "add block" menu. For example, you may want to hide a block that can be use only inside of a [<Repeater />](repeater). |
+| `sideEditProps` | The array of objects representing the props the user will be able to modify in the right Sidebar, with their display properties. See [Side Edit Props](side-edit-props) |
+| `repeaterItems` | Array to specify behaviour of the bricks used in the `<Repeater>` components. See [Repeater](repeater)  |
+
+## Is the block in edit mode? // TO BE MOVED>>>
+
+If you need to do conditionally render based on the fact that the brick is in edit mode (inside the admin dashboard) or view mode (frontend site), you may use the [AdminContext](/docs-api/admin-context)'s prop `isAdmin`
+
+## Usage example
+
+```ts
+HeroUnit.schema = {
+  name: 'hero-unit',
+  label: 'Hero Unit',
+  // Defaults when a new brick is added
+  getDefaultProps: () => ({
+    background: { color: '#fff', className: 'bg-white' },
+    title: 'Thick as a React Brick',
+  }),
+  // Sidebar Edit props
+  sideEditProps: [
+    {
+      name: 'background',
+      label: 'Background',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Color,
+        options: [
+          // The color is the unique mandatory property for a "color" select
+          { value: { color: '#fff', className: 'bg-white' }, label: 'White' },
+          {
+            value: { color: '#f3f4f6', className: 'bg-gray-100' },
+            label: 'Gray',
+          },
+        ],
+      },
+    },
+  ],
+}
+```

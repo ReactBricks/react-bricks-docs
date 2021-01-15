@@ -1,0 +1,31 @@
+---
+title: Working with pages
+description: What is a Page?
+---
+
+# Working with pages
+
+## What is a Page?
+
+A Page in React Bricks represent a **unit of content**.  
+Using the default starter projects, it corresponds to a page of the website, or a blog post.
+
+But when you think that you may connect a React Bricks Page to any entity of a Headless CMS or an e-commerce product, a new world of possibilities opens up (stay tuned 🛰)
+
+## Page editing
+
+You can edit the content of the page (blocks) and its meta information (name, slug, title, description, language, tags, author, featured image, published/draft, locked/unlocked) through the Admin dashboard.
+
+> **A page with slug `"home"` is required**.when you use the Starter projects, as it becomes the website's **Home page**.
+
+Each page has a `pageType` (see [Page Types](/docs/configuration/page-types)).
+
+When you create a page, based on the schema of its page type, it has a **default content**, status, lock status, language and it may have only some of the bricks available to be used as content blocks.
+
+> If the content from the database contains some **blocks unknown or not allowed** (for example because they are no more allowed), you will see a **warning** with the number and type of invalid blocks. By saving the page, you will remove these invalid blocks.
+
+## Locked Pages
+
+The content of a Locked page can be edited but it isn't possible to add / remove / sort blocks, so the page structure is fixed.
+
+For `<Repeater>` Blocks, new items can be added or removed even if the page is locked.
