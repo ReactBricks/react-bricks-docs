@@ -1,0 +1,49 @@
+---
+title: usePages
+description: ...
+---
+
+# usePages
+
+**Hook to fetch the list of pages.**
+
+## Argument
+
+The hook function accepts as **argument an object** with this interface:
+
+```tsx
+{
+  type?: string;
+  tag?: string;
+}
+```
+
+| Property | Definition                                                             |
+| -------- | ---------------------------------------------------------------------- |
+| `type`   | Optional string to return only the pages with the specified page type. |
+| `tag`    | Optional string to return only the pages with the specified tag.       |
+
+## Return value
+
+The hook returns an object with `{data, error, isFetching}`.
+
+The `data` object has the following shape
+
+```ts
+{
+  id: string
+  type: string
+  name: string
+  slug: string
+  meta: IMeta
+  status: PageStatus
+  isLocked: boolean
+  tags: string[]
+}
+```
+
+## Usage example
+
+```jsx
+const { data: pages, error, isFetching } = usePages()
+```

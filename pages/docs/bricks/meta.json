@@ -3,12 +3,7 @@
   "schema": "Schema",
   "side-edit-props": "Side edit props",
   "visual-edit": "Visual Editing",
-  "text": "• Text",
-  "rich-text": "• RichText",
-  "image": "• Image",
   "nested-blocks": "Nested Blocks",
-  "repeater": "• Repeater",
-  "repeater-items": "• repeaterItems",
-  "link": "Link",
+  "repeater-items": "repeaterItems",
   "styling": "Styling"
 }

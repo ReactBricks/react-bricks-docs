@@ -1,0 +1,56 @@
+---
+title: ReactBricks
+description: ...
+---
+
+# ReactBricks
+
+This is the main React Bricks component, which wraps all the other ones.
+
+It is used to **configure React Bricks** (app credentials, block schema, etc.) and **provide the [configuration](/docs/getting-started/configuration) via context** to all the other components.
+
+See also See [ReactBricksContext](/docs-api/context/react-bricks-context)
+
+## Usage example
+
+<small>(from the Vanilla React starter)</small>
+
+```jsx
+<ReactBricks {...config}>
+  <Router>
+    <Login path="/login" />
+
+    <Editor path="/editor" />
+    <Playground path="/playground" />
+    <AppSettings path="/app-settings" />
+
+    <Viewer path="/" />
+    <ViewerFetch path="/viewer-fetch" />
+  </Router>
+</ReactBricks>
+```
+
+## Configuration
+
+The configuration object is extensively documented [here](/docs/getting-started/configuration).
+
+## ReactBricksContext
+
+The ReactBricks component provides the configuration to the children components, using the `ReactBricksContext`, which has the following TypeScript interface:
+
+```tsx
+interface IReactBricksContext {
+  appId: string
+  apiKey: string
+  blockTypeSchema: IBlockType[]
+  pageTypeSchema: IPageType[]
+  logo: string
+  contentClassName: string
+  renderLocalLink: RenderLocalLink
+  navigate: (path: string) => void
+  loginPath: string
+  editorPath: string
+  playgroundPath: string
+  appSettingsPath: string
+}
+```

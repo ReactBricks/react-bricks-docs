@@ -1,3 +1,9 @@
 {
-  "admin": "<Admin>"
+  "react-bricks":"ReactBricks",
+  "page-viewer": "Page viewer",
+  "admin": "<Admin>",
+  "login": "Login",
+  "editor": "Editor",
+  "playground": "Playground",
+  "app-settings": "AppSettings"
 }

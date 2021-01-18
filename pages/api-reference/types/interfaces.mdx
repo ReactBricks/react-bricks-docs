@@ -1,0 +1,41 @@
+---
+title: Interfaces
+description: ...
+---
+
+# Interfaces
+
+## IBlockType
+
+```tsx
+interface IBlockType {
+  name: string
+  label: string
+  getDefaultProps: () => object
+  hideFromAddMenu?: boolean
+  sideEditProps?: Array<ISideEditProp | ISideGroup>
+  repeaterItems?: IRepeaterItem[]
+}
+```
+
+## IRepeaterItem
+
+```tsx
+interface IRepeaterItem {
+  name: string
+  itemType: string
+  itemLabel?: string
+  min?: number
+  max?: number
+}
+```
+
+## IContentBlock
+
+```tsx
+interface IContentBlock {
+  id: string
+  type: string
+  props: Props
+}
+```

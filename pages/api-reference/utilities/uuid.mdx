@@ -1,0 +1,32 @@
+---
+title: uuid
+description: ...
+---
+
+# uuid
+
+The exported `uuid` function is just a thin wrapper around the `uuid/v4` npm package function, just for convenience, to create unique ids for default content blocks (for example when creating the items in the default props of a repeater component).
+
+## Example usage
+
+```tsx
+import { uuid } from 'react-bricks'
+
+const schema: types.IBlockType = {
+  name: BlockNames.Features,
+  superType: types.BlockSuperType.Repeater,
+  ...
+  getDefaultProps: () => ({
+    ...
+    items: [
+      {
+        id: uuid(),
+        type: BlockNames.FeatureItem,
+        props: {
+          ...
+        },
+      },
+    ],
+  }),
+}
+```

@@ -1,0 +1,112 @@
+---
+title: Types
+description: ...
+---
+
+# Types
+
+## Brick
+
+```tsx
+type Brick<T = {}> = React.FC<T> & { schema: IBlockType }
+```
+
+## Bricks
+
+```tsx
+type Bricks = { [key: string]: Brick<any> }
+```
+
+## User
+
+```tsx
+type User = {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  company: string
+  avatarUrl?: string
+  isAdmin: boolean
+  token: string
+  appName: string
+  deployHookUrl?: string
+  deployHookMethod: string
+  canCreatePage: boolean
+  canDeletePage: boolean
+  canDeploy: boolean
+  role: string
+} | null
+```
+
+## Page
+
+```tsx
+type Page = {
+  id: string
+  type: string
+  name: string
+  slug: string
+  meta: IMeta
+  content: IContentBlock[]
+  authorId?: string
+  author: Author
+  invalidBlocksTypes?: string[]
+  status: PageStatus
+  isLocked: boolean
+  tags: string[]
+}
+```
+
+## Author
+
+```tsx
+type Author = {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string
+  company?: string
+}
+```
+
+## PageFromList
+
+```tsx
+type PageFromList = Omit<Page, 'content'>
+```
+
+## RenderLocalLink
+
+```tsx
+type RenderLocalLink = ({
+  href,
+  target,
+  className,
+  activeClassName,
+  isAdmin,
+  children,
+}: {
+  href: string
+  target?: string
+  className?: string
+  activeClassName?: string
+  isAdmin?: boolean
+  children: React.ReactNode
+}) => React.ReactElement
+```
+
+## TextValue
+
+```tsx
+import { Value } from 'slate'
+
+type TextValue = Value
+```
+
+## Props
+
+```tsx
+type Props = { [key: string]: any }
+```

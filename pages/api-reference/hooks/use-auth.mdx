@@ -1,0 +1,55 @@
+---
+title: useAuth
+description: ...
+---
+
+# useAuth
+
+Hook with no arguments that returns two **authentication functions** used internally by React Bricks to execute the login and logout.
+
+When using React Bricks admin components, there should be **no need to call this from your code**.
+
+### Example usage
+
+```jsx
+const { loginUser, logoutUser } = useAuth()
+```
+
+## loginUser
+
+Function with the following signature:
+
+```jsx
+const loginUser: (email: string, password: string) => Promise<any>
+```
+
+### Example usage
+
+```jsx
+const { loginUser } = useAuth()
+
+const handleLogin = (event: React.FormEvent) => {
+  event.preventDefault()
+  loginUser(email, password).then(
+    () => navigate(editorPath),
+    (error) => {
+      setError(error)
+    }
+  )
+}
+```
+
+## logoutUser
+
+Function with the following signature:
+
+```jsx
+const logoutUser: () => void
+```
+
+### Example usage
+
+```jsx
+const { logoutUser } = useAuth()
+return <button onClick={() => logoutUser()}>Logout</button>
+```

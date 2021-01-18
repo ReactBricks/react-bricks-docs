@@ -1,1 +1,88 @@
+---
+title: Admin
+description: ...
+---
+
 # Admin
+
+The Admin component **should wrap all the components used in the Admin Dashboard**, which are:
+
+- [`Login`](/docs-api/components/login)
+- [`Editor`](/docs-api/components/editor)
+- [`Playground`](/docs-api/components/playground)
+- [`AppSettings`](/docs-api/components/app-settings)
+
+**It provides context** variables, like the authenticated user, to the children components.
+
+See also [AdminContext](/docs-api/context/admin-context)
+
+## Props
+
+```tsx
+interface AdminProps {
+  isLogin?: boolean
+}
+```
+
+The only prop you can specify is `isLogin`.  
+It is a boolean value to identify the Login page. It is needed to correctly manage the authentication process.
+
+## Usage example, wrapping the **Editor** component
+
+<small>(from the Vanilla React starter)</small>
+
+```jsx
+import React from 'react'
+import { Admin, Editor } from 'react-bricks'
+
+const EditorPage = () => {
+  return (
+    <Admin>
+      <Editor />
+    </Admin>
+  )
+}
+
+export default EditorPage
+```
+
+## Usage example, wrapping the **Login** component
+
+<small>(from the Vanilla React starter)</small>
+
+Note the `isLogin` prop.
+
+```jsx
+import React from 'react'
+import { Admin, Login } from 'react-bricks'
+
+const LoginPage = () => {
+  return (
+    <Admin isLogin>
+      <Login />
+    </Admin>
+  )
+}
+
+export default LoginPage
+```
+
+## AdminContext
+
+The Admin component provides the configuration to the children components, using the `AdminContext`, which has the following TypeScript interface:
+
+```tsx
+interface IAdminContext {
+  isAdmin: boolean
+  user: User | null
+  setUser: (user: User) => void
+  currentPage: string
+  setCurrentPage: (page: string) => void
+  previewMode: boolean
+  setPreviewMode: (previewMode: boolean) => void
+  sidebarCollapsed: boolean
+  setSidebarCollapsed: (sidebarCollapsed: boolean) => void
+  getStyles: () => NodeListOf<HTMLStyleElement> | []
+  getStylesheets: () => NodeListOf<HTMLLinkElement> | []
+}
+```

@@ -1,0 +1,34 @@
+---
+title: cleanPage
+description: ...
+---
+
+# cleanPage
+
+The cleanPage function prepares the page content retrieved by React Bricks APIs to be used in the [`PageViewer`](/docs-api/components/page-viewer) component.
+
+It does two things:
+
+- **It removes all the invalid blocks** (unknown in the schema or not allowed for this page type)
+- **It transforms the JSON content of every (rich)text prop** into the JavaScript structure needed by the text editor
+
+## Arguments
+
+| Property          | Definition                                                                                                                             |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `page`            | The page object, of type [`Page`](/docs-api/types/#page).                                                                              |
+| `pageTypeSchema`  | The pageType schema, of type [`IPageType[]`](/docs-api/types/#i-page-type), as [defined here](/docs/page-types-definition/page-types). |
+| `blockTypeSchema` | The blocks schema, of type [`IBlockType[]`](/docs-api/types/#i-block-type), as [defined here](/docs/blocks-definition/blocks-schema).  |
+
+## Return value
+
+`cleanPage` returns an object of type [`Page`](/docs-api/types/#page), with the clean content and the `invalidBlocksTypes` array containing the name of each invalid block that was removed.
+
+## Usage example
+
+```jsx
+fetchPage('about-us', 'API_KEY').then((data) => {
+  const myPage = cleanPage(data, pageTypeSchema, blockTypeSchema)
+  console.log(myPage.content)
+})
+```

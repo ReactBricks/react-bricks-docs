@@ -8,14 +8,16 @@ It is a type of content block that you can create and content creator may use to
 ## How is it made?
 
 A Brick is just a **React component** with two peculiarities:
+
 1. It should have a [**`schema` static property**](schema) to define it and **specify the props edited via the sidebar** controls
 2. It may use React Bricks [**visual edit components**](visual-edit) (Text, RichText, Image, Repeater) to enable visual editing
 
 ## Show me the code!
 
 Here's an example "Hero unit" brick: nice to meet you! 😊
+
 ```tsx
-// Import React Bricks TypeScript types 
+// Import React Bricks TypeScript types
 // and RichText visual edit component
 // (other visual edit components are Image and Repeater)
 import { types, RichText } from 'react-bricks'

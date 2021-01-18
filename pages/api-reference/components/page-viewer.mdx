@@ -1,0 +1,75 @@
+---
+title: PageViewer
+description: ...
+---
+
+# PageViewer
+
+The PageViewer component is used on the your website's public pages.  
+It is the component that **renders a page on the front-end** exactly as you can see it in the Admin Dashboard.
+
+## Props
+
+```tsx
+interface PageViewerProps {
+  page: types.Page | null | undefined
+}
+```
+
+The PageViewer component need just one prop: `page`.  
+It is the page object you get from React Bricks APIs, using [`usePage`](/docs-api/hooks/use-page) or [`fetchPage`](/docs-api/utilities/fetch-page).
+
+Before passing the page object to `PageViewer`, you need to parse it with the [`cleanPage`](/docs-api/utilities/clean-page) utility function.
+
+## Usage example, wrapping the **usePage** hook
+
+<small>(from the Vanilla React starter)</small>
+
+```jsx
+import React, { useContext } from 'react'
+import { PageViewer, usePage, cleanPage, ReactBricksContext } from 'react-bricks'
+
+const Viewer = () => {
+  const PAGE_SLUG = 'home'
+
+  const { data } = usePage(PAGE_SLUG)
+  const { pageTypeSchema, blockTypeSchema } = useContext(ReactBricksContext)
+
+  // Clean the received content
+  // Removes unknown or not allowed bricks
+  const page = cleanPage(data, pageTypeSchema, blockTypeSchema)
+
+  return <PageViewer page={page} />
+}
+
+export default Viewer
+```
+
+## Usage example, with **fetchPage**
+
+<small>(from the Vanilla React starter)</small>
+
+```jsx
+import React, { useState, useContext, useEffect } from 'react'
+import { PageViewer, fetchPage, cleanPage, ReactBricksContext } from 'react-bricks'
+
+const ViewerFetch = () => {
+  const PAGE_SLUG = 'home'
+  const [page, setPage] = useState(null)
+  const { apiKey, blockTypeSchema, pageTypeSchema } = useContext(ReactBricksContext)
+
+  useEffect(() => {
+    fetchPage(PAGE_SLUG, apiKey).then((data) => {
+      const myPage = cleanPage(data, pageTypeSchema, blockTypeSchema)
+      setPage(myPage)
+    })
+  }, [apiKey, pageTypeSchema, blockTypeSchema])
+
+  if (page) {
+    return <PageViewer page={page} />
+  }
+  return null
+}
+
+export default ViewerFetch
+```

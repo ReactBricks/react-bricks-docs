@@ -1,0 +1,23 @@
+---
+title: usePage
+description: ...
+---
+
+# usePage
+
+The usePage hook lets you easily **retrieve the content of a page** from React Bricks' APIs.
+
+The only argument of this hook function is the **slug** string.
+
+## Usage example
+
+```jsx
+...
+  const { data } = usePage('home')
+
+  const { pageTypeSchema, blockTypeSchema } = useContext(ReactBricksContext)
+  const page = cleanPage(data, pageTypeSchema, blockTypeSchema)
+
+  return <PageViewer page={page} />
+...
+```
