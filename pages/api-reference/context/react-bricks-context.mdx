@@ -5,14 +5,16 @@ description: ...
 
 # ReactBricksContext
 
-The `ReactBricksContext` provides configuration context to all the children components, which has the following TypeScript interface:
+The `ReactBricksContext` provides configuration context to all the children components.
 
-```tsx
+It has the following TypeScript interface:
+
+```ts
 interface IReactBricksContext {
   appId: string
   apiKey: string
-  blockTypeSchema: IBlockType[]
-  pageTypeSchema: IPageType[]
+  bricks: Bricks
+  pageTypes: IPageType[]
   logo: string
   contentClassName: string
   renderLocalLink: RenderLocalLink
@@ -21,9 +23,12 @@ interface IReactBricksContext {
   editorPath: string
   playgroundPath: string
   appSettingsPath: string
+  isDarkColorMode?: boolean
+  toggleColorMode?: () => void
+  useCssInJs?: boolean
 }
 ```
 
-The [ReactBricks component](/docs-api/components/react-bricks) wraps all the children with the ReactBricksContext Provider.
+The [`<ReactBricks>` component](/api-reference/components/react-bricks) wraps all the children with the ReactBricksContext Provider.
 
-If you need any of this configuration settings in your components, you may use React useContext to access them.
+If you need any of this configuration settings in your components, you may use React `useContext` to access them.

@@ -12,8 +12,6 @@ It has the following interface:
 ```tsx
 interface IAdminContext {
   isAdmin: boolean
-  user: User | null
-  setUser: (user: User) => void
   currentPage: string
   setCurrentPage: (page: string) => void
   previewMode: boolean
@@ -25,8 +23,8 @@ interface IAdminContext {
 }
 ```
 
-The [Admin component](/docs-api/components/admin) wraps all the children with the AdminContext Provider.
+The [`<Admin>` component](/api-reference/components/admin) wraps all the children with the AdminContext Provider.
 
-If you need to access this admin status variables in your components, you may use React useContext to access them.
+If you need to access this admin status variables in your components, you may use React `useContext` to access them.
 
-In particular, you may use `isAdmin` in your bricks (block components) to do conditionally render based on the fact that the brick is in edit mode or view mode.
+> In particular, you may use the `isAdmin` flag in your bricks (block components) to do conditionally render based on the fact that the brick is in edit mode or view mode.
