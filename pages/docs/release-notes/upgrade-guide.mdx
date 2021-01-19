@@ -87,7 +87,12 @@ Now it is possible to have **multiple nested repeating blocks** inside a block.
 This is done using the **Repeater** component:
 
 ```jsx
-<Repeater propName="tags" renderWrapper={...} renderItemWrapper={...} itemProps={...} />
+<Repeater
+  propName="tags"
+  renderWrapper={...}
+  renderItemWrapper={...}
+  itemProps={...}
+/>
 ```
 
 and the **repeaterItems** schema config:
@@ -139,7 +144,8 @@ getDefaultProps: () => ({
 
 <Tags tags={['easy']} />
 
-On **Text** and **RichText** components, remove `value` and `onChange`. On **Image** components, remove `source` and `onChange`.
+On **Text** and **RichText** components, remove `value` and `onChange`.  
+On **Image** components, remove `source` and `onChange`.
 
 ## 9. Dynamic renderBlock
 

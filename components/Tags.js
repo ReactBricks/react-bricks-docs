@@ -6,7 +6,7 @@ const Tags = ({ tags }) => {
       case 'easy':
         return 'bg-light-blue-200 text-light-blue-700 dark:text-light-blue-200 dark:bg-light-blue-700'
       case 'medium':
-        return 'bg-amber-200 text-amber-700 dark:text-amber-200 dark:bg-amber-700'
+        return 'bg-amber-200 text-amber-700 dark:text-amber-100 dark:bg-amber-700'
       case 'heavy':
         return 'bg-rose-200 text-rose-700 dark:text-rose-200 dark:bg-rose-700'
       case 'new':
