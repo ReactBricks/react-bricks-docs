@@ -3,54 +3,62 @@ title: Upgrade guide
 description: Learn how to migrate from React Bricks v1.0.68 to v2.0.0
 ---
 
-import Tags from '../../..//components/Tags'
+import Tags from '../../../components/Tags'
 
 # Upgrade guide
 
 ## 1. Page Type default content
+
 <Tags tags={['easy', 'required']} />
 
-The ~~`pageTypeSchema`~~ in ReactBricks configuration is renamed as `pageTypes`. 
+The ~~`pageTypeSchema`~~ in ReactBricks configuration is renamed as `pageTypes`.
 
 For each page type, now **`getDefaultContent`** should **return an array of block names** instead of the full content for a pageType.
 
-For example 
-``` jsx
+For example
+
+```jsx
 getDefaultContent: () ⇒ ['hero-unit', 'text-image', 'call-to-action']
 ```
 
 ## 2. Component with static prop
+
 <Tags tags={['medium', 'required']} />
 
-A brick is no more an object, but a **React functional component** (returning the JSX that now is in the `render` prop of the `schema`), with the static property schema, containing the previous schema without the render property.
+A brick is no more an object, but a **React functional component** (returning the JSX that now is in the `render` prop of the schema), with the static property `schema`, containing the previous schema without the render property.
 
 When you define this component in **TypeScript**, you can use the `types.Brick` type.
 
-For example 
-``` jsx
+For example
+
+```jsx
 const HeroUnit: types.Brick<HeroUnitProps>...
 ```
 
 ## 3. Schema
+
 <Tags tags={['easy', 'required']} />
 
-The name of the bricks configuration property in the React Bricks configuration changed from ~~`blockTypeSchema`~~ to `bricks`. 
+The name of the bricks configuration property in the React Bricks configuration changed from ~~`blockTypeSchema`~~ to `bricks`.
 
 It is an array of Components as defined above.
 
-``` jsx
+```jsx
 <ReactBricks bricks={[HeroUnit, TextImage]} ...>
 ```
 
 ## 4. Remove deprecated properties from the schema
+
 <Tags tags={['easy', 'required']} />
 
-From the schema you may remove the properties: 
+From the schema you may remove the properties:
+
 - `render` (replaced by the JSX returned by the component)
 - `superType` (deprecated)
 - `textEditProps` (deprecated)
 
 ## 5. Add appRootElement
+
 <Tags tags={['easy', 'required']} />
 
 In React Bricks configuration you need to pass the React app root element in the `appRootElement` property as either:
@@ -61,25 +69,30 @@ In React Bricks configuration you need to pass the React app root element in the
 This is for **accessibility of modals in Admin**, to be compliant to WAI-ARIA guidelines (hide closed modals from screen-readers, restrict keyboard navigation within an open modal)
 
 ## 6. CSS-in-JS flag
+
 <Tags tags={['easy', 'required']} />
 
-New `useCssInJs` boolean prop in React Bricks configuration object. 
+New `useCssInJs` boolean prop in React Bricks configuration object.
 **Required only if you use CSS in JS** (default is false).
 
-**To improve the performance where no CSS-in-JS is used**, the action needed to support CSS in JS are triggered only if this flag is set to true.
+**To improve the performance where no CSS-in-JS is used**, the actions needed to support CSS in JS are triggered only if this flag is set to true.
 
 ## 7. New Repeater component and schema
+
 <Tags tags={['heavy', 'required']} />
 
 Each repeating block must be changed to the new format.
-Now it is possible to have **multiple nested repeating blocks** inside a block. 
+Now it is possible to have **multiple nested repeating blocks** inside a block.
 
 This is done using the **Repeater** component:
-``` jsx
-<Repeater propName="tags" renderWrapper={...} itemProps={...} /> 
+
+```jsx
+<Repeater propName="tags" renderWrapper={...} renderItemWrapper={...} itemProps={...} />
 ```
+
 and the **repeaterItems** schema config:
-``` jsx
+
+```jsx
 repeaterItems: [
   {
     name: 'tags',
@@ -91,21 +104,29 @@ repeaterItems: [
 ]
 ```
 
-### Repeater component:
-The **optional** `renderWrapper` functional component is rendered if there is at least one repeated item.  
-The **optional** `itemProps` is an object with props passed to all the items (for example a global configuration that is the same for all items).
+**IMPORTANT**: to keep compatibility with existing content, the name for the unique repeating item allowed before v2 should be `items`
 
+### Repeater component:
+
+The **optional** `renderWrapper` functional component is rendered if there is at least one repeated item. Argument: `items`
+The **optional** `itemProps` is an object with props passed to all the items (for example a global configuration that is the same for all items).
+The **optional** `renderItemWrapper` functional component wraps each item. It has arguments (`item`, `index`, `itemsCount`).
 
 ### repeaterItems schema:
+
 The `min` and `max` numbers are enforced by the sidebar interface.  
-`itemsType`, `addItemText`, `removeItemText` are deprecated and should be removed.  
+`itemsType`, `addItemText`, `removeItemText` are deprecated and should be removed.
+
+### getDefaultProps
+
 The special `items` prop in **getDefaultProps** is also removed: **now each repeating set has its prop**, as any other prop. This prop contains an **array of objects** representing the props passed to each repeating brick.
 
 For example:
-``` jsx
+
+```jsx
 getDefaultProps: () => ({
   ...
-  customers: [
+  tags: [
     {
       name: 'Foo'
     },
@@ -114,12 +135,14 @@ getDefaultProps: () => ({
 }),
 ```
 
-## 8. value, onChange
+## 8. value, source, onChange
+
 <Tags tags={['easy']} />
 
-On **Text**, **RichText** and **Image** components, remove `value` and `onChange`.
+On **Text** and **RichText** components, remove `value` and `onChange`. On **Image** components, remove `source` and `onChange`.
 
 ## 9. Dynamic renderBlock
+
 <Tags tags={['easy']} />
 
 If you put wrappers around **Text**, **RichText** or **Image** to set **styles for the `renderBlock` based on side edit props** (because renderBlock was memoized and did not update upon side edit props change), now **you can remove that "hack"** and style the JSX returned by renderBlock based on side edit props.
@@ -129,9 +152,10 @@ If you put wrappers around **Text**, **RichText** or **Image** to set **styles f
 The drawback is a quick refresh of text upon these side edit props change, unsolvable until we change the text edit library (or write our own).
 
 ## 10. Image ALT
+
 <Tags tags={['medium']} />
 
-**`alt` tag for images**: you can now set the alt tag for images in the upload modal which allows to set **alt tag and seoFriendly name**. if you had side edit props to set the alt tag for images, they are not needed any more.
+**`alt` tag for images**: you can now set the alt tag for images in the upload modal which allows to set **alt tag and seoFriendly name**. If you had side edit props to set the alt tag for images, they are not needed any more.
 
 Once you have all the values copied in the new modal fields, you may remove the side edit props used for the ALT tags.
 
@@ -139,9 +163,10 @@ The `alt` tag prop on the `<Image>` component is used as fallback if the user do
 The `alt` prop may be specified also in the `getDefaultProps()`.
 
 ## 11. Color props
+
 <Tags tags={['easy']} />
 
-For `sideEditProps` of type "select" (`SideEditPropType.Select`) with display "color" (`OptionsDisplay.Color`), now the options are an array of objects instead of an **array of strings**.
+For `sideEditProps` of type "select" (`SideEditPropType.Select`) with display "color" (`OptionsDisplay.Color`), now the `options` are an **array of objects** instead of an array of strings.
 
 The strings represented the color (a CSS-compatible format to be applied with a style).
 
@@ -149,12 +174,14 @@ Now this string is put in the a **required prop `color`** of the option object (
 
 The old string value is still accepted but under deprecation.
 
-## 12. Collapsible Groups in Side edit props 
+## 12. Collapsible Groups in Side edit props
+
 <Tags tags={['new']} />
 
 Now sideEditProps can be organized in **groups, with a collapsible interface**.
 
 A side edit prop can be like before (⇒ they end up in a collapsible group with the name of the brick, open by default) or it can be an object with:
+
 - `groupName` (label for the collapsible group heading)
 - `defaultOpen` (not collapsed by default)
 - `show` (function of props, if true the group is shown)
@@ -163,6 +190,7 @@ A side edit prop can be like before (⇒ they end up in a collapsible group with
 For example you can now create a Layout group with some props, a Text group with other props and so on.
 
 ## 13. Dark mode for bricks
+
 <Tags tags={['new']} />
 
 Now React Bricks supports **dark mode on page content**, if your bricks support it.
@@ -172,13 +200,15 @@ In the React Bricks config you can pass the `isDarkColorMode` boolean value and 
 You can use them in conjunction with the `contentClassName` if you need to have a parent class applied to activate dark mode (for example, if you use the experimental dark mode feature of Tailwind, you can set the "dark" class on content to enable dark mode in the toggleColorMode function).
 
 ## 14. Author
+
 <Tags tags={['new']} />
 
-Each page has an author corresponding to a React Bricks user. 
+Each page has an author corresponding to a React Bricks user.
 
 By default the author of a page is the user who created the page, but it can be changed with a dropdown in the Page setting sidebar.
 
 ## 15. Featured Image
+
 <Tags tags={['new']} />
 
 It is possible to upload an image on a page as the Featured image, so that it will be part of the page meta that you can use to populate open graph tags.
