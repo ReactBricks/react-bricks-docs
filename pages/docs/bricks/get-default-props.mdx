@@ -1,0 +1,41 @@
+---
+title: Nested blocks - Default Props for items
+description: Nested blocks - Set initial items for a new block
+---
+
+# Set default nested items for a new block
+
+To have an initial set of nested items for a new block, you can simply use the `getDefaultProps` function, to set the  prop corresponding to the repeaterItem.
+
+Here the prop is an array of props defining the props for each repeated item.
+
+## Example usage
+
+```tsx highlight=6,18
+Faq.schema = {
+  name: 'faq',
+  label: 'Faq',
+  getDefaultProps: () => ({
+    width: 'sm',
+    faqs: [
+      {
+        question: Plain.deserialize('Why you should change your CMS today?'),
+        answer: Plain.deserialize(
+          'Because you want to have top user experience and top developer experience.'
+        ),
+      },
+      ...
+    ],
+  }),
+  repeaterItems: [
+    {
+      name: 'faqs',
+      itemType: 'question',
+      itemLabel: 'Question',
+    },
+  ],
+  sideEditProps: [
+    ...
+  ],
+}
+```

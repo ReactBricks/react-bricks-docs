@@ -10,15 +10,23 @@ The cleanPage function prepares the page content retrieved by React Bricks APIs 
 It does two things:
 
 - **It removes all the invalid blocks** (unknown in the schema or not allowed for this page type)
-- **It transforms the JSON content of every (rich)text prop** into the JavaScript structure needed by the text editor
+- **It transforms the JSON content of every (rich)text prop** into the JavaScript structure needed by the text viewer component
 
-## Arguments
+## Signature
 
-| Property          | Definition                                                                                                                                  |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `page`            | The page object, of type [`Page`](/api-reference/types/types/#page).                                                                        |
-| `pageTypeSchema`  | The pageType schema, of type [`IPageType[]`](/api-reference/types/interfaces#ipagetype), as [defined here](/docs/configuration/page-types). |
-| `blockTypeSchema` | The blocks schema, of type [`IBlockType[]`](/api-reference/types/interfaces#iblocktype), as [defined here](/docs/bricks/schema).            |
+```ts
+const cleanPage = (
+  page: types.Page,
+  pageTypes: types.IPageType[],
+  bricks: types.Bricks
+): types.Page
+```
+
+| Property    | Definition                                                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `page`      | The page object, of type [`Page`](/api-reference/types/types/#page).                                                                        |
+| `pageTypes` | The pageType schema, of type [`IPageType[]`](/api-reference/types/interfaces#ipagetype), as [defined here](/docs/configuration/page-types). |
+| `bricks`    | The blocks schema, of type [`IBlockType[]`](/api-reference/types/interfaces#iblocktype), as [defined here](/docs/bricks/schema).            |
 
 ## Return value
 
@@ -26,9 +34,9 @@ It does two things:
 
 ## Usage example
 
-```jsx
+```ts highlight=2
 fetchPage('about-us', 'API_KEY').then((data) => {
-  const myPage = cleanPage(data, pageTypeSchema, blockTypeSchema)
+  const myPage = cleanPage(data, pageTypes, bricks)
   console.log(myPage.content)
 })
 ```

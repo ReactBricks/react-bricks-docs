@@ -5,11 +5,18 @@ description: Function to retrieve all your pages from outside the React context
 
 # fetchPages
 
-The fetchPages function is useful when you want to **retrieve all your pages from outside the React context** (where you could use the [usePages hook](/api-reference/hooks/use-pages)).
+The fetchPages function is useful when you want to **retrieve all your pages from outside the React context** (where you could use the [usePages hook](/api-reference/hooks/use-pages) instead).
 
 In particular, this comes in handy to retrieve all the pages during the build process of a static website. Indeed, this is the method used in our Gatsby and Next.js [starter projects](/docs/getting-started/starter-projects).
 
-## Arguments
+## Signature
+
+```ts
+const fetchPages = async (
+  apiKey: string,
+  options: { type?: string; tag?: string } = {}
+): Promise<types.PageFromList[]>
+```
 
 | Property  | Definition                                                      |
 | --------- | --------------------------------------------------------------- |
@@ -20,7 +27,7 @@ In particular, this comes in handy to retrieve all the pages during the build pr
 
 The options object has the following shape
 
-```tsx
+```ts
 {
   type?: string;
   tag?: string;
@@ -32,16 +39,33 @@ The options object has the following shape
 | `type`   | Optional string to return only the pages with the specified page type. |
 | `tag`    | Optional string to return only the pages with the specified tag.       |
 
-## Returns value
+## Return value
 
 `fetchPages` returns a **promise which resolves to an array of pages**.  
-The pages are of type [`Page`](/api-reference/types/types/#page), but without the content field.
+The pages are of type [`PageFromList`](/api-reference/types/types/#pagefromlist) (a [Page](/api-reference/types/types#page) object without `content`):
+
+```ts
+{
+  id: string
+  type: string
+  name: string
+  slug: string
+  meta: IMeta
+  content: IContentBlock[]
+  authorId?: string
+  author: Author
+  invalidBlocksTypes?: string[]
+  status: PageStatus
+  isLocked: boolean
+  tags: string[]
+}
+```
 
 To retrieve the content of each page, you can use the [fetchPage](fetch-page) function.
 
 ## Usage example
 
-```jsx
+```ts
 fetchPages('API_KEY', { type: 'blogPost', tag: 'react' })
 .then(data => {
   ...

@@ -4,6 +4,5 @@
   "clean-page": "cleanPage",
   "get-plain-text": "getPlainText",
   "get-page-plain-text": "getPagePlainText",
-  "plain": "plain",
-  "uuid": "uuid"
+  "plain": "plain"
 }
