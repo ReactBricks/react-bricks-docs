@@ -11,3 +11,20 @@ The Editor is where you **edit your page content**.
 It needs no props, but it must be wrapped by the [Admin](admin) component to receive the needed context.
 
 The route where this component is shown has to be specified in [ReactBricks](react-bricks)'s [configuration](/docs/configuration/configuration) parameter `editorPath`.
+
+## Usage example
+
+```tsx highlight=2,7
+import React from 'react'
+import { Admin, Editor } from 'react-bricks'
+
+const EditorPage = () => {
+  return (
+    <Admin>
+      <Editor />
+    </Admin>
+  )
+}
+
+export default EditorPage
+```

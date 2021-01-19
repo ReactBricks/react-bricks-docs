@@ -23,7 +23,7 @@ Before passing the page object to `PageViewer`, you need to parse it with the [`
 
 ## Usage example, with usePage hook
 
-```tsx
+```tsx highlight=12
 import React, { useContext } from 'react'
 import { PageViewer, usePage, cleanPage, ReactBricksContext } from 'react-bricks'
 
@@ -43,7 +43,7 @@ export default Viewer
 
 ## Usage example, with fetchPage
 
-```tsx
+```tsx highlight=16
 import React, { useState, useContext, useEffect } from 'react'
 import { PageViewer, fetchPage, cleanPage, ReactBricksContext } from 'react-bricks'
 

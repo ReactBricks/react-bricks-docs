@@ -65,9 +65,9 @@ To retrieve the content of each page, you can use the [fetchPage](fetch-page) fu
 
 ## Usage example
 
-```ts
+```ts highlight=1
 fetchPages('API_KEY', { type: 'blogPost', tag: 'react' })
 .then(data => {
-  ...
+  console.log(data)
 })
 ```
