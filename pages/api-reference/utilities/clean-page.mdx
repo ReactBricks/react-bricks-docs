@@ -5,7 +5,7 @@ description: ...
 
 # cleanPage
 
-The cleanPage function prepares the page content retrieved by React Bricks APIs to be used in the [`PageViewer`](/docs-api/components/page-viewer) component.
+The cleanPage function prepares the page content retrieved by React Bricks APIs to be used in the [`PageViewer`](/api-reference/components/page-viewer) component.
 
 It does two things:
 
@@ -14,15 +14,15 @@ It does two things:
 
 ## Arguments
 
-| Property          | Definition                                                                                                                             |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `page`            | The page object, of type [`Page`](/docs-api/types/#page).                                                                              |
-| `pageTypeSchema`  | The pageType schema, of type [`IPageType[]`](/docs-api/types/#i-page-type), as [defined here](/docs/page-types-definition/page-types). |
-| `blockTypeSchema` | The blocks schema, of type [`IBlockType[]`](/docs-api/types/#i-block-type), as [defined here](/docs/blocks-definition/blocks-schema).  |
+| Property          | Definition                                                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `page`            | The page object, of type [`Page`](/api-reference/types/types/#page).                                                                        |
+| `pageTypeSchema`  | The pageType schema, of type [`IPageType[]`](/api-reference/types/interfaces#ipagetype), as [defined here](/docs/configuration/page-types). |
+| `blockTypeSchema` | The blocks schema, of type [`IBlockType[]`](/api-reference/types/interfaces#iblocktype), as [defined here](/docs/bricks/schema).            |
 
 ## Return value
 
-`cleanPage` returns an object of type [`Page`](/docs-api/types/#page), with the clean content and the `invalidBlocksTypes` array containing the name of each invalid block that was removed.
+`cleanPage` returns an object of type [`Page`](/api-reference/types/types/#page), with the clean content and the `invalidBlocksTypes` array containing the name of each invalid block that was removed.
 
 ## Usage example
 

@@ -17,20 +17,15 @@ interface PageViewerProps {
 ```
 
 The PageViewer component need just one prop: `page`.  
-It is the page object you get from React Bricks APIs, using [`usePage`](../hooks/use-page) or [`fetchPage`](../utilities/fetch-page).
+It is the page object you get from React Bricks APIs, using [`usePage`](/api-reference/hooks/use-page) or [`fetchPage`](/api-reference/utilities/fetch-page).
 
-Before passing the page object to `PageViewer`, you need to parse it with the [`cleanPage`](../utilities/clean-page) utility function, which check incoming blocks from the DB against your bricks schema and converts rich texts.
+Before passing the page object to `PageViewer`, you need to parse it with the [`cleanPage`](/api-reference/utilities/clean-page) utility function, which check incoming blocks from the DB against your bricks schema and converts rich texts.
 
 ## Usage example, with usePage hook
 
 ```tsx
 import React, { useContext } from 'react'
-import {
-  PageViewer,
-  usePage,
-  cleanPage,
-  ReactBricksContext,
-} from 'react-bricks'
+import { PageViewer, usePage, cleanPage, ReactBricksContext } from 'react-bricks'
 
 const Viewer = () => {
   const { data } = usePage('home')
@@ -50,18 +45,11 @@ export default Viewer
 
 ```tsx
 import React, { useState, useContext, useEffect } from 'react'
-import {
-  PageViewer,
-  fetchPage,
-  cleanPage,
-  ReactBricksContext,
-} from 'react-bricks'
+import { PageViewer, fetchPage, cleanPage, ReactBricksContext } from 'react-bricks'
 
 const ViewerFetch = () => {
   const [page, setPage] = useState(null)
-  const { apiKey, blockTypeSchema, pageTypeSchema } = useContext(
-    ReactBricksContext
-  )
+  const { apiKey, blockTypeSchema, pageTypeSchema } = useContext(ReactBricksContext)
 
   useEffect(() => {
     fetchPage('home', apiKey).then((data) => {

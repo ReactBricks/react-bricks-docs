@@ -1,15 +1,20 @@
+---
+title: Components structure
+description: ...
+---
+
 # Components structure
 
 ## ReactBricks
 
-The [`<ReactBricks>`](../components/react-bricks) component wraps everything and it acts as a **Provider** for the [`<ReactBricksContext>`](../context/react-bricks-context) that make the configuration available through Context to all the other components.
+The [`<ReactBricks>`](/api-reference/components/react-bricks) component wraps everything and it acts as a **Provider** for the [`<ReactBricksContext>`](/api-reference/context/react-bricks-context) that make the configuration available through Context to all the other components.
 
 ## Frontend site
 
 ![components-structure-frontent](/images/components-structure-frontend.svg)
-The frontend website uses the [`<PageViewer>`](../components/page-viewer) component to **render a page**. It has a `page` prop which expects the content of a [Page](/docs/admin-dashboard/pages) from React Bricks API (see also [`usePage`](../hooks/use-page) and [`fetchPage`](../utilities/fetch-page)).  It renders your bricks with React Bricks visual edit components (Text, RichText, Image) in read-only mode.
+The frontend website uses the [`<PageViewer>`](/api-reference/components/page-viewer) component to **render a page**. It has a `page` prop which expects the content of a [Page](/docs/admin-dashboard/pages) from React Bricks API (see also [`usePage`](/api-reference/hooks/use-page) and [`fetchPage`](/api-reference/utilities/fetch-page)). It renders your bricks with React Bricks visual edit components (Text, RichText, Image) in read-only mode.
 
-**Images** are lazy loaded and an optimized version is requested based on screen resolution. 
+**Images** are lazy loaded and an optimized version is requested based on screen resolution.
 The **Repeater** components render your nested block as they do in the Admin interface.
 
 If you are logged in the Admin, the PageViewer components renders also a **floating edit button**, so that you can directly go to the dashboard to edit the page you are viewing.
@@ -17,12 +22,9 @@ If you are logged in the Admin, the PageViewer components renders also a **float
 ## Admin
 
 ![components-structure-frontent](/images/components-structure-admin.svg)
-On the Admin, every component should be wrapped also by the [`<Admin>`](../components/admin) component, which manages **authentication** and renders the Dashboard **menu**.
+On the Admin, every component should be wrapped also by the [`<Admin>`](/api-reference/components/admin) component, which manages **authentication** and renders the Dashboard **menu**.
 
-The [`<Admin>`](../components/admin) component contains also a **Provider** for the [`AdminContext`](../context/admin-context) (current page, preview mode, etc.).
+The [`<Admin>`](/api-reference/components/admin) component contains also a **Provider** for the [`AdminContext`](/api-reference/context/admin-context) (current page, preview mode, etc.).
 
 If you build the admin dashboard yourself, you should create **views** (routed by your router) for the login, editor, playground and page settings pages.
-Each of these views will have the wrapping [`<Admin>`](../components/admin) component and the view-related component: [`<Login>`](../components/login), [`<Editor>`](../components/editor), [`<Playground>`](../components/playground), [`<AppSettings>`](../components/app-settings)
-
-
-
+Each of these views will have the wrapping [`<Admin>`](/api-reference/components/admin) component and the view-related component: [`<Login>`](/api-reference/components/login), [`<Editor>`](/api-reference/components/editor), [`<Playground>`](/api-reference/components/playground), [`<AppSettings>`](/api-reference/components/app-settings)

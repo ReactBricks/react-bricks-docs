@@ -5,7 +5,7 @@ description: ...
 
 # fetchPages
 
-The fetchPages function is useful when you want to **retrieve all your pages from outside the React context** (where you could use the [usePages hook](/docs-api/hooks/use-pages)).
+The fetchPages function is useful when you want to **retrieve all your pages from outside the React context** (where you could use the [usePages hook](/api-reference/hooks/use-pages)).
 
 In particular, this comes in handy to retrieve all the pages during the build process of a static website. Indeed, this is the method used in our Gatsby and Next.js [starter projects](/docs/getting-started/starter-projects).
 
@@ -35,7 +35,7 @@ The options object has the following shape
 ## Returns value
 
 `fetchPages` returns a **promise which resolves to an array of pages**.  
-The pages are of type [`Page`](/docs-api/types/#page), but without the content field.
+The pages are of type [`Page`](/api-reference/types/types/#page), but without the content field.
 
 To retrieve the content of each page, you can use the [fetchPage](fetch-page) function.
 
