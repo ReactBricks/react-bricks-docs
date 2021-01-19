@@ -4,5 +4,6 @@
   "admin-dashboard": "Admin Dashboard",
   "configuration": "Configuration",
   "bricks": "Bricks (content blocks)",
+  "nested-blocks": "Nested blocks",
   "deploy": "Deploy"
 }
