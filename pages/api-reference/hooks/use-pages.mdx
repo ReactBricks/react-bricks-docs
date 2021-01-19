@@ -7,15 +7,17 @@ description: ...
 
 **Hook to fetch the list of pages.**
 
-## Argument
-
-The hook function accepts as **argument an object** with this interface:
-
-```tsx
-{
-  type?: string;
-  tag?: string;
+## Signature
+```ts
+interface UsePagesArgs {
+  type?: string
+  tag?: string
 }
+
+usePages = ({
+  type,
+  tag,
+}: UsePagesArgs = {}): types.IQueryResult<types.PageFromList[], Error>
 ```
 
 | Property | Definition                                                             |
@@ -25,9 +27,9 @@ The hook function accepts as **argument an object** with this interface:
 
 ## Return value
 
-The hook returns an object with `{data, error, isFetching}`.
+The hook returns an object with `{ data, error, isFetching }` and other properties.
 
-The `data` object has the following shape
+`data` contains an array of type [PageFromList](/api-reference/types/types#pagefromlist) (a [Page](/api-reference/types/types#page) object without `content`):
 
 ```ts
 {
@@ -36,6 +38,10 @@ The `data` object has the following shape
   name: string
   slug: string
   meta: IMeta
+  content: IContentBlock[]
+  authorId?: string
+  author: Author
+  invalidBlocksTypes?: string[]
   status: PageStatus
   isLocked: boolean
   tags: string[]
@@ -44,6 +50,6 @@ The `data` object has the following shape
 
 ## Usage example
 
-```jsx
+```ts
 const { data: pages, error, isFetching } = usePages()
 ```

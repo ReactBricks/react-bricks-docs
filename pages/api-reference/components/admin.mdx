@@ -7,14 +7,12 @@ description: ...
 
 The Admin component **should wrap all the components used in the Admin Dashboard**, which are:
 
-- [`Login`](/docs-api/components/login)
-- [`Editor`](/docs-api/components/editor)
-- [`Playground`](/docs-api/components/playground)
-- [`AppSettings`](/docs-api/components/app-settings)
+- [`Login`](login)
+- [`Editor`](editor)
+- [`Playground`](playground)
+- [`AppSettings`](app-settings)
 
-**It provides context** variables, like the authenticated user, to the children components.
-
-See also [AdminContext](/docs-api/context/admin-context)
+It manages authentication and renders the Admin menu. It acts also as a Provider for the [AdminContext](../context/admin-context), making it available to the wrapped components.
 
 ## Props
 
@@ -27,11 +25,9 @@ interface AdminProps {
 The only prop you can specify is `isLogin`.  
 It is a boolean value to identify the Login page. It is needed to correctly manage the authentication process.
 
-## Usage example, wrapping the **Editor** component
+## Usage example, editor page
 
-<small>(from the Vanilla React starter)</small>
-
-```jsx
+```tsx
 import React from 'react'
 import { Admin, Editor } from 'react-bricks'
 
@@ -46,13 +42,9 @@ const EditorPage = () => {
 export default EditorPage
 ```
 
-## Usage example, wrapping the **Login** component
+## Usage example, login page
 
-<small>(from the Vanilla React starter)</small>
-
-Note the `isLogin` prop.
-
-```jsx
+```tsx highlight=6
 import React from 'react'
 import { Admin, Login } from 'react-bricks'
 
@@ -65,24 +57,4 @@ const LoginPage = () => {
 }
 
 export default LoginPage
-```
-
-## AdminContext
-
-The Admin component provides the configuration to the children components, using the `AdminContext`, which has the following TypeScript interface:
-
-```tsx
-interface IAdminContext {
-  isAdmin: boolean
-  user: User | null
-  setUser: (user: User) => void
-  currentPage: string
-  setCurrentPage: (page: string) => void
-  previewMode: boolean
-  setPreviewMode: (previewMode: boolean) => void
-  sidebarCollapsed: boolean
-  setSidebarCollapsed: (sidebarCollapsed: boolean) => void
-  getStyles: () => NodeListOf<HTMLStyleElement> | []
-  getStylesheets: () => NodeListOf<HTMLLinkElement> | []
-}
 ```
