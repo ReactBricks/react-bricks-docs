@@ -1,6 +1,6 @@
 {
-  "react-bricks":"<ReactBricks>",
-  "page-viewer": "<Page viewer>",
+  "react-bricks": "<ReactBricks>",
+  "page-viewer": "<PageViewer>",
   "admin": "<Admin>",
   "login": "<Login>",
   "editor": "<Editor>",

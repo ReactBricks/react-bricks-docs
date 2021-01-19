@@ -22,7 +22,7 @@ interface RepeaterProps {
 
 | Property             | Definition                                                                                                                                        |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `propName`           | Name of the prop containing the repeated items (should match the one in the [`repeaterItems` schema property](repeater-items))                                      |
+| `propName`           | Name of the prop containing the repeated items (should match the one in the [`repeaterItems` schema property](/docs/bricks/repeater-items))       |
 | `itemProps?`         | Optional object with props passed to all the items (for example a global configuration that is the same for all the items).                       |
 | `renderWrapper?`     | Optional function taking `items` as an argument. It should return JSX that wraps the items. Rendered only if there is at least one repeated item. |
 | `renderItemWrapper?` | Optional wrapper around each item. Has `item`, `index` and `itemsCount` as arguments and should return JSX                                        |
@@ -32,8 +32,6 @@ interface RepeaterProps {
 ```tsx
 <Repeater
   propName="buttons"
-  renderWrapper={(items) => (
-    <div className="flex justify-center items-center">{items}</div>
-  )}
+  renderWrapper={(items) => <div className="flex justify-center items-center">{items}</div>}
 />
 ```
