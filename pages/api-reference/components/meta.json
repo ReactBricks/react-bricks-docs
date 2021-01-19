@@ -1,9 +1,9 @@
 {
-  "react-bricks":"ReactBricks",
-  "page-viewer": "Page viewer",
+  "react-bricks":"<ReactBricks>",
+  "page-viewer": "<Page viewer>",
   "admin": "<Admin>",
-  "login": "Login",
-  "editor": "Editor",
-  "playground": "Playground",
-  "app-settings": "AppSettings"
+  "login": "<Login>",
+  "editor": "<Editor>",
+  "playground": "<Playground>",
+  "app-settings": "<AppSettings>"
 }

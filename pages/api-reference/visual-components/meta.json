@@ -1,7 +1,7 @@
 {
-  "text": "Text",
-  "rich-text": "RichText",
-  "image": "Image",
-  "repeater": "Repeater",
-  "link": "Link"
+  "text": "<Text>",
+  "rich-text": "<RichText>",
+  "image": "<Image>",
+  "repeater": "<Repeater>",
+  "link": "<Link>"
 }
