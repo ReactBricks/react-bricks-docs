@@ -1,6 +1,6 @@
 ---
 title: uuid
-description: ...
+description: A thin wrapper to create unique ids for default content blocks
 ---
 
 # uuid
@@ -9,7 +9,7 @@ The exported `uuid` function is just a thin wrapper around the `uuid/v4` npm pac
 
 ## Example usage
 
-```tsx
+```ts
 import { uuid } from 'react-bricks'
 
 const schema: types.IBlockType = {

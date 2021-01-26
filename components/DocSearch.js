@@ -25,8 +25,8 @@ const DocSearch = () => {
   useEffect(() => {
     if (window.docsearch) {
       window.docsearch({
-        apiKey: '247dd86c8ddbbbe6d7a2d4adf4f3a68a',
-        indexName: 'vercel_swr',
+        apiKey: '0fe0aa5e6289732435481bbfe5d5a915',
+        indexName: 'reactbricks',
         inputSelector: 'input#algolia-doc-search',
       })
     }

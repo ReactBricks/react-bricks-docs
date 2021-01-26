@@ -1,6 +1,6 @@
 ---
 title: Playground
-description: ...
+description: Component that renders the Playground page for React Bricks Admin Dashboard
 ---
 
 # Playground
@@ -11,3 +11,20 @@ The Playground is useful to **preview and test your bricks**.
 It needs no props, but it must be wrapped by the [Admin](admin) component to receive the needed context.
 
 The route where this component is shown has to be specified in [ReactBricks](react-bricks)'s [configuration](/docs/configuration/configuration) parameter `playgroundPath`.
+
+## Usage example
+
+```tsx highlight=2,7
+import React from 'react'
+import { Admin, Playground } from 'react-bricks'
+
+const PlaygroundPage = () => {
+  return (
+    <Admin>
+      <Playground />
+    </Admin>
+  )
+}
+
+export default PlaygroundPage
+```

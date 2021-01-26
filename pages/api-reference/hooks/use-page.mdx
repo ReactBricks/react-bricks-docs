@@ -1,6 +1,6 @@
 ---
 title: usePage
-description: ...
+description: Hook that lets you easily retrieve the content of a page from React Bricks' APIs
 ---
 
 # usePage
@@ -8,9 +8,11 @@ description: ...
 The usePage hook lets you easily **retrieve the content of a page** from React Bricks' APIs.
 
 ## Signature
+
 ```ts
-usePage = (slug: string): types.IQueryResult<types.Page>
+const usePage = (slug: string): types.IQueryResult<types.Page>
 ```
+
 The only argument of this hook function is the **slug** string.
 
 ## Usage example

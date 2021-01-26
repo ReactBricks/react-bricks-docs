@@ -1,15 +1,19 @@
 ---
 title: fetchPage
-description: ...
+description: Function to retrieve the content of one page from outside the React context
 ---
 
 # fetchPage
 
-The fetchPage function is useful when you want to **retrieve the content of one from outside the React context** (where you could use the [usePage hook](/docs-api/hooks/use-page)).
+The fetchPage function is useful when you want to **retrieve the content of one page from outside the React context** (where you could use the [usePage hook](/api-reference/hooks/use-page) instead).
 
 In particular, this comes in handy during the build process of a static website. Indeed, this is the method used in our Gatsby and Next.js [starter projects](/docs/getting-started/starter-projects).
 
-## Arguments
+## Signature
+
+```ts
+const fetchPage = async (slug: string, apiKey: string): Promise<types.Page>
+```
 
 | Property   | Definition                                   |
 | ---------- | -------------------------------------------- |
@@ -18,15 +22,15 @@ In particular, this comes in handy during the build process of a static website.
 
 ## Return value
 
-`fetchPage` returns a **promise which resolves to a [`Page`](/docs-api/types/#page)**
+`fetchPage` returns a **promise which resolves to a [`Page`](/api-reference/types/types/#page)**
 
-Before using this page with ReactBricks' [`PageViewer`](/docs-api/components/page-viewer) component, you need to parse it with the [`cleanPage`](clean-page) function.
+Before using this page with ReactBricks' [`PageViewer`](/api-reference/components/page-viewer) component, you need to parse it with the [`cleanPage`](clean-page) function.
 
 ## Usage example
 
-```jsx
+```ts highlight=1
 fetchPage('about-us', 'API_KEY').then((data) => {
-  const myPage = cleanPage(data, pageTypeSchema, blockTypeSchema)
+  const myPage = cleanPage(data, pageTypes, bricks)
   console.log(myPage.content)
 })
 ```

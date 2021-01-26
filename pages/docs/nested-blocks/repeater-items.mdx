@@ -1,4 +1,9 @@
-# repeaterItems in schema
+---
+title: Repeater Items
+description: An array with one configuration object for each repeated block
+---
+
+# Repeater Items
 
 `repeaterItems` should be an array with one configuration object for each repeated block.  
 The configuration object has the following shape:
@@ -41,26 +46,4 @@ YourBrick.schema {
   ],
   ...
 }
-```
-
-## Repeated Brick
-
-A brick used as repeater item is just a normal brick, but it must spread `...rest` props on its root element in order to be correctly focusable in the Admin interface, as you can see below:
-
-```tsx highlight=5
-const Badge: types.Brick<BadgeProps> = ({
-  ...rest
-}) => {
-  return (
-    <div {...rest}>
-      ...
-    </div>
-  )
-}
-
-Badge.schema = {
-  ...
-}
-
-export default Badge
 ```

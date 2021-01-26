@@ -1,9 +1,14 @@
+---
+title: Bricks overview
+description: A Brick is a content "Lego brick" for React Bricks
+---
+
 # Bricks overview
 
 ## What is a Brick?
 
 A Brick is a content "Lego brick" for React Bricks.  
-It is a type of content block that you can create and content creator may use to create content on a page.
+It is a type of content block that you can create and content creator may use to create content on a page. A content block is an instance of a brick.
 
 ## How is it made?
 
@@ -16,7 +21,7 @@ A Brick is just a **React component** with two peculiarities:
 
 Here's an example "Hero unit" brick: nice to meet you! 😊
 
-```tsx
+```tsx highlight=9,15,29
 // Import React Bricks TypeScript types
 // and RichText visual edit component
 // (other visual edit components are Image and Repeater)

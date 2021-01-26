@@ -1,6 +1,6 @@
 ---
 title: usePages
-description: ...
+description: Hook to fetch the list of pages
 ---
 
 # usePages
@@ -8,16 +8,17 @@ description: ...
 **Hook to fetch the list of pages.**
 
 ## Signature
+
 ```ts
+const usePages = ({
+  type,
+  tag,
+}: UsePagesArgs = {}): types.IQueryResult<types.PageFromList[], Error>
+
 interface UsePagesArgs {
   type?: string
   tag?: string
 }
-
-usePages = ({
-  type,
-  tag,
-}: UsePagesArgs = {}): types.IQueryResult<types.PageFromList[], Error>
 ```
 
 | Property | Definition                                                             |
