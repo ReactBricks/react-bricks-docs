@@ -2,7 +2,7 @@ import Logo from './components/Logo'
 import DocSearch from './components/DocSearch'
 
 export default {
-  repository: 'https://github.com/shuding/nextra', // project repo
+  repository: 'https://github.com/ReactBricks/react-bricks-docs', // project repo
   docsRepository: 'https://github.com/ReactBricks/react-bricks-docs', // docs repo
   branch: 'master', // branch of docs
   path: '/', // path of docs
