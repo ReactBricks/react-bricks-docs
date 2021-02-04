@@ -15,6 +15,7 @@
     "postcss": "^8.2.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-intersection-observer": "^8.31.0",
     "tailwindcss": "^2.0.2"
   }
 }
