@@ -34,7 +34,7 @@ const HeroUnit: types.Brick<HeroUnitProps> = ({
   background = { color: '#fff', className: 'bg-white' },
 }) => {
   return (
-    <div className={\`py-12 \${background.className}\`}>
+    <div className={`py-12 ${background.className}`}>
       {/* RichText component from React Bricks */}
       <RichText
         renderBlock={(props: any) => (
