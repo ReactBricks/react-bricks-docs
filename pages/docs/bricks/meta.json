@@ -3,5 +3,7 @@
   "schema": "Schema",
   "side-edit-props": "Side edit props",
   "visual-edit": "Visual Editing",
-  "styling": "Styling"
+  "styling": "Styling",
+  "create-visual-editing": "Create your own visual editing component",
+  "access-page-meta": "Access page meta"
 }

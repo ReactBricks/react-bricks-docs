@@ -1,0 +1,36 @@
+---
+title: Access page meta values
+description: Using the usePageValues hook you can get and set the page meta values
+---
+
+# usePageValues
+
+Using the [`usePageValues`](/api-reference/hooks/use-page-values) hook, you can access (get and set) the page meta values inside your bricks.
+
+For example, you can render the creation date of a page, the reading time in minutes or set the meta title equal to a visual edited heading.
+
+The values you can access are:
+
+```ts
+{
+  id: string
+  type: string
+  name: string
+  slug: string
+  meta: {
+    title?: string
+    description?: string
+    language?: string
+    featuredImage?: string
+    readingTime?: number
+  }
+  authorId?: string
+  author: Author
+  invalidBlocksTypes?: string[]
+  status: PageStatus
+  isLocked: boolean
+  tags: string[]
+}
+```
+
+[See usePageValues documentation](/api-reference/hooks/use-page-values)

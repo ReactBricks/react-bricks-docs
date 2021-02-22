@@ -1,0 +1,61 @@
+---
+title: usePageValues
+description: Hook to access page meta values and edit them
+---
+
+# usePageValues
+
+Hook with no arguments that returns the page meta values and a function to set them (which will merge the object one level deep).
+
+### Values
+
+The values you can access are:
+
+```ts
+{
+  id: string
+  type: string
+  name: string
+  slug: string
+  meta: {
+    title?: string
+    description?: string
+    language?: string
+    featuredImage?: string
+    readingTime?: number
+  }
+  authorId?: string
+  author: Author
+  invalidBlocksTypes?: string[]
+  status: PageStatus
+  isLocked: boolean
+  tags: string[]
+}
+```
+
+The `readingTime` is expressed in minutes and calculated based on the length of the plain text content of the page.
+
+See the [Page](/api-reference/types/types#page) type and [IMeta](/api-reference/types/interfaces#imeta) interface
+
+### Example usage
+
+```jsx
+const [page, setPage] = usePageValues()
+
+// Set meta title equal to the "title" props anytime it changes
+useEffect(() => {
+  setPage({
+    meta: {
+      ...page.meta,
+      title: typeof title === 'string' ? title : Plain.serialize(title),
+    },
+  })
+}, [title])
+
+return (
+  <div>
+    Created at {page.createdAt}.
+    {page.readingTime && <span>{page.readingTime} minutes read.</span>}
+  </div>
+)
+```

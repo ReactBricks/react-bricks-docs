@@ -1,0 +1,27 @@
+---
+title: useVisualEdit
+description: Hook to create your own visual editing component
+---
+
+# useVisualEdit
+
+Hook to create your own visual editing component. It takes a propName as argument and returns a `[value, setValue, isReadOnly]` array.
+
+`setValue` accepts a value as argument.  
+`isReadOnly` is true in the frontend and in Admin > Preview mode
+
+### Example usage
+
+```jsx
+const [value, setValue, isReadOnly] = useVisualEdit('code')
+
+if (isReadOnly) {
+  return (
+    <div>{value}</div>
+  )
+}
+
+return (
+  <MyEditor value={value} onChange={setValue}>
+)
+```

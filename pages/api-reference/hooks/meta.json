@@ -1,5 +1,7 @@
 {
   "use-page": "usePage",
   "use-pages": "usePages",
-  "use-auth": "useAuth"
+  "use-auth": "useAuth",
+  "use-visual-edit": "useVisualEdit",
+  "use-page-values": "usePageValues"
 }
