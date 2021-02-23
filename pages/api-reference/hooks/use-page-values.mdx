@@ -5,10 +5,19 @@ description: Hook to access page meta values and edit them
 
 # usePageValues
 
-Hook with no arguments that returns:
+```ts
+const usePageValues = (): [
+  types.PageValues,
+  (pageData: types.PartialPage) => void
+]
+```
 
-- In the Admin, the page meta values and a function to set them (which will merge the object one level deep).
-- In the frontend Viewer, just the page meta values (in this case the setPage function returned is a no-op).
+Hook with no arguments that returns a `[pageValues, setPageValues]` array.
+
+- pageValues is an object with the values you see below
+- setPageValues is a function to set the values (which will merge the object one level deep).
+
+> On the frontend Viewer the setPage function performs no acton. In that case you should take just the first element with the pageValues.
 
 ### Values
 

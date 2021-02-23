@@ -5,10 +5,17 @@ description: Hook to create your own visual editing component
 
 # useVisualEdit
 
+```ts
+const useVisualEdit = (
+  propName: string
+): [any, (value: any) => void, boolean]
+```
+
 Hook to create your own visual editing component. It takes a propName as argument and returns a `[value, setValue, isReadOnly]` array.
 
-`setValue` accepts a value as argument.  
-`isReadOnly` is true in the frontend and in Admin > Preview mode
+- `value` is a value of a prop
+- `setValue` function accepts a value as argument.
+- `isReadOnly` is true in the frontend and in Admin > Preview mode
 
 ### Example usage
 
