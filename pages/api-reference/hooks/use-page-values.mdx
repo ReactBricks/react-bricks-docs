@@ -5,7 +5,10 @@ description: Hook to access page meta values and edit them
 
 # usePageValues
 
-Hook with no arguments that returns the page meta values and a function to set them (which will merge the object one level deep).
+Hook with no arguments that returns:
+
+- In the Admin, the page meta values and a function to set them (which will merge the object one level deep).
+- In the frontend Viewer, just the page meta values (in this case the setPage function returned is a no-op).
 
 ### Values
 
@@ -54,7 +57,7 @@ useEffect(() => {
 
 return (
   <div>
-    Created at {page.createdAt}.
+    Created at {moment(page.createdAt).format('MM/DD/YYYY')}.
     {page.readingTime && <span>{page.readingTime} minutes read.</span>}
   </div>
 )
