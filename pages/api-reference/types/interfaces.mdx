@@ -46,6 +46,17 @@ interface IContentBlock {
 }
 ```
 
+## ICustomKnobProps
+
+```tsx
+interface ICustomKnobProps {
+  id: string
+  value: any
+  onChange: any
+  isValid: boolean
+}
+```
+
 ## IImageSource
 
 ```tsx
@@ -136,6 +147,7 @@ interface ISideEditProp {
   name: string
   label: string
   type: SideEditPropType
+  component?: React.FC<ICustomKnobProps>
   shouldRefreshText?: boolean
   validate?: (value: any, props?: Props) => boolean
   show?: (props: Props) => boolean

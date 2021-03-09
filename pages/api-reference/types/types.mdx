@@ -6,6 +6,7 @@ description: List of the main exported Types
 # Types
 
 ## Author
+
 ```ts
 type Author = {
   id: string
@@ -18,16 +19,19 @@ type Author = {
 ```
 
 ## Brick
+
 ```ts
 type Brick<T = {}> = React.FC<T> & { schema: IBlockType }
 ```
 
 ## Bricks
+
 ```ts
 type Bricks = { [key: string]: Brick<any> }
 ```
 
 ## Page
+
 ```ts
 type Page = {
   id: string
@@ -48,13 +52,15 @@ type Page = {
 ```
 
 ## PageFromList
+
 ```ts
 type PageFromList = Omit<Page, 'content'>
 ```
 
 ## PageFromListWithPagination
+
 ```ts
- export type PagesFromListWithPagination = {
+export type PagesFromListWithPagination = {
   items: PageFromList[]
   pagination: {
     page: number
@@ -66,11 +72,13 @@ type PageFromList = Omit<Page, 'content'>
 ```
 
 ## Props
+
 ```ts
 type Props = { [key: string]: any }
 ```
 
 ## RenderLocalLink
+
 ```ts
 type RenderLocalLink = ({
   href,
@@ -90,6 +98,7 @@ type RenderLocalLink = ({
 ```
 
 ## TextValue
+
 ```ts
 import { Value } from 'slate'
 
