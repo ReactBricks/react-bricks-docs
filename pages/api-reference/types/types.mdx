@@ -1,46 +1,33 @@
 ---
 title: Types
-description: List of all the Types
+description: List of the main exported Types
 ---
 
 # Types
 
-## Brick
+## Author
+```tsx
+type Author = {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  avatarUrl?: string
+  company?: string
+}
+```
 
+## Brick
 ```tsx
 type Brick<T = {}> = React.FC<T> & { schema: IBlockType }
 ```
 
 ## Bricks
-
 ```tsx
 type Bricks = { [key: string]: Brick<any> }
 ```
 
-## User
-
-```tsx
-type User = {
-  id: string
-  email: string
-  firstName: string
-  lastName: string
-  company: string
-  avatarUrl?: string
-  isAdmin: boolean
-  token: string
-  appName: string
-  deployHookUrl?: string
-  deployHookMethod: string
-  canCreatePage: boolean
-  canDeletePage: boolean
-  canDeploy: boolean
-  role: string
-} | null
-```
-
 ## Page
-
 ```tsx
 type Page = {
   id: string
@@ -58,27 +45,17 @@ type Page = {
 }
 ```
 
-## Author
-
-```tsx
-type Author = {
-  id: string
-  email: string
-  firstName: string
-  lastName: string
-  avatarUrl?: string
-  company?: string
-}
-```
-
 ## PageFromList
-
 ```tsx
 type PageFromList = Omit<Page, 'content'>
 ```
 
-## RenderLocalLink
+## Props
+```tsx
+type Props = { [key: string]: any }
+```
 
+## RenderLocalLink
 ```tsx
 type RenderLocalLink = ({
   href,
@@ -98,15 +75,8 @@ type RenderLocalLink = ({
 ```
 
 ## TextValue
-
 ```tsx
 import { Value } from 'slate'
 
 type TextValue = Value
-```
-
-## Props
-
-```tsx
-type Props = { [key: string]: any }
 ```

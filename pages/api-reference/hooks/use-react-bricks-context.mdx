@@ -1,7 +1,21 @@
 ---
-title: ReactBricksContent
-description: The ReactBricksContext provides configuration context to all the children components
+title: useReactBricksContext
+description: Hook to access the value of React Bricks context
 ---
+
+# useReactBricksContext
+
+```ts
+const useReactBricksContext = (): types.IReactBricksContext
+```
+
+Hook with no argument to access the values in React Bricks context. It returns an object. The values in the returned object are from the configuration you provided to the ReactBricks component, so you should have them available in your project, but this hook could be useful to access them from any component wrapped by ReactBricks, for example a content block.
+
+### Example usage
+
+```ts
+const { bricks } = useReactBricksContext()
+```
 
 # ReactBricksContext
 
@@ -30,5 +44,3 @@ interface IReactBricksContext {
 ```
 
 The [`<ReactBricks>` component](/api-reference/components/react-bricks) wraps all the children with the ReactBricksContext Provider.
-
-If you need any of this configuration settings in your components, you may use React `useContext` to access them.

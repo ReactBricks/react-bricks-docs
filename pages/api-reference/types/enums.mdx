@@ -1,26 +1,20 @@
 ---
 title: Enums
-description: List of all the Enums
+description: List of the main exported Enums
 ---
 
 # Enums
 
-## SideEditPropType
-
+## OptionsDisplay
 ```tsx
-enum SideEditPropType {
-  Text = 'TEXT',
-  Number = 'NUMBER',
-  Date = 'DATE',
-  Range = 'RANGE',
-  Boolean = 'BOOLEAN',
+enum OptionsDisplay {
   Select = 'SELECT',
-  Image = 'IMAGE',
+  Radio = 'RADIO',
+  Color = 'COLOR',
 }
 ```
 
 ## RichTextFeatures
-
 ```tsx
 enum RichTextFeatures {
   Bold = 'BOLD',
@@ -33,60 +27,15 @@ enum RichTextFeatures {
 }
 ```
 
-## SortDirection
-
+## SideEditPropType
 ```tsx
-enum SortDirection {
-  Up = 'UP',
-  Down = 'DOWN',
-}
-```
-
-## OptionsDisplay
-
-```tsx
-enum OptionsDisplay {
+enum SideEditPropType {
+  Text = 'TEXT',
+  Number = 'NUMBER',
+  Date = 'DATE',
+  Range = 'RANGE',
+  Boolean = 'BOOLEAN',
   Select = 'SELECT',
-  Radio = 'RADIO',
-  Color = 'COLOR',
-}
-```
-
-## PageStatus
-
-```tsx
-enum PageStatus {
-  Draft = 'DRAFT',
-  Published = 'PUBLISHED',
-}
-```
-
-## PlaygroundSelectedItemType
-
-```tsx
-enum PlaygroundSelectedItemType {
-  Block = 'BLOCK',
-  Page = 'PAGE',
-}
-```
-
-## DeviceType
-
-```tsx
-enum DeviceType {
-  Desktop = 'DESKTOP',
-  Tablet = 'TABLET',
-  Phone = 'PHONE',
-}
-```
-
-## Tab
-
-```tsx
-enum Tab {
-  Block = 'BLOCK',
-  Item = 'ITEM',
-  PageSettings = 'PAGE-SETTINGS',
-  Document = 'DOCUMENT',
+  Image = 'IMAGE',
 }
 ```

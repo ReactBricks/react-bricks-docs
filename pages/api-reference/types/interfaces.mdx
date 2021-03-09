@@ -1,9 +1,18 @@
 ---
 title: Interfaces
-description: List of all the Interfaces
+description: List of the main exported Interfaces
 ---
 
 # Interfaces
+
+## IAdminContext
+
+```tsx
+interface IReadAdminContext {
+  isAdmin: boolean
+  previewMode: boolean
+}
+```
 
 ## IBlockType
 
@@ -18,15 +27,12 @@ interface IBlockType {
 }
 ```
 
-## IRepeaterItem
+## IColor
 
 ```tsx
-interface IRepeaterItem {
-  name: string
-  itemType: string
-  itemLabel?: string
-  min?: number
-  max?: number
+interface IColor {
+  color: string
+  [propName: string]: any
 }
 ```
 
@@ -40,12 +46,86 @@ interface IContentBlock {
 }
 ```
 
+## IImageSource
+
+```tsx
+interface IImageSource {
+  src: string
+  placeholderSrc?: string
+  srcSet?: string
+  alt?: string
+  seoName?: string
+}
+```
+
+## IMeta
+
+```tsx
+interface IMeta {
+  title?: string
+  description?: string
+  language?: string
+  featuredImage?: string
+  readingTime?: number
+}
+```
+
 ## IOption
 
 ```tsx
 interface IOption {
   value: any
   label: string
+}
+```
+
+## IPageType
+
+```tsx
+interface IPageType {
+  name: string
+  pluralName: string
+  allowedBlockTypes?: string[]
+  excludedBlockTypes?: string[]
+  defaultLocked?: boolean
+  defaultStatus?: PageStatus
+  defaultLanguage?: string
+  defaultFeaturedImage?: string
+  getDefaultContent?: () => string[]
+}
+```
+
+## IReactBricksContext
+
+```tsx
+interface IReactBricksContext {
+  appId: string
+  apiKey: string
+  bricks: Bricks
+  pageTypes: IPageType[]
+  logo: string
+  contentClassName: string
+  renderLocalLink: RenderLocalLink
+  navigate: (path: string) => void
+  loginPath: string
+  editorPath: string
+  playgroundPath: string
+  appSettingsPath: string
+  isDarkColorMode?: boolean
+  toggleColorMode?: () => void
+  useCssInJs?: boolean
+}
+```
+
+## IRepeaterItem
+
+```tsx
+interface IRepeaterItem {
+  name: string
+  itemType: string
+  itemLabel?: string
+  min?: number
+  max?: number
 }
 ```
 
@@ -86,72 +166,6 @@ interface ISideGroup {
 }
 ```
 
-## IFocused
-
-```tsx
-interface IFocused {
-  blockId: string
-  itemId: string
-  repeaterPropName: string
-}
-```
-
-## IImageSource
-
-```tsx
-interface IImageSource {
-  src: string
-  placeholderSrc?: string
-  srcSet?: string
-  alt?: string
-  seoName?: string
-}
-```
-
-## IColor
-
-```tsx
-interface IColor {
-  color: string
-  [propName: string]: any
-}
-```
-
-## IPageType
-
-```tsx
-interface IPageType {
-  name: string
-  pluralName: string
-  allowedBlockTypes?: string[]
-  excludedBlockTypes?: string[]
-  defaultLocked?: boolean
-  defaultStatus?: PageStatus
-  defaultLanguage?: string
-  defaultFeaturedImage?: string
-  getDefaultContent?: () => string[]
-}
-```
-
-## ICleanBlocks
-
-```tsx
-interface ICleanBlocks {
-  blocks: IContentBlock[]
-  invalidBlocksTypes: string[]
-}
-```
-
-## ILoginCredentials
-
-```tsx
-interface ILoginCredentials {
-  email: string
-  password: string
-  appId: string
-}
-```
-
 ## ReactBricksConfig
 
 ```tsx
@@ -172,152 +186,5 @@ interface ReactBricksConfig {
   toggleColorMode?: () => void
   useCssInJs?: boolean
   appRootElement: string | HTMLElement
-}
-```
-
-## IReactBricksContext
-
-```tsx
-interface IReactBricksContext {
-  appId: string
-  apiKey: string
-  bricks: Bricks
-  pageTypes: IPageType[]
-  logo: string
-  contentClassName: string
-  renderLocalLink: RenderLocalLink
-  navigate: (path: string) => void
-  loginPath: string
-  editorPath: string
-  playgroundPath: string
-  appSettingsPath: string
-  isDarkColorMode?: boolean
-  toggleColorMode?: () => void
-  useCssInJs?: boolean
-}
-```
-
-## IAdminContext
-
-```tsx
-interface IAdminContext {
-  isAdmin: boolean
-  currentPage: string
-  setCurrentPage: (page: string) => void
-  previewMode: boolean
-  setPreviewMode: (previewMode: boolean) => void
-  sidebarCollapsed: boolean
-  setSidebarCollapsed: (sidebarCollapsed: boolean) => void
-  getStyles: () => NodeListOf<HTMLStyleElement> | []
-  getStylesheets: () => NodeListOf<HTMLLinkElement> | []
-}
-```
-
-## IBlockContext
-
-```tsx
-interface IBlockContext {
-  values: Props
-  onChange: (field: string, value: any) => void
-  blockId: string
-  parentId: string
-  parentType: string
-  handleChange: (
-    blockId: string,
-    parentBlockId?: string,
-    repeaterPropName?: string
-  ) => (field: string, value: any) => void
-  handleAddItem?: (
-    blockId: string,
-    itemBlockPropName: string,
-    itemBlockTypeName: string
-  ) => () => void
-}
-```
-
-## IContentEditorContext
-
-```tsx
-interface IContentEditorContext {
-  focused: IFocused
-  setFocused: (focused: IFocused) => void
-  triggerTextRefreshBlockId: string
-  setTriggerTextRefreshBlockId: (value: string) => void
-  setAddAfterBlockId: (addAfterBlockId: string) => void
-}
-```
-
-## INewPage
-
-```tsx
-interface INewPage {
-  id?: string
-  type: string
-  name: string
-  slug?: string
-  meta?: IMeta
-  content?: IContentBlock[]
-  status?: PageStatus
-  isLocked?: boolean
-}
-```
-
-## IPlaygroundSelectedItem
-
-```tsx
-interface IPlaygroundSelectedItem {
-  type: PlaygroundSelectedItemType
-  name: string
-  label: string
-}
-```
-
-## IPlaygroundContext
-
-```tsx
-interface IPlaygroundContext {
-  selectedItem: IPlaygroundSelectedItem | null
-  setSelectedItem: (selectedItem: any) => void
-}
-```
-
-## IMeta
-
-```tsx
-interface IMeta {
-  title?: string
-  description?: string
-  language?: string
-  featuredImage?: string
-  readingTime?: number
-}
-```
-
-## IQueryResult
-
-```tsx
-interface IQueryResult<TResult, TError = undefined> {
-  canFetchMore: boolean | undefined
-  clear: () => void
-  data: TResult | undefined | null
-  error: TError | null
-  failureCount: number
-  fetchMore: (fetchMoreVariable?: unknown, options?: any) => Promise<TResult | undefined>
-  isError: boolean
-  isFetched: boolean
-  isFetchedAfterMount: boolean
-  isFetching: boolean
-  isFetchingMore?: any
-  isIdle: boolean
-  isInitialData: boolean
-  isLoading: boolean
-  isPreviousData: boolean
-  isPlaceholderData: boolean
-  isStale: boolean
-  isSuccess: boolean
-  refetch: (options?: any) => Promise<TResult | undefined>
-  remove: () => void
-  status: any
-  updatedAt: number
 }
 ```

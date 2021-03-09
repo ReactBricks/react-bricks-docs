@@ -1,0 +1,36 @@
+---
+title: useAdminContext
+description: Hook to access some values from the Admin context
+---
+
+# useAdminContext
+
+```ts
+const useAdminContext = (): types.IReadAdminContext
+```
+
+Hook with no argument to access some useful values from the Admin context. It returns an object.
+
+### Example usage
+
+```ts
+const { isAdmin, previewMode } = useAdminContext()
+```
+
+# AdminContext
+
+The `AdminContext` provides the context needed by the admin editing interface.
+
+The `useAdminContext` exported values have the following interface
+
+```ts
+interface IReadAdminContext {
+  isAdmin: boolean
+  previewMode: boolean
+}
+```
+
+- `isAdmin` is `true` in the Admin dashboard and `false` on the public front-end.
+- `previewMode` is `true` when Preview is active in the Admin dashboard and `false` otherwise.
+
+The [`<Admin>` component](/api-reference/components/admin) wraps all the children with the AdminContext Provider.

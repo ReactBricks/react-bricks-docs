@@ -3,5 +3,7 @@
   "use-pages": "usePages",
   "use-auth": "useAuth",
   "use-visual-edit": "useVisualEdit",
-  "use-page-values": "usePageValues"
+  "use-page-values": "usePageValues",
+  "use-react-bricks-context": "useReactBricksContext",
+  "use-admin-context": "useAdminContext"
 }
