@@ -9,14 +9,22 @@ The fetchPages function is useful when you want to **retrieve all your pages fro
 
 In particular, this comes in handy to retrieve all the pages during the build process of a static website. Indeed, this is the method used in our Gatsby and Next.js [starter projects](/docs/getting-started/starter-projects).
 
-## Signature
+## Signature (simplified)
 
 ```ts
 const fetchPages = async (
   apiKey: string,
-  options: { type?: string; tag?: string } = {}
-): Promise<types.PageFromList[]>
+  options: { type?: string
+  types?: string[]
+  tag?: string
+  usePagination?: boolean
+  page?: number
+  pageSize?: number
+  sort?: string }
+): Promise<types.PageFromList[] | types.PagesFromListWithPagination>
 ```
+
+Really the TypeScript signature is more complex, because the returned type is an array of `PageFromList` only when `usePagination` is true and an object of type `PagesFromListWithPagination` when `usePagination` is false.
 
 | Property  | Definition                                                      |
 | --------- | --------------------------------------------------------------- |
@@ -29,45 +37,39 @@ The options object has the following shape
 
 ```ts
 {
-  type?: string;
-  tag?: string;
+  type?: string
+  types?: string[]
+  tag?: string
+  usePagination?: boolean
+  page?: number
+  pageSize?: number
+  sort?: string
 }
 ```
 
-| Property | Definition                                                             |
-| -------- | ---------------------------------------------------------------------- |
-| `type`   | Optional string to return only the pages with the specified page type. |
-| `tag`    | Optional string to return only the pages with the specified tag.       |
+| Property        | Definition                                                                                      |
+| --------------- | ----------------------------------------------------------------------------------------------- |
+| `type`          | Optional string to return only the pages with the specified page type.                          |
+| `types`         | Optional array of strings to return only the pages with one of the specified page types.        |
+| `tag`           | Optional string to return only the pages with the specified tag.                                |
+| `usePagination` | If true, it will consider the page and pageSize parameters and it will return paginated results |
+| `page`          | The page number, in case of pagination                                                          |
+| `pageSize`      | The page size, in case of pagination                                                            |
+| `sort`          | Sort parameter: currently it accepts only `createdAt`,`-createdAt`,`publishedAt`,`-publishedAt` |
 
 ## Return value
 
-`fetchPages` returns a **promise which resolves to an array of pages**.  
-The pages are of type [`PageFromList`](/api-reference/types/types/#pagefromlist) (a [Page](/api-reference/types/types#page) object without `content`):
+`fetchPages` returns a **promise which resolves to**.
 
-```ts
-{
-  id: string
-  type: string
-  name: string
-  slug: string
-  meta: IMeta
-  content: IContentBlock[]
-  authorId?: string
-  author: Author
-  invalidBlocksTypes?: string[]
-  status: PageStatus
-  isLocked: boolean
-  tags: string[]
-}
-```
+- When `usePagination` is `false`, an array of type [PageFromList](/api-reference/types/types#pagefromlist)
+- When `usePagination` is `true`, an object of type [PagesFromListWithPagination](/api-reference/types/types#pagefromlistwithpagination)
 
 To retrieve the content of each page, you can use the [fetchPage](fetch-page) function.
 
 ## Usage example
 
 ```ts highlight=1
-fetchPages('API_KEY', { type: 'blogPost', tag: 'react' })
-.then(data => {
+fetchPages('API_KEY', { type: 'blogPost', tag: 'react' }).then((data) => {
   console.log(data)
 })
 ```
