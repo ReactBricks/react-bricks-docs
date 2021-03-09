@@ -7,50 +7,52 @@ description: Hook to fetch the list of pages
 
 **Hook to fetch the list of pages.**
 
-## Signature
+## Arguments
+
+The `usePages` hook accepts an optional configuration object with the following props:
 
 ```ts
-const usePages = ({
-  type,
-  tag,
-}: UsePagesArgs = {}): types.IQueryResult<types.PageFromList[], Error>
-
-interface UsePagesArgs {
+{
   type?: string
+  types?: string[]
   tag?: string
+  usePagination?: boolean
+  page?: number
+  pageSize?: number
+  sort?: string
 }
 ```
 
-| Property | Definition                                                             |
-| -------- | ---------------------------------------------------------------------- |
-| `type`   | Optional string to return only the pages with the specified page type. |
-| `tag`    | Optional string to return only the pages with the specified tag.       |
+| Property        | Definition                                                                                      |
+| --------------- | ----------------------------------------------------------------------------------------------- |
+| `type`          | Optional string to return only the pages with the specified page type.                          |
+| `types`         | Optional array of strings to return only the pages with one of the specified page types.        |
+| `tag`           | Optional string to return only the pages with the specified tag.                                |
+| `usePagination` | If true, it will consider the page and pageSize parameters and it will return paginated results |
+| `page`          | The page number, in case of pagination                                                          |
+| `pageSize`      | The page size, in case of pagination                                                            |
+| `sort`          | Sort parameter: currently it accepts only `createdAt`,`-createdAt`,`publishedAt`,`-publishedAt` |
 
 ## Return value
 
 The hook returns an object with `{ data, error, isFetching }` and other properties.
 
-`data` contains an array of type [PageFromList](/api-reference/types/types#pagefromlist) (a [Page](/api-reference/types/types#page) object without `content`):
+`data` contains:
 
-```ts
-{
-  id: string
-  type: string
-  name: string
-  slug: string
-  meta: IMeta
-  content: IContentBlock[]
-  authorId?: string
-  author: Author
-  invalidBlocksTypes?: string[]
-  status: PageStatus
-  isLocked: boolean
-  tags: string[]
-}
-```
+- When `usePagination` is `false`, an array of type [PageFromList](/api-reference/types/types#pagefromlist)
+- When `usePagination` is `true`, an object of type [PagesFromListWithPagination](/api-reference/types/types#pagefromlistwithpagination)
 
 ## Usage example
 
 ```ts
-const { data: pages, error, isFetching } = usePages()
+const { data, error, isFetching } = usePages()
+```
+
+```ts
+const { data, error, isFetching } = usePages({
+  type: 'products',
+  usePagination: true,
+  pageSize: 20,
+  page: 1,
+})
 ```
