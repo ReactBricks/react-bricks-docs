@@ -1,6 +1,8 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
+import { GA_TRACKING_ID_UA, GA_TRACKING_ID_V4 } from '../utils/gtag'
+
 class MyDocument extends Document {
   render() {
     return (
