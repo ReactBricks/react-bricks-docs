@@ -14,10 +14,11 @@ class MyDocument extends Document {
             async
             defer
           />
+
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=G-HETQZE0HTB`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID_UA}`}
           />
           <script
             dangerouslySetInnerHTML={{
@@ -25,7 +26,17 @@ class MyDocument extends Document {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-HETQZE0HTB', {
+              gtag('config', '${GA_TRACKING_ID_UA}', {
+                page_path: window.location.pathname,
+                linker: {
+                  domains: [
+                    "reactbricks.com",
+                    "dashboard.reactbricks.com",
+                    "docs.reactbricks.com",
+                  ],
+                },
+              });
+              gtag('config', '${GA_TRACKING_ID_V4}', {
                 page_path: window.location.pathname,
               });
           `,
