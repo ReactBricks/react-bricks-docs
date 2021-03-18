@@ -34,6 +34,7 @@ Here you can configure the **Logo** for the Admin header **and other parameters*
   toggleColorMode?: () => void
   useCssInJs?: boolean
   appRootElement: string | HTMLElement
+  clickToEditSide?: ClickToEditSide
 }
 ```
 
@@ -71,10 +72,11 @@ Let alone logo and contentClassName, all of these environment settings are **alr
 | `toggleDarkMode`   | Function that toggles dark mode. Used by the Admin to test dark mode.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `useCssInJs`       | Boolean that should be set to `true` if you use a CSS-in-JS library like Styled Components or Emotion.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `appRootElement`   | A string selector like `#root` or an HTML Element like `document.getElementById('root')`. This is for accessibility of modals in Admin, to be compliant to WAI-ARIA guidelines.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `clickToEditSide`  | The corner where to render the button to edit content in the front-end. The enum values are "BOTTOM-RIGHT" (`types.ClickToEditSide.BottomRight`), "BOTTOM-LEFT" (`types.ClickToEditSide.BottomLeft`), "TOP-RIGHT" (`types.ClickToEditSide.TopRight`), "TOP-LEFT" (`types.ClickToEditSide.TopLeft`).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ## Usage example
 
-Here you can see an example of a `config.ts` file, for a Gatsby-based project: [TO BE UPDATED]
+Here you can see an example of a `config.ts` file, for a Gatsby-based project:
 
 ```jsx
 import React from 'react'

@@ -125,6 +125,7 @@ interface IReactBricksContext {
   isDarkColorMode?: boolean
   toggleColorMode?: () => void
   useCssInJs?: boolean
+  clickToEditSide?: ClickToEditSide
 }
 ```
 
@@ -198,5 +199,6 @@ interface ReactBricksConfig {
   toggleColorMode?: () => void
   useCssInJs?: boolean
   appRootElement: string | HTMLElement
+  clickToEditSide?: ClickToEditSide
 }
 ```
