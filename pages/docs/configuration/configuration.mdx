@@ -72,7 +72,7 @@ Let alone logo and contentClassName, all of these environment settings are **alr
 | `toggleDarkMode`   | Function that toggles dark mode. Used by the Admin to test dark mode.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `useCssInJs`       | Boolean that should be set to `true` if you use a CSS-in-JS library like Styled Components or Emotion.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `appRootElement`   | A string selector like `#root` or an HTML Element like `document.getElementById('root')`. This is for accessibility of modals in Admin, to be compliant to WAI-ARIA guidelines.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `clickToEditSide`  | The corner where to render the "click-to-edit" button in the Viewer. The enum values are "BOTTOM-RIGHT" (`types.ClickToEditSide.BottomRight`), "BOTTOM-LEFT" (`types.ClickToEditSide.BottomLeft`), "TOP-RIGHT" (`types.ClickToEditSide.TopRight`), "TOP-LEFT" (`types.ClickToEditSide.TopLeft`).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `clickToEditSide`  | The corner where to render the "click-to-edit" button in the Viewer. The default is "BOTTOM-RIGHT". The enum values are "BOTTOM-RIGHT" (`types.ClickToEditSide.BottomRight`), "BOTTOM-LEFT" (`types.ClickToEditSide.BottomLeft`), "TOP-RIGHT" (`types.ClickToEditSide.TopRight`), "TOP-LEFT" (`types.ClickToEditSide.TopLeft`).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ## Usage example
 
@@ -81,16 +81,17 @@ Here you can see an example of a `config.ts` file, for a Gatsby-based project:
 ```jsx
 import React from 'react'
 import { Link, navigate } from 'gatsby'
-import pageTypeSchema from './pageSchema'
-import blockTypeSchema from './bricks'
+import { types } from 'react-bricks'
+import pageTypes from './pageTypes'
+import bricks from './bricks'
 import { appId, apiKey } from '../../credentials.config'
 import logo from '../images/logo.svg'
 
 const config = {
   appId,
   apiKey,
-  pageTypeSchema,
-  blockTypeSchema,
+  pageTypes,
+  bricks,
   logo,
   contentClassName: 'content',
   renderLocalLink: ({ href, children, className, activeClassName }) => (
@@ -99,6 +100,7 @@ const config = {
     </Link>
   ),
   navigate,
+  clickToEditSide: types.ClickToEditSide.BottomLeft
 }
 
 export default config
