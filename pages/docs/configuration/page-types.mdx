@@ -32,6 +32,7 @@ interface IPageType {
   defaultLanguage?: string
   defaultFeaturedImage?: string
   getDefaultContent?: () => string[]
+  customFields?: Array<ISideEditPropPage | ISideGroup>
 }
 ```
 
@@ -48,6 +49,7 @@ interface IPageType {
 | `defaultLanguage`      | The default [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language for this pageType. It is used in the `<html>` tag to identify the document language. Defaults to "en".                                                                                                        |
 | `defaultFeaturedImage` | The default URL for the featured image of this pageType, if no featured image is provided for a Page via the Document sidebar.                                                                                                                                                                        |
 | `getDefaultContent`    | Function that returns an array of brick names. The default content for the page will consist in the concatenation of the default content for each brick.                                                                                                                                              |
+| `customFields`         | Array of custom fields or groups of custom fields on a Page for this page type, modified via the sidebar's "Document" tab. See [Custom fields](custom-fields)                                                                                                                                         |
 
 ## Usage example
 

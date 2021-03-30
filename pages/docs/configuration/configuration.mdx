@@ -17,9 +17,10 @@ Here you can configure the **Logo** for the Admin header **and other parameters*
   appId: string
   apiKey: string
 
-  // CMS Content Blocks and Page Types
+  // CMS Content Blocks, Page Types, Custom fields
   bricks?: types.Brick<any>[]
   pageTypes?: types.IPageType[]
+  customFields?: Array<ISideEditPropPage | ISideGroup>
 
   // Environment Settings
   logo?: string
@@ -47,12 +48,13 @@ We can group configuration settings into three parts: credentials, schemas and e
 | `appId`  | Identifies this React Bricks app. Imported from `.env`.<br />It may be public as it is just an identifier, not used to authenticate API calls. |
 | `apiKey` | API Key for React Bricks APIs. Imported from `.env`.<br />Used to authenticate Read API calls from the frontend.                               |
 
-## Bricks and Page Types
+## Bricks, Page Types, Custom fields
 
-| Property    | Definition                                                                                               |
-| ----------- | -------------------------------------------------------------------------------------------------------- |
-| `bricks`    | This is the bricks (content blocks) definition. It is an array of [Bricks](/docs/bricks/what-is-a-brick) |
-| `pageTypes` | This is the page types definition. It is an array of [Page types](page-types)                            |
+| Property       | Definition                                                                                                                                 |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `bricks`       | This is the bricks (content blocks) definition. It is an array of [Bricks](/docs/bricks/what-is-a-brick)                                   |
+| `pageTypes`    | This is the page types definition. It is an array of [Page types](page-types)                                                              |
+| `customFields` | Array of custom fields or groups of custom fields on a Page, modified via the sidebar's "Document" tab. See [Custom fields](custom-fields) |
 
 ## Environment settings
 
@@ -100,7 +102,7 @@ const config = {
     </Link>
   ),
   navigate,
-  clickToEditSide: types.ClickToEditSide.BottomLeft
+  clickToEditSide: types.ClickToEditSide.BottomLeft,
 }
 
 export default config

@@ -103,6 +103,7 @@ interface IPageType {
   defaultLanguage?: string
   defaultFeaturedImage?: string
   getDefaultContent?: () => string[]
+  customFields?: Array<ISideEditPropPage | ISideGroup>
 }
 ```
 
@@ -155,6 +156,9 @@ interface ISideEditProp {
   imageOptions?: {
     maxWidth: number
   }
+  textareaOptions?: {
+    height?: number
+  }
   rangeOptions?: {
     min: number
     max: number
@@ -200,5 +204,6 @@ interface ReactBricksConfig {
   useCssInJs?: boolean
   appRootElement: string | HTMLElement
   clickToEditSide?: ClickToEditSide
+  customFields?: Array<ISideEditPropPage | ISideGroup>
 }
 ```

@@ -1,0 +1,160 @@
+---
+title: Custom fields
+description: Custom fields on a Page
+---
+
+# Custom fields
+
+You can have **custom fields on pages** to set attributes (for example JSON-LD fields, the product's brand, etc.).
+
+Custom fields can be configured on:
+
+- [React Bricks configuration](configuration): they are applied to all pages
+- [pageTypes](page-types): they are applied only to a specific page type
+
+Custom fields have their editing controls in the sidebar with a syntax that's almost identical to the definition of sidebar-edited props for content blocks.
+See [sideEditProps](/docs/bricks/side-edit-props).
+
+## Custom fields definition
+
+Each element of the `customFields` array may be:
+
+- Directly a customField
+- A Collapsible group of customFields
+
+## Collapsible group
+
+A collapsible group is an object with this interface:
+
+```ts
+interface ISideGroup {
+  groupName: string
+  defaultOpen?: boolean
+  show?: (props: Props) => boolean
+  props: ISideEditPropPage[]
+}
+```
+
+- The `groupName` is the name of the label used to collapse or expand the group of sidebar controls.
+- A group can be set as open or closed by default (`defaultOpen`, false by default).
+- A group can be hidden depending on the value of the component props (`show` function which receives the props as argument).
+- The `props` are an array of `ISideEditPropPage`. See below.
+
+## A Custom field
+
+For each custom field, you can specify the prop and the type of control that you want to display.
+
+## Properties
+
+Here is the Typescript interface for each custom field:
+
+```ts
+interface ISideEditPropPage {
+  name: string
+  label: string
+  type: SideEditPropType
+  component?: React.FC<ICustomKnobProps>
+  validate?: (value: any, props?: Props) => boolean
+  show?: (props: Props) => boolean
+  textareaOptions?: {
+    height?: number
+  }
+  imageOptions?: {
+    maxWidth: number
+  }
+  rangeOptions?: {
+    min?: number
+    max?: number
+    step?: number
+  }
+  selectOptions?: {
+    options?: IOption[]
+    getOptions?: () => IOption[] | Promise<IOption[]>
+    display: OptionsDisplay
+  }
+}
+```
+
+## Properties definition
+
+| Property          | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`            | The name of the prop passed to the component.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `label`           | The label displayed in the edit Sidebar.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `type`            | One of `TEXT`, `NUMBER`, `DATE`, `RANGE`, `BOOLEAN`, `SELECT`, `IMAGE`, `CUSTOM` (see [SideEditPropType](/api-reference/types/enums#sideeditproptype)).<br /><br />The `IMAGE` type is useful when you have an image that isn't edited visually, but in the sidebar, like a background image.<br /><br />The `CUSTOM` type allows you to provide your own component to edit this prop.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `component`       | Optional. Required in case of `CUSTOM` type. You can provide a custom component to edit this prop. It should be a React functional component with props `value`, `onChange`, `isValid`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `validate`        | Validation function. The value is valid if the function returns `true`.<br /><br />You can use the value of this prop, or, if you need it, you may access all the props' values using the second argument (which gets an object with all the key-value props).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `show`            | If this function (which receives an object with all the key-value props) returns true, this editing control is shown in the sidebar.<br /><br />It's useful to conditionally show a prop's control based on another prop (for example show the "rounded" prop for an image only if the image is loaded).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `textareaOptions` | Here you can specify the `height` for the textarea field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `rangeOptions`    | For props of type `NUMBER` and `RANGE`, you may to specify the `min`, `max` and `step` values to correctly display the range selector.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `selectOptions`   | For a props of type `SELECT`, you may specify:<br /><br />1. `options`: the array of options available to the user. Each option has a `value` (the value passed to the React component) and a `label` (the label shown to the user in the Sidebar).<br />See the [IOption](/api-reference/types/interfaces#ioption) interface.<br /><br />2. `getOptions`: function to return options as defined above. The function may return an array of options or a Promise which resolves as an array of options. Useful to have dynamic options, for example from an API call. Alternative to `options`<br /><br />3. `display`: one of `SELECT` (drop down select), `RADIO` or `COLOR` (a colored circle for each color is shown). In case of Color, the value should be an object with a `color` prop, and any other prop you need returned to your component (for example a className).<br />See [OptionsDisplay](/api-reference/types/enums#optionsdisplay) |
+| `imageOptions`    | For props of type `IMAGE`, you may to specify the `maxWidth` value, so that the optimization algorithm knows that the max width of the image to create is 2x this maxWidth (for retina displays).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
+## Usage example
+
+```jsx
+<ReactBricks
+  ...
+  // This are applied to all the pages
+  customFields={[
+    {
+      groupName: 'Real Estate',
+      props: [
+        {
+          name: 'type',
+          type: types.SideEditPropType.Text,
+          label: 'Property type',
+        },
+        {
+          name: 'surface',
+          type: types.SideEditPropType.Number,
+          label: 'Floor surface',
+        },
+        {
+          name: 'shortDescription',
+          type: types.SideEditPropType.Textarea,
+          label: 'Short description',
+          textareaOptions: {
+            height: 60,
+          },
+        },
+      ],
+    },
+  ]}
+  // Applied only to the pages of type "product"
+  // This time we didn't create groups, but directly props
+  pageTypes={[
+    {
+      name: 'product',
+      pluralName: 'products',
+      defaultLocked: true,
+      defaultStatus: types.PageStatus.Draft,
+      getDefaultContent: () => ['hero-unit', 'product-details'],
+      customFields: [
+        {
+          name: 'brand',
+          type: types.SideEditPropType.Text,
+          label: 'Brand',
+        },
+        {
+          name: 'model',
+          type: types.SideEditPropType.Text,
+          label: 'Model',
+        },
+      ],
+    },
+  ]}
+</ReactBricks>
+```
+
+## Custom component
+
+You can provide your own editing component for a customField (for example, a color picker).
+
+In that case:
+
+- the `type` should be `CUSTOM` (`types.sideEditPropType.Custom`)
+- the `component` should be a functional component with props:
+  - `value` (the value of the prop)
+  - `onChange` (a function with the value as argument to set the new prop value)
+  - `isValid` (true if the prop match the validation rule, false otherwise, so that you can apply a style in case of invalid status).
