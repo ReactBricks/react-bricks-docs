@@ -1,0 +1,56 @@
+---
+title: Internationalization
+description: Internationalization with React Bricks CMS
+---
+
+import Video from '../../../components/Video'
+
+# Internationalization
+
+React Bricks has **built-in internationalization**.
+
+When you have more than one language, React Bricks lets you **translate the content** of each page in every language.
+
+## Settings
+
+You can **add / remove languages** and set the **default language** at any time from the [Settings](app-settings) tab.
+
+<Video src="/videos/i18n_settings.mp4" />
+
+## Default language
+
+The default language is **used as a default or fallback**.
+
+For example, the page names on the left sidebar are those of the default language, if the default language translation is available. It is also the language used to copy content from, when a new translation is created.
+
+When you retrieve content via queries, if you specify no language, the default language is retrieved.
+
+## Translate pages
+
+To translate a page, click on the corresponsing **language tab in the Editor**.
+
+**If a translation doesn't exist yet**, React Bricks will ask you if you like to create it.
+
+<Video src="/videos/i18n_translation.mp4" />
+
+When you create a new translation, **the content is copied from the default language**.  
+If there is no translation for the default language, React Bricks will copy the content
+from the first availble language.
+
+**Each translation is completely independent**: it
+can have its own **content, page attributes**, seo/meta, custom fields values, etc.
+
+## Delete a translation
+
+When you have more than one translation, you can delete a translation.
+
+<Video src="/videos/i18n_delete.mp4" />
+
+**Deleting a translation won't delete the entire page**, but only the content in that language.  
+It is not possible to delete the last translation of a page.
+
+## Use the translations
+
+The queries for pages list or single page content accept a **`language` parameter**, so that you can ask for content in a particular language.
+
+**The `i18n` starters** show how this plays well with **i18n routing** on a framework like **Next.js**.

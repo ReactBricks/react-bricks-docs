@@ -3,6 +3,8 @@
   "editor": "The Editor",
   "playground": "The Playground",
   "app-settings": "App Settings",
+  "i18n": "Internationalization",
   "user-roles": "User roles",
-  "pages": "Pages"
+  "pages": "Pages",
+  "click-to-edit": "Click to edit"
 }
