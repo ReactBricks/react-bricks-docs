@@ -5,11 +5,40 @@ description: You don't need any CSS or CSS-in-JS framework
 
 # Styling
 
-## Any CSS style
-**React Bricks doesn't impose any CSS or CSS-in-JS framework on you.**  
-The Admin interface CSS is decoupled from the page styles and the content blocks styles.
+## Intro
 
-Rember that, if you use a CSS-in-JS library, you need to set the `useCssInJs` flag to `true` in [React Bricks configuration](/docs/configuration/configuration).
+**React Bricks works with any CSS framework** like Bootstrap, Tailwind, Material UI, CSS modules and it should work with any CSS-in-JS solution.
+
+## CSS in JS
+
+If you use a CSS-in-JS library, **you need to set the `useCssInJs` flag to `true`** in [React Bricks configuration](/docs/configuration/configuration).
+For some CSS-in-JS libraries other steps may be required: see below.
+
+## Styled-Components
+
+Styled-components by default inject styles in the CSSOM in production: this prevents React Bricks from correctly inject styles in the content bricks.
+
+Luckily the `StyleSheetManager` component, from Styled-components v5, has the `disableCSSOMInjection` property, which switches to the text-node injection system.
+
+**So you need to wrap React Bricks' `<Admin>` component in this way:**
+
+```tsx highlight=7
+import React from 'react'
+import { Admin, Editor } from 'react-bricks'
+import { StyleSheetManager } from 'styled-components'
+
+const AdminEditor: React.FC = () => {
+  return (
+    <StyleSheetManager disableCSSOMInjection>
+      <Admin>
+        <Editor />
+      </Admin>
+    </StyleSheetManager>
+  )
+}
+
+export default AdminEditor
+```
 
 ## React Bricks UI
 
@@ -18,4 +47,3 @@ We created a beautiful collection of bricks ready to use with **[Tailwind CSS](h
 ![React Bricks UI](/images/react-bricks-ui.png)
 
 [React Bricks UI](https://github.com/ReactBricks/react-bricks-ui) is free and already included in all the [starter projects](/docs/getting-started/starter-projects) using Tailwind!
-
