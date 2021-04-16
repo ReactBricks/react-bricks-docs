@@ -16,9 +16,9 @@ For some CSS-in-JS libraries other steps may be required: see below.
 
 ## Styled-Components
 
-Styled-components by default inject styles in the CSSOM in production: this prevents React Bricks from correctly inject styles in the content bricks.
+Styled-components by default injects styles in the CSSOM in production: this prevents React Bricks from correctly inject styles in the content bricks.
 
-Luckily the `StyleSheetManager` component, from Styled-components v5, has the `disableCSSOMInjection` property, which switches to the text-node injection system.
+Luckily the `StyleSheetManager` component, since Styled-components v5, has the `disableCSSOMInjection` property, which switches to the text-node injection system.
 
 **So you need to wrap React Bricks' `<Admin>` component in this way:**
 
