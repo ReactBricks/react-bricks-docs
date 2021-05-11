@@ -1,19 +1,20 @@
 ---
-title: usePage
+title: usePagePublic
 description: Hook that lets you easily retrieve the content of a page from React Bricks' APIs
 ---
 
-# usePage
+# usePagePublic
 
-The usePage hook lets you easily **retrieve the content of a page** from React Bricks' APIs.
+The `usePagePublic` hook lets you easily **retrieve the content of a page** from React Bricks' APIs.
 
 ## Signature
 
 ```ts
-const usePage = (slug: string): types.IQueryResult<types.Page>
+const usePagePublic = (
+  slug: string,
+  language?: string
+): types.IQueryResult<types.Page>
 ```
-
-The only argument of this hook function is the **slug** string.
 
 ## Usage example
 

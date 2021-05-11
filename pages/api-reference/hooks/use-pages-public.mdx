@@ -1,22 +1,23 @@
 ---
-title: usePages
+title: usePagesPublic
 description: Hook to fetch the list of published pages
 ---
 
-# usePages
+# usePagesPublic
 
 **Hook to fetch the list of published pages.**  
 It won't return pages with status "DRAFT".
 
 ## Arguments
 
-The `usePages` hook accepts an optional configuration object with the following props:
+The `usePagesPublic` hook accepts an optional configuration object with the following props:
 
 ```ts
 {
   type?: string
   types?: string[]
   tag?: string
+  language?: string
   usePagination?: boolean
   page?: number
   pageSize?: number
@@ -29,6 +30,7 @@ The `usePages` hook accepts an optional configuration object with the following 
 | `type`          | Optional string to return only the pages with the specified page type.                          |
 | `types`         | Optional array of strings to return only the pages with one of the specified page types.        |
 | `tag`           | Optional string to return only the pages with the specified tag.                                |
+| `language`      | Optional language for the page. If not specified, the default language will be used.            |
 | `usePagination` | If true, it will consider the page and pageSize parameters and it will return paginated results |
 | `page`          | The page number, in case of pagination                                                          |
 | `pageSize`      | The page size, in case of pagination                                                            |
