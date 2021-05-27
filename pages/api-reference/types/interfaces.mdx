@@ -77,7 +77,6 @@ interface IMeta {
   description?: string
   language?: string
   featuredImage?: string
-  readingTime?: number
 }
 ```
 
@@ -127,6 +126,9 @@ interface IReactBricksContext {
   toggleColorMode?: () => void
   useCssInJs?: boolean
   clickToEditSide?: ClickToEditSide
+  customFields?: Array<ISideEditPropPage | ISideGroup>
+  responsiveBreakpoints: ResponsiveBreakpoint[]
+  enableAutoSave: boolean
 }
 ```
 
@@ -205,5 +207,17 @@ interface ReactBricksConfig {
   appRootElement: string | HTMLElement
   clickToEditSide?: ClickToEditSide
   customFields?: Array<ISideEditPropPage | ISideGroup>
+  responsiveBreakpoints?: ResponsiveBreakpoint[]
+  enableAutoSave?: boolean
+}
+```
+
+## ResponsiveBreakpoint
+
+```ts
+interface ResponsiveBreakpoint {
+  type: DeviceType
+  width: number | string
+  label: string
 }
 ```

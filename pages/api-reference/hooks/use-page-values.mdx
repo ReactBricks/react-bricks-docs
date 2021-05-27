@@ -34,7 +34,6 @@ The values you can access are:
     description?: string
     language?: string
     featuredImage?: string
-    readingTime?: number
   }
   authorId?: string
   author: Author
@@ -46,8 +45,6 @@ The values you can access are:
   publishedAt?: string
 }
 ```
-
-The `readingTime` is expressed in minutes and calculated based on the length of the plain text content of the page.
 
 See the [Page](/api-reference/types/types#page) type and [IMeta](/api-reference/types/interfaces#imeta) interface
 
@@ -69,7 +66,6 @@ useEffect(() => {
 return (
   <div>
     Created at {moment(page.createdAt).format('MM/DD/YYYY')}.
-    {page.readingTime && <span>{page.readingTime} minutes read.</span>}
   </div>
 )
 ```
