@@ -129,6 +129,7 @@ interface IReactBricksContext {
   customFields?: Array<ISideEditPropPage | ISideGroup>
   responsiveBreakpoints: ResponsiveBreakpoint[]
   enableAutoSave: boolean
+  disableSaveIfInvalidProps: boolean
 }
 ```
 
@@ -153,7 +154,7 @@ interface ISideEditProp {
   type: SideEditPropType
   component?: React.FC<ICustomKnobProps>
   shouldRefreshText?: boolean
-  validate?: (value: any, props?: Props) => boolean
+  validate?: (value: any, props?: Props) => boolean | string
   show?: (props: Props) => boolean
   imageOptions?: {
     maxWidth: number
@@ -209,6 +210,7 @@ interface ReactBricksConfig {
   customFields?: Array<ISideEditPropPage | ISideGroup>
   responsiveBreakpoints?: ResponsiveBreakpoint[]
   enableAutoSave?: boolean
+  disableSaveIfInvalidProps?: boolean
 }
 ```
 
