@@ -9,22 +9,23 @@ This is where content creators ([Admin](user-roles) or [Editor](user-roles) user
 
 ![Admin Editor](/images/admin_editor.png)
 
-### Left panel
+## Left panel (Pages)
 
 In the left panel you see the Pages, organized by Page Type.  
 Clicking on a Page you can edit the page content.
 
-### Central panel
+## Central panel (content editor)
 
 The central panel is used to:
 
 - Visul edit the content of a block (Text, Images)
 - Add / remove / sort blocks.
 
-### Right panel
+## Right panel (Page, Block, Item, Stories)
 
 The right panel has 3 tabs:
 
-- **Document**: where you can edit [page properties](pages), like Name, Slug, Meta attributes (title, description, featured image, author, tags), set the [status of the page](pages) (draft / published, locked / unlocked), delete the page.
+- **Page**: where you can edit [page properties](pages), like Name, Slug, Meta attributes (title, description, featured image, author, tags), set the [status of the page](pages) (draft / published, locked / unlocked), delete the page.
 - **Block**: to edit the block properties, as defined in the Brick's [sideEditProps](/docs/bricks/side-edit-props) (for example background color, padding, etc.), add or remove repeater items (used in `<Repeater>` components).
 - **Item**: to edit the block properties of a repeater item
+- **Stories**: stories are a way to save a brick in the current status to apply the same text, images and props to another content block later. In this way you can create configuration templates for your bricks. Stories are saved on our APIs, so they are persisted across users without any need to change the code.
