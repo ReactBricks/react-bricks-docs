@@ -1,0 +1,71 @@
+---
+title: RichTextExt
+description: Extensible plugin-based Rich Text
+---
+
+# RichTextExt
+
+The `RichTextExt` component allows the user to edit a multiline rich text.
+It is more flexible than the `RichText` component, because it allows you to replace any part of a plugin (not just the render function, but also the button icon, label, shortkey etc.) and also write a new plugin from scratch.
+
+The documentation will be updated soon, explaining the plugins system.
+
+## Properties
+
+Here's the Typescript interface for the props of the `RichTextExt` component:
+
+```ts
+interface RichTextProps {
+  renderBlock: (props: RenderElementProps) => JSX.Element
+  propName: string
+  placeholder: string
+  plugins?: types.RichTextPlugin[]
+}
+```
+
+## Properties definition
+
+| Property      | Definition                                                          |
+| ------------- | ------------------------------------------------------------------- |
+| `renderBlock` | A React functional component used to render each paragraph of text. |
+| `propName`    | The prop of the Brick component corresponding to this text.         |
+| `placeholder` | The placeholder to show when the text is empty.                     |
+| `plugins`     | An array of plugins extending the rich text functionality.          |
+
+## Usage example
+
+```tsx
+import { RichTextExt as RichText } from 'react-bricks'
+
+return (
+  <RichText
+    renderBlock={(props: any) => (
+      <p
+        className={classNames(
+          'text-lg sm:text-xl text-center leading-7 sm:leading-8',
+          textColor
+        )}
+        {...props.attributes}
+      >
+        {props.children}
+      </p>
+    )}
+    placeholder="Type a text..."
+    propName="text"
+    plugins={[
+      bold,
+      italic,
+      unorderedList,
+      link,
+      {
+        ...quote,
+        renderElement: ({ children }) => (
+          <div className="border-l-4 pl-4 border-pink-500 text-pink-500 text-xl">
+            {children}
+          </div>
+        ),
+      },
+    ]}
+  />
+)
+```

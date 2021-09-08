@@ -12,7 +12,9 @@ They are:
 
 - [`Text`](/api-reference/visual-components/text) **for one-line plain texts.**
 - [`RichText`](/api-reference/visual-components/rich-text) **for multiline rich text editing.**  
-  You may choose the available rich text features (bold, italic, link, code, highlight) and provide custom components for these markers.
+  You may choose the available rich text features (bold, italic, link, code, highlight, headings, quote) and provide custom components for these markers.
+- [`RichTextExt`](/api-reference/visual-components/rich-text-ext) **extensible RichText.**  
+  This is the new version of the `RichText` component for v3 with a new "plugin-based" interface, which allows you to customize also the buttons, shortcuts and provide your custom plugins. The `RichText` component has a simpler interface if you just need to provide some marker render functions, so we kept it (updating it for the new default rich text features of v3) for compatibility and ease of use: underneath it uses the new `RichTextExt`.
 - [`Image`](/api-reference/visual-components/image) **to allow inline uploading of images.**  
   On the Admin this component allow the upload, then our APIs will create a small size placeholder for lazy loading and responsive versions to optimize data transfer.  
   On the frontend, this component lazyload the images and uses the sourceSet created on the server to load the optimal image size.
