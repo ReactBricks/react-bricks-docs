@@ -19,11 +19,18 @@ It manages authentication and renders the Admin menu. It acts also as a Provider
 ```tsx
 interface AdminProps {
   isLogin?: boolean
+  isPublicDesignSystem?: boolean
+  designSystemTitle?: string
 }
 ```
 
-The only prop you can specify is `isLogin`.  
-It is a boolean value to identify the Login page. It is needed to correctly manage the authentication process.
+## Properties definition
+
+| Property               | Definition                                                                                                                    |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `isLogin`              | Default `false`. It is boolean value to identify the Login page. It is needed to correctly manage the authentication process. |
+| `isPublicDesignSystem` | If true, the playground is accessible without authentication, in order to use it as a public design system documentation.     |
+| `designSystemTitle`    | Title to show in the playground page, if it is a public design system page.                                                   |
 
 ## Usage example, editor page
 

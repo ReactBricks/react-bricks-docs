@@ -10,13 +10,15 @@ Each brick should have a `schema` static property, which has the following TypeS
 ## Properties
 
 ```ts
-interface ISchema {
+interface IBlockType {
   name: string
   label: string // for the Add menu
   getDefaultProps: () => object
   hideFromAddMenu?: boolean
   sideEditProps?: Array<ISideEditProp | ISideGroup>
   repeaterItems?: IRepeaterItem[]
+  playgroundLinkUrl?: string
+  playgroundLinkLabel?: string
 }
 ```
 
@@ -25,14 +27,16 @@ The `Repeater` interface is explained in the [Repeater](/api-reference/visual-co
 
 ## Properties definition
 
-| Property          | Definition                                                                                                                                                                                                                               |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`            | The unique name for this block type (for example _"hero-unit"_).                                                                                                                                                                         |
-| `label`           | The name displayed in the Sidebar when you want to add a new block (for example _"Hero Unit"_).                                                                                                                                          |
-| `getDefaultProps` | A function returning the default props for new added blocks.                                                                                                                                                                             |
-| `hideFromAddMenu` | If true, the component isn't shown in the list of components available in the "add block" menu. For example, you may want to hide a block that can be used only inside of a [`<Repeater />`](/api-reference/visual-components/repeater). |
-| `sideEditProps`   | The array of objects representing the props the user will be able to modify in the right Sidebar, with their display properties. See [Side Edit Props](side-edit-props).                                                                 |
-| `repeaterItems`   | Array to specify behaviour of the bricks used in the `<Repeater>` components. See [Repeater](/api-reference/visual-components/repeater).                                                                                                 |
+| Property              | Definition                                                                                                                                                                                                                               |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                | The unique name for this block type (for example _"hero-unit"_).                                                                                                                                                                         |
+| `label`               | The name displayed in the Sidebar when you want to add a new block (for example _"Hero Unit"_).                                                                                                                                          |
+| `getDefaultProps`     | A function returning the default props for new added blocks.                                                                                                                                                                             |
+| `hideFromAddMenu`     | If true, the component isn't shown in the list of components available in the "add block" menu. For example, you may want to hide a block that can be used only inside of a [`<Repeater />`](/api-reference/visual-components/repeater). |
+| `sideEditProps`       | The array of objects representing the props the user will be able to modify in the right Sidebar, with their display properties. See [Side Edit Props](side-edit-props).                                                                 |
+| `repeaterItems`       | Array to specify behaviour of the bricks used in the `<Repeater>` components. See [Repeater](/api-reference/visual-components/repeater).                                                                                                 |
+| `playgroundLinkUrl`   | Url to link in the Playground, for example to link docs, guidelines, etc.                                                                                                                                                                |
+| `playgroundLinkLabel` | Text for the link in the Playground, for example to link docs, guidelines, etc.                                                                                                                                                          |
 
 ## Usage example
 
