@@ -35,7 +35,9 @@ interface RichTextProps {
 ## Usage example
 
 ```tsx
-import { RichTextExt as RichText } from 'react-bricks'
+import { RichTextExt as RichText, plugins } from 'react-bricks'
+
+const { bold, italic, unorderedList, link, quote } = plugins
 
 return (
   <RichText
