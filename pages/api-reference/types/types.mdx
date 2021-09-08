@@ -39,6 +39,7 @@ type Page = {
   name: string
   slug: string
   meta: IMeta
+  customValues?: Props
   content: IContentBlock[]
   authorId?: string
   author: Author
@@ -48,6 +49,8 @@ type Page = {
   tags: string[]
   createdAt: string
   publishedAt?: string
+  language: string
+  translations: Translation[]
 }
 ```
 
