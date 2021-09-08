@@ -19,8 +19,8 @@ interface IBlockType {
   repeaterItems?: IRepeaterItem[]
   playgroundLinkUrl?: string
   playgroundLinkLabel?: string
-  category?: string // v3
-  tags?: string[] // v3
+  category?: string
+  tags?: string[]
 }
 ```
 
@@ -39,6 +39,8 @@ The `Repeater` interface is explained in the [Repeater](/api-reference/visual-co
 | `repeaterItems`       | Array to specify behaviour of the bricks used in the `<Repeater>` components. See [Repeater](/api-reference/visual-components/repeater).                                                                                                 |
 | `playgroundLinkUrl`   | Url to link in the Playground, for example to link docs, guidelines, etc.                                                                                                                                                                |
 | `playgroundLinkLabel` | Text for the link in the Playground, for example to link docs, guidelines, etc.                                                                                                                                                          |
+| `category`            | Used to categorize bricks. Bricks will be shown grouped by category.                                                                                                                                                                     |
+| `tags`                | Tags are used to search bricks in the Admin interface.                                                                                                                                                                                   |
 
 ## Usage example
 
@@ -46,6 +48,8 @@ The `Repeater` interface is explained in the [Repeater](/api-reference/visual-co
 HeroUnit.schema = {
   name: 'hero-unit',
   label: 'Hero Unit',
+  category: 'headings',
+  tags: ['hero', 'jumbotron', 'heading'],
   // Defaults when a new brick is added
   getDefaultProps: () => ({
     background: { color: '#fff', className: 'bg-white' },
