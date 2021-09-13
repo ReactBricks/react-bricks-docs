@@ -8,8 +8,6 @@ description: Extensible plugin-based Rich Text
 The `RichTextExt` component allows the user to edit a multiline rich text.
 It is more flexible than the `RichText` component, because it allows you to replace any part of a plugin (not just the render function, but also the button icon, label, shortkey etc.) and also write a new plugin from scratch.
 
-The documentation will be updated soon, explaining the plugins system.
-
 ## Properties
 
 Here's the Typescript interface for the props of the `RichTextExt` component:
@@ -31,6 +29,51 @@ interface RichTextProps {
 | `propName`    | The prop of the Brick component corresponding to this text.         |
 | `placeholder` | The placeholder to show when the text is empty.                     |
 | `plugins`     | An array of plugins extending the rich text functionality.          |
+
+## Change or create a plugin
+
+The `RichTextExt` component allows you to change any part of an existing RichText plugin or provide your own plugins.
+
+Let's see the interface of a RichText plugin:
+
+```ts
+interface RichTextPlugin {
+  type: 'Mark' | 'Block' | 'List'
+  name: string
+  isInline?: boolean
+  itemName?: string
+  label: string
+  hotKey?: string
+  renderElement?: (props: RenderElementProps) => JSX.Element
+  renderItemElement?: (props: RenderElementProps) => JSX.Element
+  renderLeaf?: (props: RenderLeafProps) => JSX.Element
+  toggle: (editor: Editor, plugins: RichTextPlugin[]) => void
+  button?: {
+    icon: React.ReactElement
+    isActive: (editor: Editor) => boolean
+  }
+  enhanceEditor?: (editor: Editor) => Editor
+}
+```
+
+React Bricks underneath uses [Slate](https://docs.slatejs.org/) as a rich text editor. The `RenderElementProps` and `RenderLeafProps` are types from Slate. See [Slate rendering docs](https://docs.slatejs.org/concepts/09-rendering)
+
+## Plugin properties
+
+| Plugin               | Definition                                                                                                                                                                                                                                                  |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`               | A plugin can be of type "Mark" (a style like bold), "Block" (for example an heading) or "List" (for a list of items, like UL).                                                                                                                              |
+| `name`               | Name of the plugin.                                                                                                                                                                                                                                         |
+| `isInline?`          | Is the element inline? For example for links.                                                                                                                                                                                                               |
+| `itemName?`          | Name of the items element in case of a list                                                                                                                                                                                                                 |
+| `label`              | Displayed when you hover the button                                                                                                                                                                                                                         |
+| `hotKey?`            | Hot key (shortcut) to apply this marker or block type                                                                                                                                                                                                       |
+| `renderElement?`     | The render function for a block plugin. The main arguments to be aware of are `children` (the actual text content), `attributes` (that must be spread on the top-level DOM element) and `element` which is an object whose `type` is the name of the plugin |
+| `renderItemElement?` | The render function for a single item of a list (think of a `li` element).                                                                                                                                                                                  |
+| `renderLeaf?`        | The render function for a mark plugin (like bold or italic). The argument are `children`, `attributes` (see above) and `leaf`. Leaf is an object with truthy keys for applied markers (`if (leaf.bold) {...}`)                                              |
+| `toggle`             | Function to toggle the marker or block on the editor                                                                                                                                                                                                        |
+| `button`             | Customize the default button for a plugin or configure the button for a new plugin, providing the `icon` (a `ReactElement`) and a `isActive` function                                                                                                       |
+| `enhanceEditor`      | Function to enhance the Slate editor. You return an enhanced editor. Please, refer to [Slate documentation](https://docs.slatejs.org/). This is a very powerful option to customize the React Bricks RichText behavior.                                     |
 
 ## Usage example
 
