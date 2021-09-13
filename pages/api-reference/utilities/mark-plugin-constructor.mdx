@@ -1,0 +1,46 @@
+---
+title: markPluginConstructor
+description: Plugin helper to create a Mark plugin
+---
+
+# markPluginConstructor
+
+As we saw, the [RichTextExt](../visual-components/rich-text-ext) can be extended using a plugin system.
+
+For a typical Mark plugin (bold, italic, highlight...), React Bricks provides the `markPluginConstructor` helper that allows you to create a new plugin very quickly.
+
+It just accepts a simple `MarkPlugin` object:
+
+```ts
+type MarkPluginConstructor = (markPlugin: MarkPlugin) => RichTextPlugin
+
+interface MarkPlugin {
+  name: string
+  label?: string
+  hotKey?: string
+  render: (props: RenderLeafProps) => JSX.Element
+  icon: React.ReactElement
+}
+```
+
+For the meaning of the arguments, you can see the interface for a [`RichTextPlugin`](../visual-components/rich-text-ext).
+The `icon` is the button's icon.
+
+## Usage example
+
+Here's the code for React Bricks `bold` plugin, created using the `markPluginConstructor`
+
+```tsx
+import React from 'react'
+import { FaBold } from 'react-icons/fa'
+import { markPluginConstructor } from 'react-bricks'
+
+const plugin = markPluginConstructor({
+  name: 'bold',
+  hotKey: 'mod+b',
+  render: (props: any) => <strong>{props.children}</strong>,
+  icon: <FaBold />,
+})
+
+export default plugin
+```

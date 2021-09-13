@@ -4,5 +4,7 @@
   "clean-page": "cleanPage",
   "get-plain-text": "getPlainText",
   "get-page-plain-text": "getPagePlainText",
-  "plain": "plain"
+  "plain": "plain",
+  "mark-plugin-constructor": "markPluginConstructor",
+  "block-plugin-constructor": "blockPluginConstructor"
 }

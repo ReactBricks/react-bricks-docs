@@ -5,18 +5,32 @@ description: Visual editing has never been so easy
 
 # Intro to Visual editing
 
-In your Brick components you may use React Bricks exported components.  
-Three of them are needed for Visual (WYSIWYG) editing.
+In your Brick components you can use React Bricks exported Visual editing components.
 
-They are:
+## Text
 
-- [`Text`](/api-reference/visual-components/text) **for one-line plain texts.**
-- [`RichText`](/api-reference/visual-components/rich-text) **for multiline rich text editing.**  
-  You may choose the available rich text features (bold, italic, link, code, highlight, headings, quote) and provide custom components for these markers.
-- [`RichTextExt`](/api-reference/visual-components/rich-text-ext) **extensible RichText.**  
-  This is the new version of the `RichText` component for v3 with a new "plugin-based" interface, which allows you to customize also the buttons, shortcuts and provide your custom plugins. The `RichText` component has a simpler interface if you just need to provide some marker render functions, so we kept it (updating it for the new default rich text features of v3) for compatibility and ease of use: underneath it uses the new `RichTextExt`.
-- [`Image`](/api-reference/visual-components/image) **to allow inline uploading of images.**  
-  On the Admin this component allow the upload, then our APIs will create a small size placeholder for lazy loading and responsive versions to optimize data transfer.  
-  On the frontend, this component lazyload the images and uses the sourceSet created on the server to load the optimal image size.
+Used for on-line plain text.
 
-See [Text](/api-reference/visual-components/text), [RichText](/api-reference/visual-components/rich-text) and [Image](/api-reference/visual-components/image) components.
+See the [Text docs](/api-reference/visual-components/text)
+
+## RichText
+
+Used for multiline rich text editing.  
+You may choose the available rich text features (bold, italic, link, code, highlight, headings, quote) and provide custom render functions for each feature.
+
+See the [RichText docs](/api-reference/visual-components/rich-text)
+
+## RichTextExt
+
+This is the new extensible version of the `RichText` component. It is based on a plugins system, which allows you to customize also the buttons, the shortcut hot keys and create custom plugins from scratch.
+
+See the [RichTextExt docs](/api-reference/visual-components/rich-text-ext).
+
+To extend the RichText behavior, you may see also plugin helpers like [markPluginConstructor](/api-reference/utilities/mark-plugin-constructor) and [blockPluginConstructor](/api-reference/utilities/block-plugin-constructor).
+
+## Image
+
+The image component allows the user to upload images. React Bricks APIs will create a small size placeholder for lazy loading and responsive versions to optimize data transfer.  
+On the frontend, this component lazyloads the images and uses the sourceSet created on the server to load the optimal image size.
+
+See the [Image docs](/api-reference/visual-components/image)

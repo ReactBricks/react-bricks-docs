@@ -1,6 +1,7 @@
 {
   "text": "<Text>",
   "rich-text": "<RichText>",
+  "rich-text-ext": "<RichTextExt>",
   "image": "<Image>",
   "repeater": "<Repeater>",
   "link": "<Link>"

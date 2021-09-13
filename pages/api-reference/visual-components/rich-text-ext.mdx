@@ -6,7 +6,7 @@ description: Extensible plugin-based Rich Text
 # RichTextExt
 
 The `RichTextExt` component allows the user to edit a multiline rich text.
-It is more flexible than the `RichText` component, because it allows you to replace any part of a plugin (not just the render function, but also the button icon, label, shortkey etc.) and also write a new plugin from scratch.
+It is more flexible than the `RichText` component, because it uses a plugins system: it allows you to replace any part of a default plugin (not just the render function, but also the button icon, label, shortkey etc.) and to add a completely new plugin.
 
 ## Properties
 
@@ -56,7 +56,8 @@ interface RichTextPlugin {
 }
 ```
 
-React Bricks underneath uses [Slate](https://docs.slatejs.org/) as a rich text editor. The `RenderElementProps` and `RenderLeafProps` are types from Slate. See [Slate rendering docs](https://docs.slatejs.org/concepts/09-rendering)
+React Bricks underneath uses [Slate](https://docs.slatejs.org/) as a rich text editor.  
+The `RenderElementProps` and `RenderLeafProps` are types from Slate. See [Slate rendering docs](https://docs.slatejs.org/concepts/09-rendering)
 
 ## Plugin properties
 
@@ -109,8 +110,16 @@ return (
             {children}
           </div>
         ),
+        hotKey: 'mod+opt+q',
       },
     ]}
   />
 )
 ```
+
+## Plugins helpers
+
+For typical mark (bold, italic, highlight...) or block (heading, quote, etc.) plugins, React Bricks provides helpers that allow you to create a new plugin very quickly.
+
+- [Mark plugins helper](/api-reference/utilities/mark-plugin-constructor)
+- [Block plugins helper](/api-reference/utilities/block-plugin-constructor)

@@ -1,0 +1,50 @@
+---
+title: blockPluginConstructor
+description: Plugin helper to create a Block plugin
+---
+
+# blockPluginConstructor
+
+As we saw, the [RichTextExt](../visual-components/rich-text-ext) can be extended using a plugin system.
+
+For a typical Block or List plugin (heading, quote, unordered list...), React Bricks provides the `blockPluginConstructor` helper that allows you to create a new plugin very quickly.
+
+It just accepts a simple `BlockPlugin` object:
+
+```ts
+type BlockPluginConstructor = (blockPlugin: BlockPlugin) => RichTextPlugin
+
+interface BlockPlugin {
+  name: string
+  isInline?: boolean
+  itemName?: string
+  label?: string
+  hotKey?: string
+  render: (props: RenderElementProps) => JSX.Element
+  renderItem?: (props: RenderElementProps) => JSX.Element
+  icon: React.ReactElement
+}
+```
+
+For the meaning of the arguments, you can see the interface for a [`RichTextPlugin`](../visual-components/rich-text-ext).
+The `icon` is the button's icon. If you set an `itemName` React Bricks will create a List plugin, otherwise a Block one.
+
+## Usage example
+
+Here's the code for React Bricks `h1` plugin, created using the `blockPluginConstructor`
+
+```tsx
+import React from 'react'
+import { MdLooksOne } from 'react-icons/md'
+
+import { blockPluginConstructor } from 'react-bricks'
+
+const plugin = blockPluginConstructor({
+  name: 'h1',
+  hotKey: 'mod+shift+1',
+  render: (props: any) => <h1>{props.children}</h1>,
+  icon: <MdLooksOne />,
+})
+
+export default plugin
+```
