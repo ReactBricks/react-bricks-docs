@@ -1,0 +1,71 @@
+---
+title: Upgrade guide v2 > v3
+description: Learn how to migrate from React Bricks v2.3.16 to v3.x
+---
+
+import Tags from '../../../components/Tags'
+
+# Upgrade guide
+
+This is the step-by-step upgrade guide from latest v2 (v 2.3.16) to v3.x
+
+## 1. Translations structure on Page
+
+<Tags tags={['easy', 'required']} />
+
+The `translations` array on the `Page` object returned by `fetchPage` or `usePage` isn't an array of strings anymore, but it is an **array of objects with keys `language` and `slug`**.  
+This makes possible to create a language switch that stays at the current page, but in another language (where the slug may be different).
+
+## 2. shouldRefreshText not needed
+
+<Tags tags={['easy', 'required']} />
+
+The `shouldRefreshText` on sideEditProps which affect the style of (Rich)Texts **isn't needed anymore**. Since we removed it from the TypeScript interface, if you are using TypeScript you will receive a type error if you don't remove it.
+
+## 3. Changes to leverage new features
+
+### 3.1 Staging build hook
+
+<Tags tags={['pro']} />
+
+Based on your need and your Plan, you may want to add a **Staging build web hook** and set the proper **permissions** on your Editor users, so that now a user can just be able to trigger a re-deploy in staging.
+
+### 3.2 Images aspect ratio
+
+Based on your needs you can now set a **fixed aspect ratio** (`aspectRatio`) on images to enforce it.
+
+### 3.3 New RichText features
+
+You can now have **headings H1..H6 and Quote** as features in your `RichText` components and you can also use the **new `RichTextExt` component to use the plugin-based Rich Text** and be able change any aspect of a plugin or even add new custom plugins.
+
+### 3.4 Stories
+
+**You can now save Stories** (bricks configurations with both the content and side props' values) for each Brick, so that your editors will be able to use them out of the box.
+
+### 3.5 Bricks categorization and docs
+
+You may now **add a `category` and `tags` to all of your Bricks** to organize them and have a better search.  
+You can also add a `playgroundLinkUrl` and `playgroundLinkLabel` to have a link to external documentation in the Playground.
+
+### 3.6 Backup and restore
+
+You can now **backup a React Bricks App content** and restore it from the React Bricks Dashboard.
+
+### 3.7 Scheduled publishing
+
+<Tags tags={['pro']} />
+
+If you are on a Pro plan, you can now set a **scheduled publishing date and time** for a Page. React Bricks will set the Page as Published on that date and time (±15 min) and (if you choose so) **trigger a rebuild** of your staging and/or production build.
+
+### 3.8 History
+
+<Tags tags={['enterprise']} />
+
+If you are on an Enterprise Plan, you can **go back in time for each Page up to 10 days**.  
+In the React Bricks Dashboard you see the History Page with all the actions on your pages. You can see the status before and after the change and revert the page back to the "before" state.
+
+### 3.9 Events webhook
+
+<Tags tags={['enterprise']} />
+
+If you are on an Enterprise Plan, you can set a **webhook where all the Pages and Translations events will be sent** (creation, update, delete).

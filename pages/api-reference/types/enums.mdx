@@ -5,9 +5,20 @@ description: List of the main exported Enums
 
 # Enums
 
+## ClickToEditSide
+
+```ts
+enum ClickToEditSide {
+  BottomRight = 'BOTTOM-RIGHT',
+  BottomLeft = 'BOTTOM-LEFT',
+  TopRight = 'TOP-RIGHT',
+  TopLeft = 'TOP-LEFT',
+}
+```
+
 ## DeviceType
 
-```tsx
+```ts
 enum DeviceType {
   Desktop = 'DESKTOP',
   Tablet = 'TABLET',
@@ -17,7 +28,7 @@ enum DeviceType {
 
 ## OptionsDisplay
 
-```tsx
+```ts
 enum OptionsDisplay {
   Select = 'SELECT',
   Radio = 'RADIO',
@@ -25,9 +36,18 @@ enum OptionsDisplay {
 }
 ```
 
+## PageStatus
+
+```ts
+enum PageStatus {
+  Draft = 'DRAFT',
+  Published = 'PUBLISHED',
+}
+```
+
 ## RichTextFeatures
 
-```tsx
+```ts
 enum RichTextFeatures {
   Bold = 'BOLD',
   Italic = 'ITALIC',
@@ -36,14 +56,22 @@ enum RichTextFeatures {
   Link = 'LINK',
   UnorderedList = 'UL',
   OrderedList = 'OL',
+  Heading1 = 'H1',
+  Heading2 = 'H2',
+  Heading3 = 'H3',
+  Heading4 = 'H4',
+  Heading5 = 'H5',
+  Heading6 = 'H6',
+  Quote = 'QUOTE',
 }
 ```
 
 ## SideEditPropType
 
-```tsx
+```ts
 enum SideEditPropType {
   Text = 'TEXT',
+  Textarea = 'TEXTAREA',
   Number = 'NUMBER',
   Date = 'DATE',
   Range = 'RANGE',

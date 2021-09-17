@@ -1,4 +1,6 @@
 {
-  "release-notes": "React Bricks v2",
-  "upgrade-guide": "Upgrade v1 > v2"
+  "react-bricks-v3": "React Bricks v3",
+  "upgrade-guide-v2-v3": "Upgrade v2 > v3",
+  "react-bricks-v2": "React Bricks v2",
+  "upgrade-guide-v1-v2": "Upgrade v1 > v2"
 }

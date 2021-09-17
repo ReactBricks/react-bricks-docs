@@ -7,7 +7,7 @@ description: To upload an image with progressive loading
 
 On the frontend, the `Image` component shows a responsive optimized image with progressive loading (lazy load).
 
-On the Admin, it allows to **upload a new image**, opening a modal that allows you to set the alternate text (ALT) and SEO-friendly name (for the image URL). 
+On the Admin, it allows to **upload a new image**, opening a modal that allows you to set the alternate text (ALT) and SEO-friendly name (for the image URL).
 
 In order to boost performance and SEO, upon upload, React Bricks will:
 
@@ -16,8 +16,6 @@ In order to boost performance and SEO, upon upload, React Bricks will:
 - Create a **light blurred placeholder** for the progressive loading
 - Save them on a **global CDN**
 - Enforce the **SEO-friendly name** via proper rewrite rules
-
-
 
 ## Properties
 
@@ -29,6 +27,7 @@ interface ImageProps {
   alt: string
   maxWidth?: number
   noLazyLoad?: boolean
+  aspectRatio?: number
   containerClassName?: string
   containerStyle?: object
   imageClassName?: string
@@ -38,18 +37,19 @@ interface ImageProps {
 
 ## Properties definition
 
-| Property | Definition |
-| --- | --- |
-| `propName` | The prop of the Brick component corresponding to this image. |
-| `alt` | The fallback alternate text for the image when it isn't provided via the upload modal |
-| `maxWidth` | This is the maximum width in pixel at which your image will be displayed. It is used to calculate the responsive images for normal and retina displays.<br />The default value is 800. |
-| `noLazyLoad` | Set to `true` to avoid the lazy load behaviour. Default is `false`. |
-| `containerClassName` | Optional className to apply to the image container (a thin wrapper created by React Bricks). |
-| `imageClassName` | Optional className to apply to the `<img>` tag. |
-| `imageStyle` | Optional style object to apply to the `<img>` tag. |
+| Property             | Definition                                                                                                                                                                             |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `propName`           | The prop of the Brick component corresponding to this image.                                                                                                                           |
+| `alt`                | The fallback alternate text for the image when it isn't provided via the upload modal                                                                                                  |
+| `maxWidth`           | This is the maximum width in pixel at which your image will be displayed. It is used to calculate the responsive images for normal and retina displays.<br />The default value is 800. |
+| `noLazyLoad`         | Set to `true` to avoid the lazy load behaviour. Default is `false`.                                                                                                                    |
+| `aspectRatio`        | If you set an aspect ratio, the user will have a fixed-ratio selection mask to crop the uploaded image.                                                                                |
+| `containerClassName` | Optional className to apply to the image container (a thin wrapper created by React Bricks).                                                                                           |
+| `imageClassName`     | Optional className to apply to the `<img>` tag.                                                                                                                                        |
+| `imageStyle`         | Optional style object to apply to the `<img>` tag.                                                                                                                                     |
 
 ## Usage example
 
 ```jsx
-  <Image propName="image" alt="Product" maxWidth="420" />
+<Image propName="image" alt="Product" maxWidth="420" aspectRatio="1.33" />
 ```

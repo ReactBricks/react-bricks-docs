@@ -18,6 +18,12 @@ type Author = {
 }
 ```
 
+## BlockPluginConstructor
+
+```ts
+type BlockPluginConstructor = (blockPlugin: BlockPlugin) => RichTextPlugin
+```
+
 ## Brick
 
 ```ts
@@ -28,6 +34,21 @@ type Brick<T = {}> = React.FC<T> & { schema: IBlockType }
 
 ```ts
 type Bricks = { [key: string]: Brick<any> }
+```
+
+## Language
+
+```ts
+type Language = {
+  code: string
+  name: string
+}
+```
+
+## MarkPluginConstructor
+
+```ts
+type MarkPluginConstructor = (markPlugin: MarkPlugin) => RichTextPlugin
 ```
 
 ## Page
@@ -74,6 +95,35 @@ export type PagesFromListWithPagination = {
 }
 ```
 
+## PageValues
+
+```ts
+type PageValues = Omit<Page, 'content'>
+```
+
+## PartialPage
+
+```ts
+type PartialPage = {
+  id?: string
+  type?: string
+  name?: string
+  slug?: string
+  meta?: IMeta
+  content?: IContentBlock[]
+  authorId?: string
+  author?: Author
+  invalidBlocksTypes?: string[]
+  status?: PageStatus
+  isLocked?: boolean
+  tags?: string[]
+  createdAt?: string
+  publishedAt?: string
+  language?: string
+  translations?: string[]
+}
+```
+
 ## Props
 
 ```ts
@@ -100,10 +150,42 @@ type RenderLocalLink = ({
 }) => React.ReactElement
 ```
 
-## TextValue
+## Translation
 
 ```ts
-import { Value } from 'slate'
+type Translation = {
+  language: string
+  slug: string
+}
+```
 
-type TextValue = Value
+## User
+
+```ts
+type User = {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  company: string
+  avatarUrl?: string
+  isAdmin: boolean
+  token: string
+  appName: string
+  deployHookUrl?: string
+  deployHookMethod?: string
+  deployHookTriggerOnScheduledPublishing: boolean
+  deployHookStagingUrl?: string
+  deployHookStagingMethod?: string
+  deployHookStagingTriggerOnScheduledPublishing: boolean
+  eventsHookUrl?: string
+  canCreatePage: boolean
+  canDeletePage: boolean
+  canDeploy: boolean
+  canDeployStaging: boolean
+  role: string
+  plan: string
+  languages: Language[]
+  defaultLanguage: string
+} | null
 ```

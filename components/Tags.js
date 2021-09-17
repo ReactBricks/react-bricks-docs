@@ -11,6 +11,10 @@ const Tags = ({ tags }) => {
         return 'bg-rose-200 text-rose-700 dark:text-rose-200 dark:bg-rose-700'
       case 'new':
         return 'bg-lime-200 text-lime-700 dark:text-lime-200 dark:bg-lime-700'
+      case 'pro':
+        return 'bg-blue-200 text-blue-700 dark:text-blue-200 dark:bg-blue-700'
+      case 'enterprise':
+        return 'bg-purple-200 text-purple-700 dark:text-purple-200 dark:bg-purple-700'
       default:
         return 'bg-gray-200 text-gray-700 dark:text-gray-200 dark:bg-gray-700'
     }
@@ -20,7 +24,12 @@ const Tags = ({ tags }) => {
     <div className="tags flex space-x-2 mt-3 mb-6">
       {tags.map((tag) => {
         return (
-          <div key={tag} className={`py-1 px-2 rounded text-xs leading-none tracking-wide font-medium ${getColor(tag)}`}>
+          <div
+            key={tag}
+            className={`py-1 px-2 rounded text-xs leading-none tracking-wide font-medium ${getColor(
+              tag
+            )}`}
+          >
             {tag.toUpperCase()}
           </div>
         )

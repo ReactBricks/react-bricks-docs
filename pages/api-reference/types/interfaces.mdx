@@ -5,18 +5,83 @@ description: List of the main exported Interfaces
 
 # Interfaces
 
-## IAdminContext
+## BlockPlugin
 
-```tsx
-interface IReadAdminContext {
-  isAdmin: boolean
-  previewMode: boolean
+```ts
+interface BlockPlugin {
+  name: string
+  isInline?: boolean
+  itemName?: string
+  label?: string
+  hotKey?: string
+  render: (props: RenderElementProps) => JSX.Element
+  renderItem?: (props: RenderElementProps) => JSX.Element
+  icon: React.ReactElement
+}
+```
+
+## ClickToEditProps
+
+```ts
+interface ClickToEditProps {
+  pageId: string
+  language?: string
+}
+```
+
+## FetchPagesType
+
+```ts
+interface FetchPagesType {
+  <T extends boolean>(
+    apiKey: string,
+    {
+      type,
+      types,
+      tag,
+      language,
+      page,
+      pageSize,
+      sort,
+      usePagination,
+    }: {
+      type?: string
+      types?: string[]
+      tag?: string
+      language?: string
+      page?: number
+      pageSize?: number
+      sort?: string
+      usePagination: T
+    }
+  ): Promise<T extends true ? PagesFromListWithPagination : PageFromList[]>
+  (
+    apiKey: string,
+    {
+      type,
+      types,
+      tag,
+      language,
+      page,
+      pageSize,
+      sort,
+    }: {
+      type?: string
+      types?: string[]
+      tag?: string
+      language?: string
+      page?: number
+      pageSize?: number
+      sort?: string
+    }
+  ): Promise<PageFromList[]>
+  (apiKey: string): Promise<PageFromList[]>
 }
 ```
 
 ## IBlockType
 
-```tsx
+```ts
 interface IBlockType {
   name: string
   label: string
@@ -31,9 +96,18 @@ interface IBlockType {
 }
 ```
 
+## ICleanBlocks
+
+```ts
+interface ICleanBlocks {
+  blocks: IContentBlock[]
+  invalidBlocksTypes: string[]
+}
+```
+
 ## IColor
 
-```tsx
+```ts
 interface IColor {
   color: string
   [propName: string]: any
@@ -42,7 +116,7 @@ interface IColor {
 
 ## IContentBlock
 
-```tsx
+```ts
 interface IContentBlock {
   id: string
   type: string
@@ -52,18 +126,19 @@ interface IContentBlock {
 
 ## ICustomKnobProps
 
-```tsx
+```ts
 interface ICustomKnobProps {
   id: string
   value: any
   onChange: any
   isValid: boolean
+  errorMessage?: string
 }
 ```
 
 ## IImageSource
 
-```tsx
+```ts
 interface IImageSource {
   src: string
   placeholderSrc?: string
@@ -73,9 +148,25 @@ interface IImageSource {
 }
 ```
 
+## ImageProps
+
+```ts
+interface ImageProps {
+  propName: string
+  alt: string
+  maxWidth?: number
+  noLazyLoad?: boolean
+  aspectRatio?: number
+  containerClassName?: string
+  containerStyle?: object
+  imageClassName?: string
+  imageStyle?: object
+}
+```
+
 ## IMeta
 
-```tsx
+```ts
 interface IMeta {
   title?: string
   description?: string
@@ -86,7 +177,7 @@ interface IMeta {
 
 ## IOption
 
-```tsx
+```ts
 interface IOption {
   value: any
   label: string
@@ -95,7 +186,7 @@ interface IOption {
 
 ## IPageType
 
-```tsx
+```ts
 interface IPageType {
   name: string
   pluralName: string
@@ -106,13 +197,13 @@ interface IPageType {
   defaultLanguage?: string
   defaultFeaturedImage?: string
   getDefaultContent?: () => string[]
-  customFields?: Array<ISideEditPropPage | ISideGroup>
+  customFields?: Array<ISideEditProp | ISideGroup>
 }
 ```
 
 ## IReactBricksContext
 
-```tsx
+```ts
 interface IReactBricksContext {
   appId: string
   apiKey: string
@@ -130,16 +221,26 @@ interface IReactBricksContext {
   toggleColorMode?: () => void
   useCssInJs?: boolean
   clickToEditSide?: ClickToEditSide
-  customFields?: Array<ISideEditPropPage | ISideGroup>
+  customFields?: Array<ISideEditProp | ISideGroup>
   responsiveBreakpoints: ResponsiveBreakpoint[]
   enableAutoSave: boolean
   disableSaveIfInvalidProps: boolean
 }
 ```
 
+## IReadAdminContext
+
+```ts
+interface IReadAdminContext {
+  isAdmin: boolean
+  previewMode: boolean
+  currentPage: ICurrentPage
+}
+```
+
 ## IRepeaterItem
 
-```tsx
+```ts
 interface IRepeaterItem {
   name: string
   itemType: string
@@ -151,25 +252,24 @@ interface IRepeaterItem {
 
 ## ISideEditProp
 
-```tsx
+```ts
 interface ISideEditProp {
   name: string
   label: string
   type: SideEditPropType
   component?: React.FC<ICustomKnobProps>
-  shouldRefreshText?: boolean
   validate?: (value: any, props?: Props) => boolean | string
   show?: (props: Props) => boolean
-  imageOptions?: {
-    maxWidth: number
-  }
   textareaOptions?: {
     height?: number
   }
+  imageOptions?: {
+    maxWidth: number
+  }
   rangeOptions?: {
-    min: number
-    max: number
-    step: number
+    min?: number
+    max?: number
+    step?: number
   }
   selectOptions?: {
     options?: IOption[]
@@ -181,7 +281,7 @@ interface ISideEditProp {
 
 ## ISideGroup
 
-```tsx
+```ts
 interface ISideGroup {
   groupName: string
   defaultOpen?: boolean
@@ -190,9 +290,39 @@ interface ISideGroup {
 }
 ```
 
+## LinkProps
+
+```ts
+interface LinkProps {
+  href: string
+  target?: string
+  className?: string
+}
+```
+
+## MarkPlugin
+
+```ts
+interface MarkPlugin {
+  name: string
+  label?: string
+  hotKey?: string
+  render: (props: RenderLeafProps) => JSX.Element
+  icon: React.ReactElement
+}
+```
+
+## PageViewerProps
+
+```ts
+interface PageViewerProps {
+  page: types.Page | null | undefined
+}
+```
+
 ## ReactBricksConfig
 
-```tsx
+```ts
 interface ReactBricksConfig {
   appId: string
   apiKey: string
@@ -211,10 +341,25 @@ interface ReactBricksConfig {
   useCssInJs?: boolean
   appRootElement: string | HTMLElement
   clickToEditSide?: ClickToEditSide
-  customFields?: Array<ISideEditPropPage | ISideGroup>
+  customFields?: Array<ISideEditProp | ISideGroup>
   responsiveBreakpoints?: ResponsiveBreakpoint[]
   enableAutoSave?: boolean
   disableSaveIfInvalidProps?: boolean
+}
+```
+
+## RepeaterProps
+
+```ts
+interface RepeaterProps {
+  propName: string
+  itemProps?: types.Props
+  renderWrapper?: (items: React.ReactElement) => React.ReactElement
+  renderItemWrapper?: (
+    item: React.ReactElement,
+    index: number,
+    itemsCount: number
+  ) => React.ReactElement
 }
 ```
 
@@ -225,5 +370,168 @@ interface ResponsiveBreakpoint {
   type: DeviceType
   width: number | string
   label: string
+}
+```
+
+## RichTextProps
+
+```ts
+interface RichTextProps {
+  renderBlock: (props: RenderElementProps) => JSX.Element
+  placeholder: string
+  propName: string
+  allowedFeatures?: types.RichTextFeatures[]
+  renderBold?: (props: RenderLeafProps) => JSX.Element
+  renderItalic?: (props: RenderLeafProps) => JSX.Element
+  renderHighlight?: (props: RenderLeafProps) => JSX.Element
+  renderCode?: (props: RenderLeafProps) => JSX.Element
+  renderLink?: (props: RenderLinkElementProps) => JSX.Element
+  renderUL?: (props: RenderElementProps) => JSX.Element
+  renderOL?: (props: RenderElementProps) => JSX.Element
+  renderLI?: (props: RenderElementProps) => JSX.Element
+  renderH1?: (props: RenderElementProps) => JSX.Element
+  renderH2?: (props: RenderElementProps) => JSX.Element
+  renderH3?: (props: RenderElementProps) => JSX.Element
+  renderH4?: (props: RenderElementProps) => JSX.Element
+  renderH5?: (props: RenderElementProps) => JSX.Element
+  renderH6?: (props: RenderElementProps) => JSX.Element
+  renderQuote?: (props: RenderElementProps) => JSX.Element
+}
+```
+
+## RichTextExtProps
+
+```ts
+interface RichTextExtProps {
+  renderBlock: (props: RenderElementProps) => JSX.Element
+  propName: string
+  placeholder: string
+  plugins?: types.RichTextPlugin[]
+}
+```
+
+## RichTextPlugin
+
+```ts
+interface RichTextPlugin {
+  type: 'Mark' | 'Block' | 'List'
+  name: string
+  isInline?: boolean
+  itemName?: string
+  label: string
+  hotKey?: string
+  renderElement?: (props: RenderElementProps) => JSX.Element
+  renderItemElement?: (props: RenderElementProps) => JSX.Element
+  renderLeaf?: (props: RenderLeafProps) => JSX.Element
+  toggle: (editor: Editor, plugins: RichTextPlugin[]) => void
+  button?: {
+    icon: React.ReactElement
+    isActive: (editor: Editor) => boolean
+  }
+  enhanceEditor?: (editor: Editor) => Editor
+}
+```
+
+## TextProps
+
+```ts
+interface TextProps {
+  renderBlock: (props: { children: any }) => React.ReactElement
+  placeholder: string
+  propName: string
+}
+```
+
+## UsePagesType
+
+```ts
+interface UsePagesType {
+  <T extends boolean>({
+    type,
+    types,
+    tag,
+    language,
+    page,
+    pageSize,
+    sort,
+    usePagination,
+  }: {
+    type?: string
+    types?: string[]
+    tag?: string
+    language: string
+    page?: number
+    pageSize?: number
+    sort?: string
+    usePagination: T
+  }): UseQueryResult<
+    T extends true ? types.PagesFromListWithPagination : types.PageFromList[],
+    unknown
+  >
+  ({
+    type,
+    types,
+    tag,
+    language,
+    page,
+    pageSize,
+    sort,
+  }: {
+    type?: string
+    types?: string[]
+    language: string
+    tag?: string
+    page?: number
+    pageSize?: number
+    sort?: string
+  }): UseQueryResult<types.PageFromList[], unknown>
+  (): UseQueryResult<types.PageFromList[], unknown>
+}
+```
+
+## UsePagesPublicType
+
+```ts
+interface UsePagesPublicType {
+  <T extends boolean>({
+    type,
+    types,
+    tag,
+    language,
+    page,
+    pageSize,
+    sort,
+    usePagination,
+  }: {
+    type?: string
+    types?: string[]
+    tag?: string
+    language?: string
+    page?: number
+    pageSize?: number
+    sort?: string
+    usePagination: T
+  }): UseQueryResult<
+    T extends true ? types.PagesFromListWithPagination : types.PageFromList[],
+    unknown
+  >
+  ({
+    type,
+    types,
+    tag,
+    language,
+    page,
+    pageSize,
+    sort,
+  }: {
+    type?: string
+    types?: string[]
+    tag?: string
+    language?: string
+    page?: number
+    pageSize?: number
+    sort?: string
+  }): UseQueryResult<types.PageFromList[], unknown>
+  (): UseQueryResult<types.PageFromList[], unknown>
 }
 ```

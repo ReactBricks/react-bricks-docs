@@ -2,7 +2,6 @@
   "fetch-page": "fetchPage",
   "fetch-pages": "fetchPages",
   "clean-page": "cleanPage",
-  "get-plain-text": "getPlainText",
   "get-page-plain-text": "getPagePlainText",
   "plain": "plain",
   "mark-plugin-constructor": "markPluginConstructor",

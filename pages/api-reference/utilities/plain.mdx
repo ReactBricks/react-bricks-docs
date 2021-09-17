@@ -1,10 +1,12 @@
 ---
 title: Plain
-description: The plain text serializer from the slate-plain-serializer package
+description: Plain text serializer and deserializer
 ---
 
 # Plain
 
-This is just the plain text serializer from the `slate-plain-serializer` package, exported for convenience.
+Plain text serializer / deserializer for a (Rich)Text value.
 
-It has the **deserialize** method to convert a `string` into a Slate editor `Value` (useful to provide default content to your block types) and the **serialize** method which does the opposite.
+It has the `deserialize` method to convert a `string` into an editor value and the `serialize` method which does the opposite.
+
+It is exported for compatibility and convenience, but there should be no use case for a user to directly call this two methods.

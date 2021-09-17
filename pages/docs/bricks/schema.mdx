@@ -44,11 +44,11 @@ The `Repeater` interface is explained in the [Repeater](/api-reference/visual-co
 
 ## Usage example
 
-```ts highlight=2,3,5,10
+```ts highlight=2,3,7,12
 HeroUnit.schema = {
   name: 'hero-unit',
   label: 'Hero Unit',
-  category: 'headings',
+  category: 'headings', // to organize bricks by category
   tags: ['hero', 'jumbotron', 'heading'],
   // Defaults when a new brick is added
   getDefaultProps: () => ({
@@ -64,7 +64,7 @@ HeroUnit.schema = {
       selectOptions: {
         display: types.OptionsDisplay.Color,
         options: [
-          // The color is the unique mandatory property for a "color" select
+          // The color is the unique mandatory property for a select with display "color"
           { value: { color: '#fff', className: 'bg-white' }, label: 'White' },
           {
             value: { color: '#f3f4f6', className: 'bg-gray-100' },
