@@ -1,0 +1,21 @@
+---
+title: Internationalization - Next.js routing
+description: See how to use Next.js internationalized routing
+---
+
+# Next.js i18n routing
+
+Next.js has built in internationalization routing.
+React Bricks starters with Next.js are already configure to leverage the i18n routing.
+
+You just need to add languages to the languages array in `next.config.json`:
+
+```json highlight=3
+module.exports = {
+  i18n: {
+    locales: ['en'], // Add your languages here
+    defaultLocale: 'en',
+    localeDetection: false,
+  },
+}
+```

@@ -14,13 +14,16 @@ In particular, this comes in handy to retrieve all the pages during the build pr
 ```ts
 const fetchPages = async (
   apiKey: string,
-  options: { type?: string
-  types?: string[]
-  tag?: string
-  usePagination?: boolean
-  page?: number
-  pageSize?: number
-  sort?: string }
+  options: {
+    type: pageType = '',
+    types: pageTypes = [] as string[],
+    tag = '',
+    language = '',
+    page = 1,
+    pageSize = 100,
+    sort = '',
+    usePagination = false,
+  }
 ): Promise<types.PageFromList[] | types.PagesFromListWithPagination>
 ```
 

@@ -12,13 +12,18 @@ In particular, this comes in handy during the build process of a static website.
 ## Signature
 
 ```ts
-const fetchPage = async (slug: string, apiKey: string): Promise<types.Page>
+const fetchPage = async (
+  slug: string,
+  apiKey: string,
+  language?: string
+): Promise<types.Page>
 ```
 
-| Property   | Definition                                   |
-| ---------- | -------------------------------------------- |
-| `pageSlug` | The slug (string) of the page to fetch.      |
-| `apiKey`   | Api Key of your React Bricks app (a string). |
+| Property    | Definition                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------ |
+| `pageSlug`  | The slug (string) of the page to fetch.                                                    |
+| `apiKey`    | Api Key of your React Bricks app (a string).                                               |
+| `language?` | The language of the desired translation for the page, if more than one share the same slug |
 
 ## Return value
 

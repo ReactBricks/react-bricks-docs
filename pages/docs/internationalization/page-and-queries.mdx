@@ -1,0 +1,56 @@
+---
+title: Internationalization - Page and Queries
+description: Query and use internationalized content in React Bricks
+---
+
+# Internationalization: Page and Queries
+
+## Page and Translations
+
+A `Page` that you get from the query hooks (`usePagesPublic`, `usePagePublic`) or the fetch helper functions (`fetchPages`, `fetchPage`) has a `translations` field with an array of available translations for that page.
+
+A translation has a `language` ('en', 'it', ...) and a `slug` (the slug for the page in that language).
+
+### Page
+
+```ts highlight=3
+type Page = {
+  ...
+  translations: Translation[]
+}
+```
+
+### Translation
+
+```ts
+type Translation = {
+  language: string
+  slug: string
+}
+```
+
+## Queries
+
+### usePagesPublic
+
+The `usePagesPublic` hook has a `language` argument to return the published pages in the desired language.
+
+See [usePagePublic](/api-reference/hooks/use-pages-public)
+
+### fetchPages
+
+The `fetchPages` helper function has the ability to specify a `language` in the `options` object.
+
+See [fetchPages](/api-reference/utilities/fetch-pages)
+
+### usePagePublic
+
+The `usePagePublic` hook has arguments `slug` and `language`, so that you can specify the translation that you want to receive for that page, if more than one have the same slug.
+
+See [usePagePublic](/api-reference/hooks/use-page-public)
+
+### fetchPage
+
+The `fetchPage` helper function has arguments `slug`, `apiKey`, `language`, so that you can specify the translation that you want to receive for that page, if more than one have the same slug.
+
+See [fetchPage](/api-reference/utilities/fetch-page)

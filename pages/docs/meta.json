@@ -5,5 +5,6 @@
   "configuration": "Configuration",
   "bricks": "Bricks (content blocks)",
   "nested-blocks": "Nested blocks",
+  "internationalization": "Internationalization",
   "deploy": "Deploy"
 }
