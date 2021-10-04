@@ -15,14 +15,14 @@ In particular, this comes in handy to retrieve all the pages during the build pr
 const fetchPages = async (
   apiKey: string,
   options: {
-    type: pageType = '',
-    types: pageTypes = [] as string[],
-    tag = '',
-    language = '',
-    page = 1,
-    pageSize = 100,
-    sort = '',
-    usePagination = false,
+    type: pageType,
+    types: pageTypes as string[],
+    tag,
+    language,
+    page,
+    pageSize,
+    sort,
+    usePagination,
   }
 ): Promise<types.PageFromList[] | types.PagesFromListWithPagination>
 ```
@@ -43,6 +43,7 @@ The options object has the following shape
   type?: string
   types?: string[]
   tag?: string
+  language?: string
   usePagination?: boolean
   page?: number
   pageSize?: number
@@ -55,6 +56,7 @@ The options object has the following shape
 | `type`          | Optional string to return only the pages with the specified page type.                          |
 | `types`         | Optional array of strings to return only the pages with one of the specified page types.        |
 | `tag`           | Optional string to return only the pages with the specified tag.                                |
+| `language`      | Optional string to return only the pages with the specified language.                           |
 | `usePagination` | If true, it will consider the page and pageSize parameters and it will return paginated results |
 | `page`          | The page number, in case of pagination                                                          |
 | `pageSize`      | The page size, in case of pagination                                                            |
