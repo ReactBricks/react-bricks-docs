@@ -21,6 +21,7 @@ interface RichTextProps {
   renderBlock: (props: RenderElementProps) => JSX.Element
   placeholder: string
   propName: string
+  multiline?: boolean
   allowedFeatures?: types.RichTextFeatures[]
   renderBold?: (props: RenderLeafProps) => JSX.Element
   renderItalic?: (props: RenderLeafProps) => JSX.Element
@@ -47,6 +48,7 @@ interface RichTextProps {
 | `renderBlock`     | A React functional component used to render each paragraph of text.                                                                                                                                                                                        |
 | `propName`        | The prop of the Brick component corresponding to this text.                                                                                                                                                                                                |
 | `placeholder`     | The placeholder to show when the text is empty.                                                                                                                                                                                                            |
+| `multiline`       | Default: `true`. If set to `false` it prevents multiline text.                                                                                                                                                                                             |
 | `allowedFeatures` | An array of allowed rich text features: the available features are of type [`types.RichTextFeatures`](/api-reference/types/enums#richtextfeatures)                                                                                                         |
 | `renderBold`      | The optional render function for the `BOLD` marker.                                                                                                                                                                                                        |
 | `renderItalic`    | The optional render function for the `ITALIC` marker.                                                                                                                                                                                                      |

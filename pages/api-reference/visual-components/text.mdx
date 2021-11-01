@@ -16,16 +16,18 @@ interface TextProps {
   propName: string
   renderBlock: React.FC
   placeholder: string
+  multiline?: boolean
 }
 ```
 
 ## Properties definition
 
-| Property | Definition |
-| --- | --- |
-| `propName` | The prop of the Brick component corresponding to this text. |
+| Property      | Definition                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| `propName`    | The prop of the Brick component corresponding to this text.                                 |
 | `renderBlock` | A React functional component used to render the text.<br />Typically it wraps the children. |
-| `placeholder` | The placeholder to show when the text is empty. |
+| `placeholder` | The placeholder to show when the text is empty.                                             |
+| `multiline`   | Default: `false`. If set to `true` allows multiline text.                                   |
 
 ## Usage example
 
@@ -33,10 +35,7 @@ interface TextProps {
 <Text
   propName="claim"
   renderBlock={(props: any) => (
-    <p
-      className="text-xl font-extrabold"
-      {...props.attributes}
-    >
+    <p className="text-xl font-extrabold" {...props.attributes}>
       {props.children}
     </p>
   )}

@@ -17,6 +17,7 @@ interface RichTextProps {
   renderBlock: (props: RenderElementProps) => JSX.Element
   propName: string
   placeholder: string
+  multiline?: boolean
   plugins?: types.RichTextPlugin[]
 }
 ```
@@ -28,6 +29,7 @@ interface RichTextProps {
 | `renderBlock` | A React functional component used to render each paragraph of text. |
 | `propName`    | The prop of the Brick component corresponding to this text.         |
 | `placeholder` | The placeholder to show when the text is empty.                     |
+| `multiline`   | Default: `true`. If set to `false` it prevents multiline text.      |
 | `plugins`     | An array of plugins extending the rich text functionality.          |
 
 ## Change or create a plugin
