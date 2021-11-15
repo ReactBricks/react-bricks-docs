@@ -4,6 +4,7 @@
   "side-edit-props": "Side edit props",
   "visual-edit": "Visual Editing",
   "styling": "Styling",
-  "create-visual-editing": "Custom visual editing component",
-  "access-page-meta": "Access page meta"
+  "external-content": "External content",
+  "access-page-meta": "Access page meta",
+  "create-visual-editing": "Custom visual editing component"
 }

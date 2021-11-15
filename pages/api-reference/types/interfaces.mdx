@@ -89,6 +89,7 @@ interface IBlockType {
   hideFromAddMenu?: boolean
   sideEditProps?: Array<ISideEditProp | ISideGroup>
   repeaterItems?: IRepeaterItem[]
+  mapExternalDataToProps?: (externalData: Props, brickProps?: Props) => Props
   playgroundLinkUrl?: string
   playgroundLinkLabel?: string
   category?: string
@@ -198,6 +199,7 @@ interface IPageType {
   defaultFeaturedImage?: string
   getDefaultContent?: () => string[]
   customFields?: Array<ISideEditProp | ISideGroup>
+  getExternalData?: (page: Page) => Promise<Props>
 }
 ```
 

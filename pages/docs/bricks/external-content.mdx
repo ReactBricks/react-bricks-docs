@@ -1,0 +1,63 @@
+---
+title: External content
+description: Use content from an external source (like a headless CMS or e-commerce) in React Bricks
+---
+
+# External content
+
+## Why use external content in React Bricks?
+
+React Bricks a great authoring tool for your content creators, but sometimes:
+
+1. You need structured content (entities with relationships) to reuse across pages. Headless CMSs solve this problem very well.
+2. You already have much content inside of your headless CMS that serves as a single source of truth.
+3. You have an e-commerce (for example on Shopify) and you need to get data from the e-commerce inside of React Bricks bricks.
+
+## How to get external content
+
+To get external content and use it in your bricks you need to do 3 things:
+
+### 1. Get external data
+
+On each `pageType`, you can define your `getExternalData` function.  
+It takes a Page as argument (so that you have access to the slug, or any custom fields) and it must return a Promise that resolves to an object. That object will be put on the page, in `externalData`. It will be accessible either using the `usePageValues` hook (if you just need to render external data as it is) or using the `mapExternalDataToProps`, in order to be able to override this data via visual editing: see the next paragraph.
+
+### 2. Map external data to the bricks' props
+
+The simpler way to use external content, once you are getting it through the `getExternalData` function, is using the `mapExternalDataToProps` on your bricks `schema`.  
+Each brick can map the external data to its props.  
+The `mapExternalDataToProps` function has 2 arguments:
+
+1. The external data
+2. The current props for this block
+   You return an object with the new props you want on your content block.
+
+For example, if you just want to render a product title from an e-commerce, you can do this:
+
+```ts
+mapExternalDataToProps: (externalData, bricksProps) => ({
+  title: externalData.title,
+})
+```
+
+Now you can just render `{title}` in your JSX.
+
+Instead, if you want to be able to replace the title from the e-commerce data source, you can do this:
+
+```ts
+mapExternalDataToProps: (externalData, bricksProps) => ({
+  title: bricksProps.title || externalData.title,
+})
+```
+
+In this case, in your JSX, you can have a Text component from React Bricks, like this:
+
+```tsx
+<Text propName="title" />
+```
+
+If you override the title, you will save your version (for example a title best suited for a marketing landing page). As soon as you delete the title you are back from the official title from your "source of truth".
+
+### 3. pass `pageTypes` to the `fetchPage` function
+
+If you come from a starter before v3.1 came out, you need to pass pageTypes to the fetchPage function. That's because fetchPage cannot access the ReactBricks context (being outside of the React context), but it needs pageTypes to call your `getExternalData` function after fetching the page.

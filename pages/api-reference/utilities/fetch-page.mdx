@@ -16,14 +16,16 @@ const fetchPage = async (
   slug: string,
   apiKey: string,
   language?: string
+  pageTypes?: types.IPageType[]
 ): Promise<types.Page>
 ```
 
-| Property    | Definition                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------ |
-| `pageSlug`  | The slug (string) of the page to fetch.                                                    |
-| `apiKey`    | Api Key of your React Bricks app (a string).                                               |
-| `language?` | The language of the desired translation for the page, if more than one share the same slug |
+| Property     | Definition                                                                                                                                                                         |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pageSlug`   | The slug (string) of the page to fetch.                                                                                                                                            |
+| `apiKey`     | Api Key of your React Bricks app (a string).                                                                                                                                       |
+| `language?`  | The language of the desired translation for the page, if more than one share the same slug                                                                                         |
+| `pageTypes?` | The pageTypes used in React Bricks configuration. Useful only if you have [external content](/docs/bricks/external-content) (fetchPage cannot access them from the React context). |
 
 ## Return value
 

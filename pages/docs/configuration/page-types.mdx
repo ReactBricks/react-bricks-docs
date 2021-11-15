@@ -33,6 +33,7 @@ interface IPageType {
   defaultFeaturedImage?: string
   getDefaultContent?: () => string[]
   customFields?: Array<ISideEditPropPage | ISideGroup>
+  getExternalData?: (page: Page) => Promise<Props>
 }
 ```
 
@@ -50,6 +51,7 @@ interface IPageType {
 | `defaultFeaturedImage` | The default URL for the featured image of this pageType, if no featured image is provided for a Page via the Document sidebar.                                                                                                                                                                        |
 | `getDefaultContent`    | Function that returns an array of brick names. The default content for the page will consist in the concatenation of the default content for each brick.                                                                                                                                              |
 | `customFields`         | Array of custom fields or groups of custom fields on a Page for this page type, modified via the sidebar's "Document" tab. See [Custom fields](custom-fields)                                                                                                                                         |
+| `getExternalData`      | Function that gets the [Page](/api-reference/types/types#page) as argument and should return a promise that resolves to an object with string keys. See [External content](../bricks/external-content)                                                                                                |
 
 ## Usage example
 
