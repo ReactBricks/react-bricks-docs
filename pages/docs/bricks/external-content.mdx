@@ -26,6 +26,8 @@ You can then access external data:
 - using the `usePageValues` hook (if you just need to render external data as it is);
 - using the `mapExternalDataToProps`, in order to be able to override this data via visual editing: see the next paragraph.
 
+> See also [pageType](/docs/configuration/page-types)
+
 ### 2. Map external data to the bricks' props
 
 The simpler way to use external content is using the `mapExternalDataToProps` on your bricks' `schema`. **Each brick can map the external data to its props.**
@@ -36,6 +38,8 @@ The `mapExternalDataToProps` function has 2 arguments:
 2. **Brick's props**
 
 You **return an object with the new props** you want on your content block.
+
+> See also [brick's schema](/docs/bricks/schema)
 
 ## Examples
 
@@ -72,3 +76,5 @@ If you change the title, you will save your version (for example a title best su
 > ### Pass pageTypes to the fetchPage function
 >
 > If you come from a starter before v3.1 came out, you need to pass the `pageTypes` from React Bricks configuration to the `fetchPage` function. That's because fetchPage cannot access the ReactBricks context (being outside of the React context), but it needs pageTypes to call your `getExternalData` function after fetching the page.
+>
+> See also [fetchPage](/api-reference/utilities/fetch-page)
