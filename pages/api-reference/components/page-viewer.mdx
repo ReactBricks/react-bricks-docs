@@ -25,7 +25,7 @@ Before passing the page object to `PageViewer`, you need to parse it with the [`
 
 ```tsx highlight=12
 import React, { useContext } from 'react'
-import { PageViewer, usePage, cleanPage, ReactBricksContext } from 'react-bricks'
+import { PageViewer, usePage, cleanPage, ReactBricksContext } from 'react-bricks/frontend'
 
 const Viewer = () => {
   const { data } = usePage('home')
@@ -45,7 +45,7 @@ export default Viewer
 
 ```tsx highlight=16
 import React, { useState, useContext, useEffect } from 'react'
-import { PageViewer, fetchPage, cleanPage, ReactBricksContext } from 'react-bricks'
+import { PageViewer, fetchPage, cleanPage, ReactBricksContext } from 'react-bricks/frontend'
 
 const ViewerFetch = () => {
   const [page, setPage] = useState(null)
