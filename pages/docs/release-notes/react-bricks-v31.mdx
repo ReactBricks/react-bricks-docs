@@ -1,0 +1,16 @@
+---
+title: React Bricks v3.1
+description: External content and Frontend package
+---
+
+# React Bricks v3.1
+
+The 3.1 release has 2 big features:
+
+- **External content** to get content from an external source, like a headless CMS (see [External content](/docs/bricks/external-content))
+- **Bundle splitting** to have a much smaller bundle on the front-end.
+
+To take advantage of the code splitting on the bundle you need to:
+
+- **Import the React Bricks components (like Text, Image, Repeater)** in your bricks and the code outside of the `/admin` folder **from the new package `react-bricks/frontend`**. This is enough if you are using Next.js or Gatbsy.
+- **If you are not using Next.js or Gatsby**, who automatically leverage the code spitting on the React Bricks bundle on a per-page basis, but create-react-app (which any way is not suggested for SEO reasons), you need to split your front-end and admin in two distinct applications and have your bricks in a (private) npm package so that you can import them in both the apps.
