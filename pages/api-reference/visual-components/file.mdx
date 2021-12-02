@@ -42,10 +42,10 @@ interface IFileSource {
 ```jsx
 <File
   propName="catalogue"
-  allowedExtensions={'.pdf'}
+  allowedExtensions={['.pdf']}
   renderBlock={({ name, url, size }) => (
     <a href={url}>
-      {name}, {size} / 1000000 MB
+      {name}, {size / 1000} KB
     </a>
   )}
 />
