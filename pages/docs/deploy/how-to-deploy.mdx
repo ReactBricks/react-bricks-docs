@@ -5,23 +5,24 @@ description: Learn how to deploy your site
 
 # How to deploy
 
-## Static site generation
+## Hosting requirements
 
-All the [Starter projects](/docs/getting-started/starter-projects) (either with [Next.js](https://www.nextjs.org/) or [Gatsby](https://www.gatsbyjs.org/)) are configured to use Static Site Generation.
-At build time our APIs are called and the content is used to generate a static site that you can **deploy on any static hosting service** or **CDN**.
+**You can host a React Bricks website almost anywhere.**  
+The starter projects with Next.js or Gatsby are configured to use **Static Site Generation**, so that you just need an hosting environment which is able to build the website and serve the generated static content, for example [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/).
+If you want to use Server side rendering, you need to have an hosting environment that can generate the pages at runtime, running Node.js.
 
-A static website is [great for many reasons](https://dev.to/matfrana/server-side-rendering-vs-static-site-generation-17nf), but **all the pages need to be rebuilt** when the content is updated.
+## Environment variables
 
-### Rebuild as code changes
+An important thing to keep in mind is that React Bricks needs 2 environment variables that locally you have in your `.env` file and must be set in the hosting provider environment variables:
+- `APP_ID`: this variable must be **accessible by the browser** and is used by the Admin interface
+- `API_KEY`: this is the secret API_KEY which should not be exposed to the browser
 
-Providers like [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/), which connect to your Github or Bitbucket repo, are able to trigger a rebuild every time you push a change to the repo. But this still doesn't help when it's the CMS content that changes.
+In order to expose the APP_ID variable to the browser, for Next.js you need to call it `NEXT_PUBLIC_APP_ID` and for Gatsby you need to call it `GATBSY_APP_ID`.
 
-### Rebuild as content changes
+## Build hooks
 
-Luckily with many providers you can create a **Build hook, which is a URL** that, when called (usually in HTTP POST), **triggers a site rebuild**.
+Providers like [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/), which connect to your Github or Bitbucket repo, are able to trigger a rebuild every time you push a change to the repo. But this doesn't help when it's the CMS content that changes.
 
-ReactBricks let the Admin set up a deploy hook URL for an App (from the AppSettings page of from React Bricks Dashboard), so that the Editor may just **click a "Deploy" button** to trigger a site rebuild and have the content updated.
+Usually providers let you create a **Build hook, which is a URL** that, when called (usually in HTTP POST), **triggers a site rebuild**.
 
-## Server side rendering
-
-In case of Server-side rendering, no hook needs to be called, as pages are generated at run-time.
+**ReactBricks lets the Admin set up two deploy hooks** for an App (one for the Production environment and one for the Staging environment). They can be set from the App Settings page of the Admin or from the React Bricks Dashboard. The Admin can then give to the Editors the permission to trigger a Staging and/or Production deploy, simply clicking on **Deploy to Staging** or **Deploy to Production** from the Admin interface.

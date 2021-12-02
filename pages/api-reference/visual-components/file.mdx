@@ -1,0 +1,52 @@
+---
+title: File
+description: Visual editing component to uplaod files and show them.
+---
+
+# File
+
+The File component allows the content creators to upload files. This is useful when you need to have documents in your page that users can download. You can decide which file extensions are allowed.
+
+**On the frontend you provide a render function** to present the document (the argument is a file object with file name, url and file size).
+
+**On the Admin interface content creators can upload a file** clicking on the component. It's also possible to change the file, remove it and provide a friendly name.
+
+## Properties
+
+Here's the Typescript interface for the props of the `File` component:
+
+```ts
+interface FileProps {
+  propName: string
+  renderBlock: (props: types.IFileSource) => JSX.Element
+  allowedExtensions?: string[]
+}
+
+interface IFileSource {
+  name: string // file name
+  url: string
+  size: number // bytes
+}
+```
+
+## Properties definition
+
+| Property            | Definition                                                                                                                                    |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `propName`          | The prop of the Brick component corresponding to this file.                                                                                   |
+| `renderBlock`       | The render function to render the document on the page. Its argument is an object with `name` (file name), `url`, `size` (file size in bytes) |
+| `allowedExtensions` | Array of strings representing the allowed extensions                                                                                          |
+
+## Usage example
+
+```jsx
+<File
+  propName="catalogue"
+  allowedExtensions={'.pdf'}
+  renderBlock={({ name, url, size }) => (
+    <a href={url}>
+      {name}, {size} / 1000000 MB
+    </a>
+  )}
+/>
+```
