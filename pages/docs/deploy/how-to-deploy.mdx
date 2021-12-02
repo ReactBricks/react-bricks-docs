@@ -8,12 +8,13 @@ description: Learn how to deploy your site
 ## Hosting requirements
 
 **You can host a React Bricks website almost anywhere.**  
-The starter projects with Next.js or Gatsby are configured to use **Static Site Generation**, so that you just need an hosting environment which is able to build the website and serve the generated static content, for example [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/).
-If you want to use Server side rendering, you need to have an hosting environment that can generate the pages at runtime, running Node.js.
+The starter projects with Next.js or Gatsby are configured to use **Static Site Generation**, so that you just need an hosting environment which is able to **build the website and serve the generated static content**, for example [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/).
+If you want to use **Server side rendering**, you need to have an hosting environment that can generate the pages at runtime, running Node.js.
 
 ## Environment variables
 
-An important thing to keep in mind is that React Bricks needs 2 environment variables that locally you have in your `.env` file and must be set in the hosting provider environment variables:
+An important thing to keep in mind is that **React Bricks needs 2 environment variables** that locally you have in your `.env` file and must be set in the hosting provider environment variables:
+
 - `APP_ID`: this variable must be **accessible by the browser** and is used by the Admin interface
 - `API_KEY`: this is the secret API_KEY which should not be exposed to the browser
 
