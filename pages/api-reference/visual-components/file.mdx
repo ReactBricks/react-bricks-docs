@@ -13,7 +13,7 @@ description: Visual editing component to uplaod files and show them.
 
 ## Properties
 
-Here's the Typescript interface for the props of the `File` component:
+Here's the TypeScript interface for the props of the `File` component:
 
 ```ts
 interface FileProps {
@@ -45,7 +45,7 @@ interface IFileSource {
   allowedExtensions={['.pdf']}
   renderBlock={({ name, url, size }) => (
     <a href={url}>
-      {name}, {size / 1000} KB
+      {name}, {size / 1000}KB
     </a>
   )}
 />
