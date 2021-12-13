@@ -17,6 +17,7 @@ interface IBlockType {
   hideFromAddMenu?: boolean
   sideEditProps?: Array<ISideEditProp | ISideGroup>
   repeaterItems?: IRepeaterItem[]
+  newItemMenuOpen?: boolean
   mapExternalDataToProps?: (externalData: Props, brickProps?: Props) => Props
   playgroundLinkUrl?: string
   playgroundLinkLabel?: string
@@ -38,6 +39,7 @@ The `Repeater` interface is explained in the [Repeater](/api-reference/visual-co
 | `hideFromAddMenu`        | If true, the component isn't shown in the list of components available in the "add block" menu. For example, you may want to hide a block that can be used only inside of a [`<Repeater />`](/api-reference/visual-components/repeater).                                                                       |
 | `sideEditProps`          | The array of objects representing the props the user will be able to modify in the right Sidebar, with their display properties. See [Side Edit Props](side-edit-props).                                                                                                                                       |
 | `repeaterItems`          | Array to specify behaviour of the bricks used in the `<Repeater>` components. See [Repeater](/api-reference/visual-components/repeater).                                                                                                                                                                       |
+| `newItemMenuOpen`        | If `true` the "Add new..." accordion menu is open by default; if `false` it is closed by default; otherwise, by default it is open when the number of `repeaterItems` is <= 4 and closed otherwise.                                                                                                            |
 | `mapExternalDataToProps` | Function that gets as first argument the external data (from the `getExternalData` function specified on the [pageType](/docs/configuration/page-types)) and as second argument the props on this brick. It should return the new props for this brick. See [External content](/docs/bricks/external-content). |
 | `playgroundLinkUrl`      | Url to link in the Playground, for example to link docs, guidelines, etc.                                                                                                                                                                                                                                      |
 | `playgroundLinkLabel`    | Text for the link in the Playground, for example to link docs, guidelines, etc.                                                                                                                                                                                                                                |
