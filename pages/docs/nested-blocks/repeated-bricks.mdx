@@ -7,14 +7,18 @@ description: A brick used as repeater item must spread rest props on root elemen
 
 A brick used as a repeater item is just a normal brick, but it must spread `...rest` props on its root element in order to be correctly focusable in the Admin interface.
 
+A repeated bricks receives also the `index` on the props, so that it may conditionally render based on its position in the items array.
+
 ## Example
 
 ```tsx highlight=5
 const Badge: types.Brick<BadgeProps> = ({
+  index,
   ...rest
 }) => {
   return (
     <div {...rest}>
+      I am the item #{index}.
       ...
     </div>
   )
@@ -26,5 +30,3 @@ Badge.schema = {
 
 export default Badge
 ```
-
-A repeated bricks receives also the `index` on the props, so that it may conditionally render based on its position in the items array.
