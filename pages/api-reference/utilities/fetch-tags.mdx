@@ -1,0 +1,43 @@
+---
+title: fetchPages
+description: Function to retrieve all your tags from outside the React context
+---
+
+# fetchTags
+
+The fetchPages function is useful when you want to **retrieve all your tags from outside the React context** (where you could use the [useTagsPublic hook](/api-reference/hooks/use-tags) instead).
+
+In particular, this comes in handy to retrieve all the tags during the build process of a static website.
+
+## Signature
+
+```ts
+const fetchTags = async (
+  apiKey: string,
+  page: number = 1,
+  pageSize: number = 100
+): Promise<{
+  items: string[]
+  pagination: {
+    page: number
+    pageSize: number
+    totalItems: number
+    totalPages: number
+  }
+}>
+```
+
+| Property   | Definition                                   |
+| ---------- | -------------------------------------------- |
+| `apiKey`   | Api Key of your React Bricks app (a string). |
+| `page`     | Pagination's Page number                     |
+| `pageSize` | Pagination's Page size                       |
+
+## Usage example
+
+```ts highlight=3
+import { fetchTags } from 'react-bricks/frontend'
+import config from '../react-bricks/config'
+
+const paginatedTags = await fetchTags(config.apiKey)
+```
