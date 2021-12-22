@@ -1,6 +1,7 @@
 {
   "use-page-public": "usePagePublic",
   "use-pages-public": "usePagesPublic",
+  "use-tags-public": "useTagsPublic",
   "use-auth": "useAuth",
   "use-visual-edit": "useVisualEdit",
   "use-page-values": "usePageValues",
