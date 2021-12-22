@@ -1,0 +1,53 @@
+---
+title: useTagsPublic
+description: Hook that lets you easily retrieve all the Tags from React Bricks' APIs
+---
+
+# useTagsPublic
+
+The `useTagsPublic` hook lets you easily **retrieve all the Tags** from React Bricks' APIs.
+
+## Signature
+
+```ts
+const useTagsPublic: (
+  page?: number,
+  pageSize?: number
+) => types.IQueryResult<{
+  items: string[]
+  pagination: {
+    page: number
+    pageSize: number
+    totalItems: number
+    totalPages: number
+  }
+}>
+```
+
+## Usage example
+
+```tsx
+import React from 'react'
+import { useTagsPublic } from 'react-bricks/frontend'
+
+const MyBrick: types.Brick = () => {
+  const { data } = useTagsPublic()
+
+  return (
+    <div>
+      {data?.items?.map((t) => (
+        <span key={t} className="p-2 bg-gray-100 rounded mr-2">
+          {t}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+MyBrick.schema = {
+  name: 'my-brick',
+  ...
+}
+
+export default MyBrick
+```
