@@ -1,6 +1,7 @@
 {
   "fetch-page": "fetchPage",
   "fetch-pages": "fetchPages",
+  "fetch-tags": "fetchTags",
   "clean-page": "cleanPage",
   "get-page-plain-text": "getPagePlainText",
   "plain": "plain",
