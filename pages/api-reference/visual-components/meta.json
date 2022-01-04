@@ -4,5 +4,6 @@
   "rich-text-ext": "<RichTextExt>",
   "image": "<Image>",
   "repeater": "<Repeater>",
+  "file": "<File>",
   "link": "<Link>"
 }
