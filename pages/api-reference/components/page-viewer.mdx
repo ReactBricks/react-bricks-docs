@@ -17,7 +17,7 @@ interface PageViewerProps {
 ```
 
 The PageViewer component needs just one prop: `page`.  
-It is the page object you get from React Bricks APIs, using [`usePage`](/api-reference/hooks/use-page) or [`fetchPage`](/api-reference/utilities/fetch-page).
+It is the page object you get from React Bricks APIs, using [`usePage`](/api-reference/hooks/use-page-public) or [`fetchPage`](/api-reference/utilities/fetch-page).
 
 Before passing the page object to `PageViewer`, you need to parse it with the [`cleanPage`](/api-reference/utilities/clean-page) utility function, which checks incoming blocks from the DB against your bricks schema.
 
