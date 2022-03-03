@@ -60,8 +60,13 @@ Now you can just render `{title}` in your JSX.
 If you want to be able to replace the title from the e-commerce data source, you can do this:
 
 ```ts
+import { Plain } from 'react-bricks/frontend'
+
 mapExternalDataToProps: (externalData, bricksProps) => ({
-  title: bricksProps.title || externalData.title,
+  title:
+    bricksProps.title && Plain.serialize(bricksProps.title)
+      ? bricksProps.title
+      : externalData.title,
 })
 ```
 
