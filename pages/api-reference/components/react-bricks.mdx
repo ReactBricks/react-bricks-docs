@@ -20,9 +20,10 @@ The `<ReactBricks>` component wraps all the other React Bricks components and ac
   renderLocalLink={({ href, children, className, activeClassName }) => {...}}
   navigate={...}
   loginPath="/"
-  editorPath="/editor"
-  playgroundPath="/playground"
-  appSettingsPath="/app-settings"
+  editorPath="/admin/editor"
+  playgroundPath="/admin/playground"
+  appSettingsPath="/admin/app-settings"
+  previewPath="/preview"
   isDarkColorMode={colorMode === 'dark'}
   toggleColorMode={...}
   appRootElement="#root"
@@ -31,6 +32,7 @@ The `<ReactBricks>` component wraps all the other React Bricks components and ac
   responsiveBreakpoints={...}
   enableAutoSave
   disableSaveIfInvalidProps
+  enablePreview
 >
   ...
 </ReactBricks>

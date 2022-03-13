@@ -220,6 +220,7 @@ interface IReactBricksContext {
   editorPath: string
   playgroundPath: string
   appSettingsPath: string
+  previewPath: string
   isDarkColorMode?: boolean
   toggleColorMode?: () => void
   useCssInJs?: boolean
@@ -228,6 +229,7 @@ interface IReactBricksContext {
   responsiveBreakpoints: ResponsiveBreakpoint[]
   enableAutoSave: boolean
   disableSaveIfInvalidProps: boolean
+  enablePreview: boolean
 }
 ```
 
@@ -339,6 +341,7 @@ interface ReactBricksConfig {
   editorPath?: string
   playgroundPath?: string
   appSettingsPath?: string
+  previewPath?: string
   isDarkColorMode?: boolean
   toggleColorMode?: () => void
   useCssInJs?: boolean
@@ -348,6 +351,7 @@ interface ReactBricksConfig {
   responsiveBreakpoints?: ResponsiveBreakpoint[]
   enableAutoSave?: boolean
   disableSaveIfInvalidProps?: boolean
+  enablePreview?: boolean
 }
 ```
 
